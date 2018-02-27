@@ -13,8 +13,9 @@
         "favicon.png",
         {
           "glob": "**/*",
-          "input": "../node_modules/leaflet/dist/images",
-          "output": "./assets/img/markers"
+          "input": "/home/dheeraj/work/freelance/dashboard/ngx-admin/node_modules/leaflet/dist/images/",
+          "output": "./assets/img/markers",
+          "allowOutsideOutDir": false
         }
       ],
       "index": "index.html",
