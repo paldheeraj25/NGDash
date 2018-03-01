@@ -9,6 +9,7 @@ import { NbAuthSocialLink } from '../../auth.options';
 import { getDeepFromObject } from '../../helpers';
 
 // import { NbAuthService } from '../../services/auth.service';
+import { AuthService } from '../../providers/auth.service';
 import { NbAuthResult } from '../../services/auth-result';
 
 @Component({
@@ -28,7 +29,7 @@ export class NbLoginComponent {
   socialLinks: NbAuthSocialLink[] = [];
 
   constructor(// protected service: NbAuthService,
-    protected router: Router) {
+    protected router: Router, private authService: AuthService) {
     console.warn('test component');
     this.redirectDelay = this.getConfigValue('forms.login.redirectDelay');
     this.showMessages = this.getConfigValue('forms.login.showMessages');
@@ -64,5 +65,15 @@ export class NbLoginComponent {
 
   signIn(): void {
     console.warn('login test');
+    this.authService.login().subscribe(val => {
+      console.warn("PUT call successful value returned in body",
+        val);
+    },
+      response => {
+        console.warn("PUT call in error", response);
+      },
+      () => {
+        console.warn("The PUT observable is now completed.");
+      });
   }
 }

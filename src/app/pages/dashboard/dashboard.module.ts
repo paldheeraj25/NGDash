@@ -2,9 +2,12 @@ import { NgModule } from '@angular/core';
 
 import { NgxEchartsModule } from 'ngx-echarts';
 
+import { QRCodeModule } from 'angular2-qrcode';
+
 import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
 import { StatusCardComponent } from './status-card/status-card.component';
+import { ModalComponent } from './status-card/modal/modal.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { RoomSelectorComponent } from './rooms/room-selector/room-selector.component';
@@ -20,16 +23,21 @@ import { SolarComponent } from './solar/solar.component';
 import { PlayerComponent } from './rooms/player/player.component';
 import { TrafficComponent } from './traffic/traffic.component';
 import { TrafficChartComponent } from './traffic/traffic-chart.component';
+import { UiFeaturesModule } from '../ui-features/ui-features.module';
+
 
 
 @NgModule({
   imports: [
     ThemeModule,
     NgxEchartsModule,
+    UiFeaturesModule,
+    QRCodeModule,
   ],
   declarations: [
     DashboardComponent,
     StatusCardComponent,
+    ModalComponent,
     TemperatureDraggerComponent,
     ContactsComponent,
     RoomSelectorComponent,
@@ -45,6 +53,9 @@ import { TrafficChartComponent } from './traffic/traffic-chart.component';
     SolarComponent,
     TrafficComponent,
     TrafficChartComponent,
+  ],
+  entryComponents: [
+    ModalComponent,
   ],
 })
 export class DashboardModule { }

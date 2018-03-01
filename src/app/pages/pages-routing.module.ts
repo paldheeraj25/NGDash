@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TokenStateComponent } from './token-state/token-state/token-state.component';
+import { OrderStateComponent } from './order-state/order-state/order-state.component';
+import { InvestedComponent } from './invested/invested/invested.component';
+import { TdeComponent } from './tde/tde/tde.component';
 
 const routes: Routes = [{
   path: '',
@@ -10,7 +14,24 @@ const routes: Routes = [{
   children: [{
     path: 'dashboard',
     component: DashboardComponent,
-  }, {
+  },
+  {
+    path: 'token-stats',
+    component: TokenStateComponent,
+  },
+  {
+    path: 'order-stats',
+    component: OrderStateComponent,
+  },
+  {
+    path: 'invested',
+    component: InvestedComponent,
+  },
+  {
+    path: 'tde',
+    component: TdeComponent,
+  },
+  {
     path: 'ui-features',
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
   }, {
@@ -35,7 +56,8 @@ const routes: Routes = [{
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  }],
+  },
+  ],
 }];
 
 @NgModule({

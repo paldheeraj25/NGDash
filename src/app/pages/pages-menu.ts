@@ -14,72 +14,72 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Token Stats ',
     icon: 'nb-keypad',
-    link: '/pages/dashboard',
+    link: '/pages/token-stats',
     home: true,
   },
   {
     title: 'Order stats',
     icon: 'nb-compose',
-    link: '/pages/dashboard',
+    link: '/pages/order-stats',
     home: true,
   },
   {
     title: 'Total Invested',
     icon: 'nb-gear',
-    link: '/pages/dashboard',
+    link: '/pages/invested',
     home: true,
   },
   {
     title: 'TDE stages',
     icon: 'nb-bar-chart',
-    link: '/pages/dashboard',
+    link: '/pages/tde',
     home: true,
   },
   {
     title: 'Boltt Wallet',
     icon: 'nb-locked',
-    link: '/pages/dashboard',
+    link: '/pages/wallet',
     home: true,
   },
-  // {
-  //   title: 'UI Features',
-  //   icon: 'nb-keypad',
-  //   link: '/pages/ui-features',
-  //   children: [
-  //     {
-  //       title: 'Buttons',
-  //       link: '/pages/ui-features/buttons',
-  //     },
-  //     {
-  //       title: 'Grid',
-  //       link: '/pages/ui-features/grid',
-  //     },
-  //     {
-  //       title: 'Icons',
-  //       link: '/pages/ui-features/icons',
-  //     },
-  //     {
-  //       title: 'Modals',
-  //       link: '/pages/ui-features/modals',
-  //     },
-  //     {
-  //       title: 'Popovers',
-  //       link: '/pages/ui-features/popovers',
-  //     },
-  //     {
-  //       title: 'Typography',
-  //       link: '/pages/ui-features/typography',
-  //     },
-  //     {
-  //       title: 'Animated Searches',
-  //       link: '/pages/ui-features/search-fields',
-  //     },
-  //     {
-  //       title: 'Tabs',
-  //       link: '/pages/ui-features/tabs',
-  //     },
-  //   ],
-  // },
+  {
+    title: 'UI Features',
+    icon: 'nb-keypad',
+    link: '/pages/ui-features',
+    children: [
+      {
+        title: 'Buttons',
+        link: '/pages/ui-features/buttons',
+      },
+      {
+        title: 'Grid',
+        link: '/pages/ui-features/grid',
+      },
+      {
+        title: 'Icons',
+        link: '/pages/ui-features/icons',
+      },
+      {
+        title: 'Modals',
+        link: '/pages/ui-features/modals',
+      },
+      {
+        title: 'Popovers',
+        link: '/pages/ui-features/popovers',
+      },
+      {
+        title: 'Typography',
+        link: '/pages/ui-features/typography',
+      },
+      {
+        title: 'Animated Searches',
+        link: '/pages/ui-features/search-fields',
+      },
+      {
+        title: 'Tabs',
+        link: '/pages/ui-features/tabs',
+      },
+    ],
+  },
   // {
   //   title: 'Forms',
   //   icon: 'nb-compose',

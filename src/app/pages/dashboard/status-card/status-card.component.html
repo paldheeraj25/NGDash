@@ -1,0 +1,17 @@
+<!--<nb-card (click)="on = !on" [ngClass]="{'off': !on}">-->
+<nb-card (click)="!on" [ngClass]="{'off': !on}">
+  <div class="icon-container">
+    <div class="icon {{ type }}">
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+  <div class="details">
+    <!--<div class="title">{{ title }}</div>-->
+    <!--<div class="status">{{ on ? 'ON' : 'OFF' }}</div>-->
+    <!--<p class="crypto-address">{{address}}</p>-->
+    <div class="container-btn">
+      <button (click)='openOrder()' class="btn {{ heroInfoButton.class }} btn-demo">{{title}} purchase order</button>
+    </div>
+  </div>
+</nb-card>
