@@ -1,0 +1,79 @@
+<nb-layout>
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-body>
+        <div class="flex-centered col-xl-4 col-lg-6 col-md-8 col-sm-12">
+          <nb-auth-block>
+            <h2 class="title">Sign Up</h2>
+            <form (ngSubmit)="register()" #form="ngForm">
+
+              <div class="form-group">
+                <label for="input-name" class="sr-only">Full name</label>
+                <input name="fullName" [(ngModel)]="user.fullName" id="input-name" #fullName="ngModel"
+                      class="form-control" placeholder="Full name*"
+                      required
+                      [class.form-control-danger]="fullName.invalid && fullName.touched">
+              </div>
+              <small class="m-b-10 form-text error" *ngIf="fullName.invalid && fullName.touched">
+                Name is invalid
+              </small>
+
+              <div class="form-group">
+                <label for="input-email" class="sr-only">Email address</label>
+                <input name="email" [(ngModel)]="user.email" id="input-email" #email="ngModel"
+                      class="form-control" placeholder="Email address*" pattern=".+@.+\..+"
+                      [class.form-control-danger]="email.invalid && email.touched" required>
+              </div>
+
+              <small class="m-b-10 form-text error" *ngIf="email.invalid && email.touched">
+                Email is invalid
+              </small>
+
+              <div class="form-group">
+                <label for="input-password" class="sr-only">Password</label>
+                <input name="password" [(ngModel)]="user.password" type="password" id="input-password"
+                      class="form-control" placeholder="Password*" #password="ngModel"
+                      [class.form-control-danger]="password.invalid && password.touched" required>
+              </div>
+
+              <small class="m-b-10 form-text error" *ngIf="password.invalid && password.touched">
+                Password cannot be empty
+              </small>
+
+              <div class="form-group">
+                <label for="input-re-password" class="sr-only">Repeat password</label>
+                <input
+                  name="rePass" [(ngModel)]="user.confirmPassword" type="password" id="input-re-password"
+                  class="form-control" placeholder="Confirm Password*" #rePass="ngModel" required
+                  [class.form-control-danger]="(rePass.invalid || password.value != rePass.value) && rePass.touched">
+              </div>
+
+              <small class="m-b-10 form-text error" *ngIf="(rePass.invalid || password.value != rePass.value) && rePass.touched">
+                Passwords not matching
+              </small>
+
+              <div class="form-group col-sm-12" >
+                <nb-checkbox name="terms" [(ngModel)]="user.terms">
+                  Agree to <a href="#" target="_blank"><strong>Terms & Conditions</strong></a>
+                </nb-checkbox>
+              </div>
+
+              <small class="m-b-10 form-text error" *ngIf="registerFailure">
+                Registration failed. Please try again.
+              </small>
+
+              <div class="form-group col-sm-12" >
+                Already a user ? <a href="#"> <strong> Login </strong></a>
+              </div>
+
+              <button [disabled]="submitted || !form.valid || !user.terms" class="btn btn-block btn-hero-success"
+                      [class.btn-pulse]="submitted">
+                Register
+              </button>
+            </form>
+          </nb-auth-block>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>

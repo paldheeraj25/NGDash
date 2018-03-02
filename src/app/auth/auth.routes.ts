@@ -12,6 +12,7 @@ import { NbLogoutComponent } from './components/logout/logout.component';
 import { NbRequestPasswordComponent } from './components/request-password/request-password.component';
 import { NbResetPasswordComponent } from './components/reset-password/reset-password.component';
 
+
 export const routes: Routes = [
   {
     path: 'auth',
@@ -25,11 +26,7 @@ export const routes: Routes = [
         path: 'login',
         component: NbLoginComponent,
       },
-      {
-        path: 'register',
-        component: NbRegisterComponent,
-      },
-      {
+      { 
         path: 'logout',
         component: NbLogoutComponent,
       },

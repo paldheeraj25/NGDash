@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   user: any;
 
-  userMenu = [{ title: 'Profile', link: 'some/link' }, { title: 'Log out', onItemClick: 'onMenuItemClick' }];
+  userMenu = [{ title: 'Profile', icon: 'nb-compose' }, { title: 'Log out', link: '/pages/auth', icon: 'nb-gear' }];
 
   constructor(private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
@@ -47,7 +47,11 @@ export class HeaderComponent implements OnInit {
     this.analyticsService.trackEvent('startSearch');
   }
 
-  onMenuItemClick(event) {
-    console.info(event);
+  logout() {
+    console.log("testing");
+  }
+
+  onMenuClick(event) {
+    console.log('logout test', event);
   }
 }

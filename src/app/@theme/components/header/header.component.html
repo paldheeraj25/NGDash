@@ -12,10 +12,9 @@
 
 <nb-actions size="medium" class="header-container" [class.right]="position === 'normal'" [class.left]="position === 'inverse'">
   <nb-action *nbIsGranted="['view', 'user']">
-    <nb-user [nbContextMenu]="userMenu" [name]="user?.name" (onItemClick)="onMenuItemClick($event)"></nb-user>
+    <nb-user [nbContextMenu]="userMenu" [name]="user?.name" (getSelectedItem)="onMenuClick($event)"></nb-user>
   </nb-action>
   <nb-action class="control-item" disabled icon="nb-notifications"></nb-action>
-  <!-- <nb-action class="control-item" icon="nb-email"></nb-action> -->
   <nb-action class="control-item">
     <nb-search type="rotate-layout" (click)="startSearch()"></nb-search>
   </nb-action>
