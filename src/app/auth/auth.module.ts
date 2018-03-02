@@ -59,7 +59,7 @@ export function nbOptionsFactory(options) {
     NbCheckboxModule,
     RouterModule.forChild(routes),
     FormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   declarations: [
     NbAuthComponent,

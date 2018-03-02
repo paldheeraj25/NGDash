@@ -6,6 +6,7 @@ import { NbAuthComponent } from './auth/components/auth.component';
 const routes: Routes = [
   { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule' },
   { path: 'auth', component: NbAuthComponent },
+  { path: 'register', component: NbRegisterComponent },
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: '**', redirectTo: 'auth' },
 ];

@@ -63,8 +63,4 @@ export class NbLoginComponent {
     delete window.localStorage.bolttAccessToken;
     window.sessionStorage.clear();
   }
-
-  signUp() {
-    console.log("register event");
-  }
 }
