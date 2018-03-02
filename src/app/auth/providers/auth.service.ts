@@ -9,7 +9,14 @@ export class AuthService {
   storage: string;
   isLoggedIn = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.storage = window.localStorage.getItem('bolttAccessToken')
+    ? 'localStorage'
+    : 'sessionStorage';
+    if (window.localStorage.bolttAccessToken || window.sessionStorage.bolttAccessToken) {
+      this.isLoggedIn = true;
+    }
+  }
   login(user: any) {
     let userData: any = new Object();
     userData.username = user.email;
@@ -28,9 +35,6 @@ export class AuthService {
   setStorage(user: any, rememberMe: boolean) {
     this.isLoggedIn = true;
     this.currentUser = user;
-    this.storage = window.localStorage.getItem('bolttAccessToken')
-    ? 'localStorage'
-    : 'sessionStorage';
     if(rememberMe && rememberMe != undefined) {
       this.storage = 'localStorage';
     }
@@ -39,10 +43,11 @@ export class AuthService {
   }
 
   getUser() {
-    this.storage = window.localStorage.getItem('bolttAccessToken')
-    ? 'localStorage'
-    : 'sessionStorage';
     return window[this.storage].bolttUser;
+  }
+
+  getToken() {
+    return window[this.storage].bolttAccessToken;
   }
 
 }
