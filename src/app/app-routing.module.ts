@@ -1,3 +1,4 @@
+import { NbRegisterComponent } from './auth/components/register/register.component';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NbAuthComponent } from './auth/components/auth.component';

@@ -17,63 +17,54 @@ import { NbAuthResult } from '../../services/auth-result';
   templateUrl: './login.component.html',
 })
 export class NbLoginComponent {
-
-  redirectDelay: number = 0;
-  showMessages: any = {};
   provider: string = '';
-
-  errors: string[] = [];
-  messages: string[] = [];
   user: any = {};
-  submitted: boolean = false;
-  socialLinks: NbAuthSocialLink[] = [];
+  submitted = false;
+  authFailure = false;
+  userData:any = {};
+  storage = window.localStorage.getItem('bolttAccessToken')
+    ? 'localStorage'
+    : 'sessionStorage';
+  rememberMe = false;
 
-  constructor(// protected service: NbAuthService,
-    protected router: Router, private authService: AuthService) {
-    console.warn('test component');
-    this.redirectDelay = this.getConfigValue('forms.login.redirectDelay');
-    this.showMessages = this.getConfigValue('forms.login.showMessages');
-    this.provider = this.getConfigValue('forms.login.provider');
-    this.socialLinks = this.getConfigValue('forms.login.socialLinks');
-  }
-
-  login(): void {
-    this.errors = this.messages = [];
-    this.submitted = true;
-
-    // this.service.authenticate(this.provider, this.user).subscribe((result: NbAuthResult) => {
-    //   this.submitted = false;
-
-    //   if (result.isSuccess()) {
-    //     this.messages = result.getMessages();
-    //   } else {
-    //     this.errors = result.getErrors();
-    //   }
-
-    //   const redirect = result.getRedirect();
-    //   if (redirect) {
-    //     setTimeout(() => {
-    //       return this.router.navigateByUrl(redirect);
-    //     }, this.redirectDelay);
-    //   }
-    // });
-  }
-
-  getConfigValue(key: string): any {
-    // return getDeepFromObject(this.config, key, null);
+  constructor( protected router: Router, private authService: AuthService ) { 
+    this.cleanUp();
   }
 
   signIn(): void {
-    console.warn('login test');
-    this.authService.login().subscribe(val => {
-      console.warn("PUT call successful value returned in body",
-        val);
+    this.submitted = true;
+    this.authService.login(this.user).subscribe(val => {
+      this.userData = val;
+      this.setStorage();
+      this.router.navigateByUrl("pages/dashboard");
     },
-      response => {
-        console.warn("PUT call in error", response);
-      },
-      () => {
-        console.warn("The PUT observable is now completed.");
-      });
+    response => {
+      this.submitted = false;
+      this.authFailure = true;
+    },
+    () => {
+      this.submitted = false;
+    });
+  }
+
+  getUser() {
+    return this.user;
+  }
+
+  setStorage() {
+    if(this.user.rememberMe) {
+      this.storage = 'localStorage';
+    }
+    console.log(this.storage);
+    window[this.storage].setItem('bolttAccessToken', this.userData.access_token);
+  }
+
+  cleanUp() {
+    delete window.localStorage.bolttAccessToken;
+    window.sessionStorage.clear();
+  }
+
+  signUp() {
+    console.log("register event");
   }
 }

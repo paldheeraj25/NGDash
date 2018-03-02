@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   user: any;
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  userMenu = [{ title: 'Profile', icon: 'nb-compose' }, { title: 'Log out', link: '/pages/auth', icon: 'nb-gear' }];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -45,5 +45,13 @@ export class HeaderComponent implements OnInit {
 
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
+  }
+
+  logout() {
+    console.log("testing");
+  }
+
+  onMenuClick(event) {
+    console.log('logout test', event);
   }
 }
