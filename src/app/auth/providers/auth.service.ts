@@ -34,9 +34,6 @@ export class AuthService {
         grant_type: 'password',
         accessType: 'investorDashboard',
       },
-      // {
-      //   headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*', 'Content-Type': 'text/html' }),
-      // },
     );
   }
 

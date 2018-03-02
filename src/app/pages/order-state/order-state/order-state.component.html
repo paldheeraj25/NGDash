@@ -1,3 +1,74 @@
-<p>
-  order-state works!
-</p>
+<div class="row">
+  <div class="col-md-6" *ngFor="let order of orders">
+    <nb-card>
+      <nb-card-header>
+        {{order.method}}
+      </nb-card-header>
+      <nb-card-body>
+        <div class="centered">
+          <div class="font-row font-main">
+            <div class="header">
+              <div class="variants">
+                <span class="font-w-light">address: </span>
+                <span class="font-w-bold bold">
+                  {{order.address}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="font-row font-main">
+            <div class="header">
+              <div class="variants">
+                <span class="font-w-light">method: </span>
+                <span class="font-w-bold bold">
+                  {{order.method}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="font-row font-main">
+            <div class="header">
+              <div class="variants">
+                <span class="font-w-light">Tokens: </span>
+                <span class="font-w-bold bold">
+                  1000
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="font-row font-main">
+            <div class="header">
+              <div class="variants">
+                <span class="font-w-light">Transaction Id / Order Id: </span>
+                <span class="font-w-bold bold">
+                  {{order.transactionId}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="font-row font-main">
+            <div class="header">
+              <div class="variants">
+                <span class="font-w-light">Confirmed blocks: </span>
+                <span class="font-w-bold bold">
+                  {{order.confirm}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="font-row font-main">
+            <div class="header">
+              <div class="variants">
+                <span class="font-w-light">Status: </span>
+                <span class="font-w-bold bold">
+                  {{order.status}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+</div>

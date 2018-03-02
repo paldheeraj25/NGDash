@@ -16,12 +16,12 @@ export class HeaderComponent implements OnInit {
 
   user: any;
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  userMenu = [{ title: 'Profile', link: 'some/link' }, { title: 'Log out', onItemClick: 'onMenuItemClick' }];
 
   constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private userService: UserService,
-              private analyticsService: AnalyticsService) {
+    private menuService: NbMenuService,
+    private userService: UserService,
+    private analyticsService: AnalyticsService) {
   }
 
   ngOnInit() {
@@ -45,5 +45,9 @@ export class HeaderComponent implements OnInit {
 
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
+  }
+
+  onMenuItemClick(event) {
+    console.info(event);
   }
 }
