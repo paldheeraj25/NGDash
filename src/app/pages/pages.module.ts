@@ -8,6 +8,7 @@ import { TokenStateModule } from './token-state/token-state.module';
 import { OrderStateModule } from './order-state/order-state.module';
 import { InvestedModule } from './invested/invested.module';
 import { TdeModule } from './tde/tde.module';
+import { ProfileComponent } from './profile/profile.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -25,6 +26,7 @@ const PAGES_COMPONENTS = [
   ],
   declarations: [
     ...PAGES_COMPONENTS,
+    ProfileComponent,
   ],
 })
 export class PagesModule {
