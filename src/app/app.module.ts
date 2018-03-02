@@ -18,10 +18,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ProfileComponent } from './src/app/pages/profile/profile.component';
 
 @NgModule({
-  declarations: [AppComponent, ProfileComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
