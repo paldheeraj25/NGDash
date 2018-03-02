@@ -32,6 +32,7 @@ import { NbResetPasswordComponent } from './components/reset-password/reset-pass
 import { routes } from './auth.routes';
 import { deepExtend } from './helpers';
 import { AuthService } from './providers/auth.service';
+import { AuthGuard } from './providers/auth.gaurd';
 
 export function nbAuthServiceFactory(config: any, tokenService: NbTokenService, injector: Injector) {
   const providers = config.providers || {};
@@ -79,7 +80,7 @@ export function nbOptionsFactory(options) {
     NbResetPasswordComponent,
     NbLogoutComponent,
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
 })
 export class NbAuthModule {
   static forRoot(nbAuthOptions?: NbAuthOptions): ModuleWithProviders {

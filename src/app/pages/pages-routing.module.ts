@@ -7,6 +7,7 @@ import { TokenStateComponent } from './token-state/token-state/token-state.compo
 import { OrderStateComponent } from './order-state/order-state/order-state.component';
 import { InvestedComponent } from './invested/invested/invested.component';
 import { TdeComponent } from './tde/tde/tde.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [{
   path: '',
@@ -18,6 +19,10 @@ const routes: Routes = [{
   {
     path: 'token-stats',
     component: TokenStateComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   },
   {
     path: 'order-stats',
@@ -56,7 +61,7 @@ const routes: Routes = [{
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  },
+  }
   ],
 }];
 
