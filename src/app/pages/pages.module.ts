@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -9,6 +10,7 @@ import { OrderStateModule } from './order-state/order-state.module';
 import { InvestedModule } from './invested/invested.module';
 import { TdeModule } from './tde/tde.module';
 import { ProfileComponent } from './profile/profile.component';
+import { TokenInterceptor } from './../token.interceptor';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -28,6 +30,13 @@ const PAGES_COMPONENTS = [
     ...PAGES_COMPONENTS,
     ProfileComponent,
   ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ]
 })
 export class PagesModule {
 }
