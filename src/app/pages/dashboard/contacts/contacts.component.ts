@@ -29,7 +29,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.userService.getUsers()
+    this.userService.getUser()
       .subscribe((users: any) => {
         this.contacts = [
           {user: users.nick, type: 'mobile'},

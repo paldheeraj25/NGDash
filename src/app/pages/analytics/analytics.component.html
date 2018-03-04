@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Pie</nb-card-header>
+      <nb-card-body>
+        <!-- <ngx-chartjs-pie></ngx-chartjs-pie> -->
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-sm-6 col-md-6">
+    <nb-card>
+      <nb-card-header>
+        <h3>Orders Stats</h3>
+        <span class="type-info">Orders statistics</span>
+      </nb-card-header>
+      <nb-card-body>
+        <ngx-charts-advanced-pie-chart
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="single"
+        [gradient]="gradient"
+        (select)="onSelect($event)">
+      </ngx-charts-advanced-pie-chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-sm-12 col-md-12">
+    <nb-card>
+      <nb-card-header>
+        <h3>Total Invested</h3>
+        <span class="type-info">Total particpated in different currencies</span>
+      </nb-card-header>
+      <nb-card-body>
+        <ngx-charts-advanced-pie-chart
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="single"
+        [gradient]="gradient"
+        (select)="onSelect($event)">
+      </ngx-charts-advanced-pie-chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+</div>

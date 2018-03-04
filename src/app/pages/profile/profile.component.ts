@@ -16,6 +16,5 @@ export class ProfileComponent implements OnInit {
     this.userDetails = this.authService.getUser();
     console.log(this.userDetails);
   }
-  }
 
 }
