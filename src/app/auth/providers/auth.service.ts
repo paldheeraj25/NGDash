@@ -4,7 +4,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient) { }
+
+  currentUser: any = {};
+  storage: string;
+  isLoggedIn = false;
+
+  constructor(private http: HttpClient) { 
+    this.storage = window.localStorage.getItem('bolttAccessToken')
+    ? 'localStorage'
+    : 'sessionStorage';
+    if (window.localStorage.bolttAccessToken || window.sessionStorage.bolttAccessToken) {
+      this.isLoggedIn = true;
+    }
+  }
   login(user: any) {
     let userData: any = new Object();
     userData.username = user.email;
@@ -19,6 +31,23 @@ export class AuthService {
     return this.http.post('http://bolttdev.ap-south-1.elasticbeanstalk.com/oauth/login',
       userData
     );
+  }
+  setStorage(user: any, rememberMe: boolean) {
+    this.isLoggedIn = true;
+    this.currentUser = user;
+    if(rememberMe && rememberMe != undefined) {
+      this.storage = 'localStorage';
+    }
+    window[this.storage].setItem('bolttAccessToken', user.access_token);
+    window[this.storage].setItem('bolttUser', this.currentUser);
+  }
+
+  getUser() {
+    return window[this.storage].bolttUser;
+  }
+
+  getToken() {
+    return window[this.storage].bolttAccessToken;
   }
 
 }

@@ -22,10 +22,6 @@ export class NbLoginComponent {
   submitted = false;
   authFailure = false;
   userData: any = {};
-  storage = window.localStorage.getItem('bolttAccessToken')
-    ? 'localStorage'
-    : 'sessionStorage';
-  rememberMe = false;
 
   constructor(protected router: Router, private authService: AuthService) {
     this.cleanUp();
@@ -35,7 +31,7 @@ export class NbLoginComponent {
     this.submitted = true;
     this.authService.login(this.user).subscribe(val => {
       this.userData = val;
-      this.setStorage();
+      this.authService.setStorage(this.userData, this.user.rememberMe);
       this.router.navigateByUrl("pages/dashboard");
     },
       response => {
@@ -47,19 +43,8 @@ export class NbLoginComponent {
       });
   }
 
-  getUser() {
-    return this.user;
-  }
-
-  setStorage() {
-    if (this.user.rememberMe) {
-      this.storage = 'localStorage';
-    }
-    console.log(this.storage);
-    window[this.storage].setItem('bolttAccessToken', this.userData.access_token);
-  }
-
   cleanUp() {
+    this.authService.isLoggedIn = false;
     delete window.localStorage.bolttAccessToken;
     window.sessionStorage.clear();
   }
