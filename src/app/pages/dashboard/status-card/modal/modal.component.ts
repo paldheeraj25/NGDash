@@ -15,7 +15,7 @@ export class ModalComponent implements OnInit {
   address: string;
   name: string;
   method: string;
-  orderDetail: any;
+  orderDetail: { method: string, address: string } = { method: '', address: '' };
   constructor(private activeModal: NgbActiveModal, private router: Router, private payment: PaymentService) {
   }
 

@@ -16,10 +16,10 @@ export class AuthService {
   storage: string;
   isLoggedIn = false;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.storage = window.localStorage.getItem('bolttAccessToken')
-    ? 'localStorage'
-    : 'sessionStorage';
+      ? 'localStorage'
+      : 'sessionStorage';
     if (window.localStorage.bolttAccessToken || window.sessionStorage.bolttAccessToken) {
       this.isLoggedIn = true;
     }
@@ -32,8 +32,6 @@ export class AuthService {
     userData.client_secret = 'hw2D+Y8UWawgSzYuFFccKY+&Z2n&WQSR';
     userData.grant_type = 'password';
     userData.accessType = 'investorDashboard';
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json').set('Allow-Control-Allow-Origin', '*');
 
     const url = environment.apiUrl + 'oauth/login';
     return this.http.post(url,
@@ -53,7 +51,7 @@ export class AuthService {
   setStorage(user: any, rememberMe: boolean) {
     this.isLoggedIn = true;
     this.currentUser = user;
-    if(rememberMe && rememberMe != undefined) {
+    if (rememberMe && rememberMe !== undefined) {
       this.storage = 'localStorage';
     }
     window[this.storage].setItem('bolttAccessToken', user.access_token);

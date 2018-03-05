@@ -1,30 +1,9 @@
 <div class="row">
-  <div class="col-xxxl-3 col-md-6">
-    <ngx-status-card title="Bitcoin" type="primary" address="	1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX">
+  <div class="col-xxxl-3 col-md-6" *ngFor="let walletInfo of userAddreses">
+    <ngx-status-card title="{{walletInfo.name}}" type="primary" address="{{walletInfo.address}}">
       <!-- <i class="fa fa-btc"></i> -->
-      <img class='btc-payment-icon' src="assets/images/btc.png" alt="">
+      <img class='btc-payment-icon' src="{{walletInfo.image}}" alt="">
     </ngx-status-card>
 
-  </div>
-
-  <div class="col-xxxl-3 col-md-6">
-    <ngx-status-card title="Ethereum" type="primary" address="0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe">
-      <!-- <i class="fa fa-icon-ethereum"></i> -->
-      <img class='btc-payment-icon' src="assets/images/eth.png" alt="">
-    </ngx-status-card>
-  </div>
-
-  <div class="col-xxxl-3 col-md-6">
-    <ngx-status-card title="Waves" type="primary" address="0xwaves669a9FD93d5F28D9Ec85E40f4cb697BAe">
-      <!-- <i class="nb-audio"></i> -->
-      <img class='btc-payment-icon' src="assets/images/waves.png" alt="">
-    </ngx-status-card>
-  </div>
-
-  <div class="col-xxxl-3 col-md-6">
-    <ngx-status-card title="PayPal" type="primary" address="">
-      <!-- <i class="nb-coffee-maker"></i> -->
-      <img class='btc-payment-icon' src="assets/images/rupee.png" alt="">
-    </ngx-status-card>
   </div>
 </div>
