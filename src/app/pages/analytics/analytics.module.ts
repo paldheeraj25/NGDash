@@ -12,10 +12,10 @@ import { AnalyticsComponent } from './analytics.component';
   imports: [
     CommonModule,
     NgxChartsModule,
-    NbLayoutModule, 
+    NbLayoutModule,
     NbCardModule,
-    ChartsModule, 
-    NbCheckboxModule
+    ChartsModule,
+    NbCheckboxModule,
   ],
   declarations: [AnalyticsComponent]
 })

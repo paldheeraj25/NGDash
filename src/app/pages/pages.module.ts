@@ -13,6 +13,7 @@ import { PaymentService } from './providers/payment.service';
 import { ProfileComponent } from './profile/profile.component';
 import { TokenInterceptor } from './../token.interceptor';
 import { AnalyticsModule } from './analytics/analytics.module';
+import { UserService } from './providers/user.service';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -35,6 +36,7 @@ const PAGES_COMPONENTS = [
   ],
   providers: [
     PaymentService,
+    UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
