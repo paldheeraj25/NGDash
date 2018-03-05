@@ -2,10 +2,6 @@ import { AuthService } from './../../providers/auth.service';
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-// import { NbAuthService } from '../../services/auth.service';
-// import { NbAuthResult } from '../../services/auth-result';
-
-
 @Component({
   selector: 'nb-register',
   styleUrls: ['./register.component.scss'],
@@ -24,11 +20,10 @@ export class NbRegisterComponent {
     this.submitted = true;
     console.log(this.user);
     this.submitted = false;
-    this.authService.login(this.user).subscribe(val => {
-      console.log("success");
+    this.authService.register(this.user).subscribe(response => {
+      console.log(response);
     },
     response => {
-      console.log("failure");
       this.submitted = false;
       this.registerFailure = true;
     },
