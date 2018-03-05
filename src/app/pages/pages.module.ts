@@ -12,6 +12,7 @@ import { TdeModule } from './tde/tde.module';
 import { PaymentService } from './providers/payment.service';
 import { ProfileComponent } from './profile/profile.component';
 import { TokenInterceptor } from './../token.interceptor';
+import { AnalyticsModule } from './analytics/analytics.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -22,6 +23,7 @@ const PAGES_COMPONENTS = [
     PagesRoutingModule,
     ThemeModule,
     DashboardModule,
+    AnalyticsModule,
     TokenStateModule,
     OrderStateModule,
     InvestedModule,

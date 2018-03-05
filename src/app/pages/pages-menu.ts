@@ -12,6 +12,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
+    title: 'Analytics',
+    icon: 'nb-compose',
+    link: '/pages/analytics',
+    home: true
+  },
+  {
     title: 'Token Stats ',
     icon: 'nb-keypad',
     link: '/pages/token-stats',

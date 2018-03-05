@@ -1,37 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { AuthService } from '../../auth/providers/auth.service';
 
 let counter = 0;
 
 @Injectable()
 export class UserService {
 
-  private users = {
-    nick: { name: 'Test User', picture: 'assets/images/nick.png' },
-    eva: { name: 'Eva Moor', picture: 'assets/images/eva.png' },
-    jack: { name: 'Jack Williams', picture: 'assets/images/jack.png' },
-    lee: { name: 'Lee Wong', picture: 'assets/images/lee.png' },
-    alan: { name: 'Alan Thompson', picture: 'assets/images/alan.png' },
-    kate: { name: 'Kate Martinez', picture: 'assets/images/kate.png' },
-  };
+  private user:any = {};
 
   private userArray: any[];
 
-  constructor() {
-    // this.userArray = Object.values(this.users);
-  }
-
-  getUsers(): Observable<any> {
-    return Observable.of(this.users);
-  }
-
-  getUserArray(): Observable<any[]> {
-    return Observable.of(this.userArray);
+  constructor(private authService: AuthService) {
+    let currentUser = this.authService.getUser();
+    this.user.name = currentUser.user_details.first_name + ' ' + currentUser.user_details.last_name;
+    this.user.picture = currentUser.user_details.profile_image;
   }
 
   getUser(): Observable<any> {
-    counter = (counter + 1) % this.userArray.length;
-    return Observable.of(this.userArray[counter]);
+    return Observable.of(this.user);
   }
 }

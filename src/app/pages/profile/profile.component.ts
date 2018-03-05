@@ -17,10 +17,4 @@ export class ProfileComponent implements OnInit {
     console.log(this.userDetails);
   }
 
-  testAPI() {
-    this.http.get('http://bolttdev.ap-south-1.elasticbeanstalk.com/').subscribe( res => {
-      console.log("test");
-    })
-  }
-
 }

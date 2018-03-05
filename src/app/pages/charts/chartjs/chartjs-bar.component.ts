@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, Input, OnInit } from '@angular/core';
 import { NbThemeService, NbColorHelper } from '@nebular/theme';
 
 @Component({
@@ -8,26 +8,29 @@ import { NbThemeService, NbColorHelper } from '@nebular/theme';
   `,
 })
 export class ChartjsBarComponent implements OnDestroy {
-  data: any;
+  @Input() 
+  data?: any;
   options: any;
+  colors: any;
+  chartjs: any;
   themeSubscription: any;
 
   constructor(private theme: NbThemeService) {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
-      const colors: any = config.variables;
-      const chartjs: any = config.variables.chartjs;
-
-      this.data = {
+      this.colors = config.variables;
+      this.chartjs = config.variables.chartjs;
+      
+      this.data = this.data? this.data: {
         labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
         datasets: [{
           data: [65, 59, 80, 81, 56, 55, 40],
           label: 'Series A',
-          backgroundColor: NbColorHelper.hexToRgbA(colors.primaryLight, 0.8),
+          backgroundColor: NbColorHelper.hexToRgbA(this.colors.primaryLight, 0.8),
         }, {
           data: [28, 48, 40, 19, 86, 27, 90],
           label: 'Series B',
-          backgroundColor: NbColorHelper.hexToRgbA(colors.infoLight, 0.8),
+          backgroundColor: NbColorHelper.hexToRgbA(this.colors.infoLight, 0.8),
         }],
       };
 
@@ -36,7 +39,7 @@ export class ChartjsBarComponent implements OnDestroy {
         responsive: true,
         legend: {
           labels: {
-            fontColor: chartjs.textColor,
+            fontColor: this.chartjs.textColor,
           },
         },
         scales: {
@@ -44,10 +47,10 @@ export class ChartjsBarComponent implements OnDestroy {
             {
               gridLines: {
                 display: false,
-                color: chartjs.axisLineColor,
+                color: this.chartjs.axisLineColor,
               },
               ticks: {
-                fontColor: chartjs.textColor,
+                fontColor: this.chartjs.textColor,
               },
             },
           ],
@@ -55,16 +58,26 @@ export class ChartjsBarComponent implements OnDestroy {
             {
               gridLines: {
                 display: true,
-                color: chartjs.axisLineColor,
+                color: this.chartjs.axisLineColor,
               },
               ticks: {
-                fontColor: chartjs.textColor,
+                fontColor: this.chartjs.textColor,
               },
             },
           ],
         },
       };
     });
+  }
+
+  ngOnInit() {
+    if(this.data){
+      console.log(this.data);
+      this.data.datasets.forEach(item => {
+        console.log(item);
+        item.backgroundColor = NbColorHelper.hexToRgbA(this.colors.primaryLight, 0.8);
+      });
+    }
   }
 
   ngOnDestroy(): void {
