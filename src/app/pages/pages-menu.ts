@@ -18,7 +18,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Order stats',
+    title: 'Your Orders',
     icon: 'nb-compose',
     link: '/pages/order-stats',
     home: true,
