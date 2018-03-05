@@ -10,4 +10,5 @@
 
 export const environment = {
   production: false,
+  apiUrl: 'http://bolttdev.ap-south-1.elasticbeanstalk.com/'
 };

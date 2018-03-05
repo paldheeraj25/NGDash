@@ -1,3 +1,10 @@
+/**
+ * Author: Maloth Naresh
+ * @license
+ * Copyright Bollt. All Rights Reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -17,8 +24,8 @@ export class AuthService {
       this.isLoggedIn = true;
     }
   }
-  login(user: any) {
-    const userData: any = new Object();
+  login(user: any): Observable<any> {
+    let userData: any = new Object();
     userData.username = user.email;
     userData.password = user.password;
     userData.client_id = 'ac-NaYbDW8KERxa?3A!VyucF4LxJ!^J7';
@@ -26,10 +33,21 @@ export class AuthService {
     userData.grant_type = 'password';
     userData.accessType = 'investorDashboard';
 
-    return this.http.post('http://bolttdev.ap-south-1.elasticbeanstalk.com/oauth/login',
-      userData,
+    const url = environment.apiUrl + 'oauth/login';
+    return this.http.post(url,
+      userData
     );
   }
+
+  register(user: any): Observable<any> {
+    const newUser = {
+      email: user.email,
+      password: user.password
+    };
+    const url = environment.apiUrl + 'investorRegistration';
+    return this.http.post(url, newUser);
+  }
+
   setStorage(user: any, rememberMe: boolean) {
     this.isLoggedIn = true;
     this.currentUser = user;
