@@ -39,11 +39,11 @@ export class AuthService {
       this.storage = 'localStorage';
     }
     window[this.storage].setItem('bolttAccessToken', user.access_token);
-    window[this.storage].setItem('bolttUser', this.currentUser);
+    window[this.storage].bolttUser = JSON.stringify(this.currentUser);
   }
 
   getUser() {
-    return window[this.storage].bolttUser;
+    return JSON.parse(window[this.storage].bolttUser);
   }
 
   getToken() {
