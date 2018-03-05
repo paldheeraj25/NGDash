@@ -2,7 +2,10 @@
 <div class="row">
   <div class="col-lg-6 col-md-6">
     <nb-card>
-      <nb-card-header>TDE</nb-card-header>
+      <nb-card-header>
+        <h4>Tokens stats</h4>
+        <span>Token availability info</span>
+      </nb-card-header>
       <nb-card-body>
         <ngx-chartjs-bar [data]="data"></ngx-chartjs-bar>
       </nb-card-body>
@@ -10,7 +13,10 @@
   </div>
   <div class="col-sm-6 col-md-6">
     <nb-card>
-      <nb-card-header>Token sold</nb-card-header>
+      <nb-card-header>
+        <h4>Tokens stats</h4>
+        <span class="text-info">Token availability info</span>
+      </nb-card-header>
       <nb-card-body>
         <ngx-chartjs-pie></ngx-chartjs-pie>
       </nb-card-body>
@@ -18,7 +24,10 @@
   </div>
   <div class="col-sm-6 col-md-6">
     <nb-card>
-      <nb-card-header>Order Stat</nb-card-header>
+      <nb-card-header>
+        <h4>Orders Stats</h4>
+        <span class="text-info">Orders statistics</span>
+      </nb-card-header>
       <nb-card-body>
         <ngx-chartjs-pie></ngx-chartjs-pie>
       </nb-card-body>
@@ -26,7 +35,10 @@
   </div>
   <div class="col-lg-6">
     <nb-card>
-      <nb-card-header>Invested</nb-card-header>
+      <nb-card-header>
+        <h4>Total Invested</h4>
+        <span class="text-info">Total particpated in different currencies</span>
+      </nb-card-header>
       <nb-card-body>
         <ngx-chartjs-bar></ngx-chartjs-bar>
       </nb-card-body>
