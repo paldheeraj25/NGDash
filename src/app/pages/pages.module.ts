@@ -11,9 +11,9 @@ import { InvestedModule } from './invested/invested.module';
 import { TdeModule } from './tde/tde.module';
 import { PaymentService } from './providers/payment.service';
 import { ProfileComponent } from './profile/profile.component';
-import { TokenInterceptor } from './../token.interceptor';
 import { AnalyticsModule } from './analytics/analytics.module';
 import { UserService } from './providers/user.service';
+import { UserUtilityService } from './providers/user-utility.service';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -35,13 +35,9 @@ const PAGES_COMPONENTS = [
     ProfileComponent,
   ],
   providers: [
+    UserUtilityService,
     PaymentService,
-    UserService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true,
-    },
+    UserService
   ],
 })
 export class PagesModule {
