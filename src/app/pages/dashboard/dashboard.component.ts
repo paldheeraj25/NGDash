@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { UserService } from '../../@core/data/users.service';
 import { forEach, map } from 'lodash';
+
+declare let paypal: any;
 
 @Component({
   selector: 'ngx-dashboard',
   styleUrls: ['./dashboard.component.scss'],
   templateUrl: './dashboard.component.html',
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
   themeName = 'default';
   settings: Array<any>;
   themeSubscription: any;
@@ -53,5 +55,43 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // 
+  ngAfterViewInit(): void {
+    this.loadExternalScript("https://www.paypalobjects.com/api/checkout.js").then(() => {
+      paypal.Button.render({
+        env: 'sandbox',
+        client: {
+          production: 'AR_eFIArAhKJsKijJeSEreW2RI8NPYsAHQdw6QFJgGZQfNHi27O_hUkFruRqZThMJIteaifh6-4EmHQu',
+          sandbox: 'AR_eFIArAhKJsKijJeSEreW2RI8NPYsAHQdw6QFJgGZQfNHi27O_hUkFruRqZThMJIteaifh6-4EmHQu',
+        },
+        commit: true,
+        payment: function (data, actions) {
+          return actions.payment.create({
+            payment: {
+              transactions: [
+                {
+                  amount: { total: '1.00', currency: 'USD' }
+                }
+              ]
+            }
+          })
+        },
+        onAuthorize: function (data, actions) {
+          return actions.payment.execute().then(function (payment) {
+            // TODO
+          })
+        }
+      }, '#paypal-button');
+    });
+  }
+
+  private loadExternalScript(scriptUrl: string) {
+    return new Promise((resolve, reject) => {
+      const scriptElement = document.createElement('script')
+      scriptElement.src = scriptUrl
+      scriptElement.onload = resolve
+      document.body.appendChild(scriptElement)
+    });
+  }
 
 }
