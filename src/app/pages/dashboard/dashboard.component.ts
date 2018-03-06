@@ -1,7 +1,9 @@
+import { UserService } from '../../@core/data/users.service';
 import { Component, OnInit } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
-import { UserService } from '../../@core/data/users.service';
 import { forEach, map } from 'lodash';
+
+import { UserUtilityService } from '../providers/user-utility.service';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -14,7 +16,7 @@ export class DashboardComponent implements OnInit {
   themeSubscription: any;
   heroInfoButton: any;
   public userAddreses: any;
-  constructor(private themeService: NbThemeService, private user: UserService) {
+  constructor(private themeService: NbThemeService, private utilityService: UserUtilityService, private userService: UserService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.init(theme.variables);
@@ -45,11 +47,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user.getUserAddresses().subscribe(val => {
+    this.utilityService.getUserAddresses().subscribe(val => {
       this.userAddreses = map(JSON.parse(val.data), ((value, key) => {
         return { name: key, address: value, image: 'assets/images/' + key + '.png' };
       }));
-      console.log(this.userAddreses);
     });
   }
 

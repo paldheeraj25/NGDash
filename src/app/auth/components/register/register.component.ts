@@ -18,12 +18,11 @@ export class NbRegisterComponent {
 
   register(): void {
     this.submitted = true;
-    console.log(this.user);
-    this.submitted = false;
     this.authService.register(this.user).subscribe(response => {
-      console.log(response);
+      this.router.navigate(['login']);
+      this.submitted = false;
     },
-    response => {
+    error => {
       this.submitted = false;
       this.registerFailure = true;
     },
