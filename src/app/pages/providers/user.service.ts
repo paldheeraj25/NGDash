@@ -16,6 +16,7 @@ export class UserService {
     console.log('inside get user address');
     let headers = new HttpHeaders;
     this.createAuthorizationHeader(headers);
+    console.log(headers);
     this.http.get(this.getAddress, { headers: headers });
   }
 
