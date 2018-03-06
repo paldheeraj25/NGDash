@@ -17,12 +17,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/analytics',
     home: true
   },
-  {
-    title: 'Token Stats ',
-    icon: 'nb-keypad',
-    link: '/pages/token-stats',
-    home: true,
-  },
+  // {
+  //   title: 'Token Stats ',
+  //   icon: 'nb-keypad',
+  //   link: '/pages/token-stats',
+  //   home: true,
+  // },
   {
     title: 'Your Orders',
     icon: 'nb-compose',
@@ -35,12 +35,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/invested',
     home: true,
   },
-  {
-    title: 'TDE stages',
-    icon: 'nb-bar-chart',
-    link: '/pages/tde',
-    home: true,
-  },
+  // {
+  //   title: 'TDE stages',
+  //   icon: 'nb-bar-chart',
+  //   link: '/pages/tde',
+  //   home: true,
+  // },
   {
     title: 'Boltt Wallet',
     icon: 'nb-locked',
