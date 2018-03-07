@@ -4,9 +4,18 @@
       <!-- <i class="fa fa-btc"></i> -->
       <img class='btc-payment-icon' src="{{walletInfo.image}}" alt="">
     </ngx-status-card>
-
   </div>
-</div>
-<div class="row">
-  <div id="paypal-button"></div>
+  <div class="col-xxxl-3 col-md-6">
+    <!--<nb-card (click)="on = !on" [ngClass]="{'off': !on}">-->
+    <nb-card class="custom-card" (click)="!on" [ngClass]="{'off': !on}">
+        <div class="details">
+          <div class="container-btn">
+            <div class="inline-block">
+              <img class='paypal-icon' src="assets/images/paypal.png" alt="" style="width: 50px; height: 50px;">
+            </div>
+            <span id="paypal-button"></span>
+          </div>
+        </div>
+      </nb-card>
+  </div>
 </div>
