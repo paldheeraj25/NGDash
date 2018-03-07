@@ -6,7 +6,7 @@
           <nb-auth-block>
             <h2 class="title">Sign Up</h2>
             <form (ngSubmit)="register()" #form="ngForm">
-
+              
               <div class="form-group">
                 <label for="input-name" class="sr-only">Full name</label>
                 <input name="fullName" [(ngModel)]="user.fullName" id="input-name" #fullName="ngModel"
