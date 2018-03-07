@@ -4,6 +4,7 @@ import { ThemeModule } from '../../@theme/theme.module';
 
 import { OrderStateRoutingModule } from './order-state-routing.module';
 import { OrderStateComponent } from './order-state/order-state.component';
+import { OrderStateService } from './order-state.service';
 
 @NgModule({
   imports: [
@@ -12,5 +13,8 @@ import { OrderStateComponent } from './order-state/order-state.component';
     ThemeModule,
   ],
   declarations: [OrderStateComponent],
+  providers: [
+    OrderStateService
+  ],
 })
 export class OrderStateModule { }
