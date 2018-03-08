@@ -17,6 +17,10 @@
       padding: 0.625rem;
     }
 
+    .xl-btn {
+      width: 100px;
+    }
+
     .icon {
       display: flex;
       align-items: center;
@@ -31,40 +35,55 @@
       -webkit-backface-visibility: hidden;
       color: nb-theme(color-white);
 
-      &.primary {
+      &.btc {
         @include btn-hero-primary-gradient();
         @include btn-hero-primary-bevel-glow-shadow();
       }
-      &.success {
+      &.bch {
         @include btn-hero-success-gradient();
         @include btn-hero-success-bevel-glow-shadow();
       }
-      &.info {
+      &.ltc {
+        background-image: linear-gradient(to right, #903a4f, #99a1a9);
+      }
+      &.dash {
+        background-image: linear-gradient(to right, #007bff, #99a1a9);
+      }
+      &.eth {
+        background-image: linear-gradient(to right, #00ffd0, #a9a699);
+      }
+      &.etc {
+        background-image: linear-gradient(to right, #903a3a,#0088ff);
+      }
+      &.xmr {
+        @include btn-hero-success-gradient();
+        @include btn-hero-success-bevel-glow-shadow();
+      }
+      &.zec {
+        background-image: linear-gradient(to right, #00d977,#28a745);
+      }
+      &.neo {
+        background-image: linear-gradient(to right, #ffae24, #99a1a9);
+      }
+      &.xrp {
         @include btn-hero-info-gradient();
         @include btn-hero-info-bevel-glow-shadow();
       }
-      &.warning {
+      &.doge {
         @include btn-hero-warning-gradient();
         @include btn-hero-warning-bevel-glow-shadow();
       }
-    }
-
-    &:hover {
-      background: lighten(nb-theme(card-bg), 5%);
-
-      .icon {
-        &.primary {
-          background-image: btn-hero-primary-light-gradient();
-        }
-        &.success {
-          background-image: btn-hero-success-light-gradient();
-        }
-        &.info {
-          background-image: btn-hero-info-light-gradient();
-        }
-        &.warning {
-          background-image: btn-hero-warning-light-gradient();
-        }
+      &.waves {
+        @include btn-hero-warning-gradient();
+        @include btn-hero-warning-bevel-glow-shadow();
+      }
+      &.strat {
+        @include btn-hero-warning-gradient();
+        @include btn-hero-warning-bevel-glow-shadow();
+      }
+      &.dodge {
+        @include btn-hero-warning-gradient();
+        @include btn-hero-warning-bevel-glow-shadow();
       }
     }
 
@@ -87,6 +106,7 @@
 
     .details {
       display: flex;
+      width: 100%;
       flex-direction: column;
       justify-content: center;
       height: 100%;
