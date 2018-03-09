@@ -1,14 +1,14 @@
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsAQMAAABDsxw2AAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAACJJREFUaN7twTEBAAAAwiD7pzbFPmAAAAAAAAAAAAAAAGQOLbQAAU3zwM4AAAAASUVORK5CYII=">
 
 <div class="svg-container">
-  <svg #svgRoot xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-       [attr.viewBox]="styles.viewBox" preserveAspectRatio="xMinYMin meet" (mousedown)="mouseDown($event)">
+  <svg #svgRoot xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" [attr.viewBox]="styles.viewBox"
+    preserveAspectRatio="xMinYMin meet" (mousedown)="mouseDown($event)">
     <defs>
 
       <filter [attr.id]="'blurFilter' + svgControlId" x="0" y="0" width="100%" height="100%">
         <feGaussianBlur in="SourceGraphic" [attr.stdDeviation]="styles.blurRadius" />
         <feComponentTransfer>
-          <feFuncA type="discrete" tableValues="1 1"/>
+          <feFuncA type="discrete" tableValues="1 1" />
         </feComponentTransfer>
       </filter>
 
@@ -27,8 +27,8 @@
         <path [attr.d]="styles.nonSelectedArc.d" [attr.fill]="styles.nonSelectedArc.color" *ngFor="let number of [0,1,2,3,4,5]"></path>
       </g>
 
-      <circle [attr.cx]="styles.thumbPosition.x" [attr.cy]="styles.thumbPosition.y" [attr.r]="pinRadius"
-              [attr.stroke-width]="thumbBorder / scaleFactor" class="circle"></circle>
+      <circle [attr.cx]="styles.thumbPosition.x" [attr.cy]="styles.thumbPosition.y" [attr.r]="pinRadius" [attr.stroke-width]="thumbBorder / scaleFactor"
+        class="circle"></circle>
     </g>
   </svg>
 </div>

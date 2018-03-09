@@ -7,24 +7,28 @@
   </div>
   <div class="details">
     <div class="row">
+      <div class="col-md-4 m-t-5">
+        <div class="title">{{title}}</div>
+        <div class="status">{{title}}</div>
+      </div>
 
-      <div class="col-md-4">
-        <div class="title">BITCOIN</div>
-        <div class="status">{{ title }}</div>
+      <div class="col-md-4 m-t-5">
+        <div class="status">price: 0.000012</div>
       </div>
-      <div class="col-md-4">
-        <span class="status">price: 0.000012</span>
-      </div>
-      <div class="col-md-4">
-        <button href="#" class="btn btn-primary btn-tn ">Buy</button>
+
+      <div class="col-md-4 m-t-5">
+        <button class="btn btn-primary btn-tn xl-btn" (click)='openOrder()'>
+          Buy
+        </button>
       </div>
     </div>
+
+    <!--<div class="title">{{ title }}</div>-->
     <!--<div class="status">{{ on ? 'ON' : 'OFF' }}</div>-->
     <!--<p class="crypto-address">{{address}}</p>-->
-    <div class="container-btn">
-      <!-- <button (click)='openOrder()' class="btn {{ heroInfoButton.class }} btn-demo">{{title}} purchase order</button> -->
-      <!-- <button class="btn btn-primary btn-tn">Tiny</button> -->
-    </div>
+    <!-- <div class="container-btn">
+      <button (click)='openOrder()' class="btn {{ heroInfoButton.class }} btn-demo">{{title}} purchase order</button>
+    </div> -->
   </div>
   <!-- <a href="#" class="btn btn-primary btn-tn ">Buy</a>
   <a href="#" class="btn btn-primary btn-tn ">Buy1</a> -->

@@ -37,7 +37,7 @@ const PAGES_COMPONENTS = [
   providers: [
     UserUtilityService,
     PaymentService,
-    UserService
+    UserService,
   ],
 })
 export class PagesModule {

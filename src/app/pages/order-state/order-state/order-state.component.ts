@@ -17,7 +17,6 @@ export class OrderStateComponent implements OnInit {
 
   fetchOrders() {
     this.orderStateService.getPaymentOrderHistory().subscribe( response => {
-      console.log(JSON.stringify(response.data));
       this.orders = response.data;
     });
   }

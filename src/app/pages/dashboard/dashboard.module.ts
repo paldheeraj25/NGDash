@@ -57,5 +57,8 @@ import { UiFeaturesModule } from '../ui-features/ui-features.module';
   entryComponents: [
     ModalComponent,
   ],
+  exports: [
+    TemperatureDraggerComponent,
+  ],
 })
 export class DashboardModule { }

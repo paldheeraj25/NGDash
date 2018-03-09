@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal.component';
@@ -28,6 +28,7 @@ export class StatusCardComponent {
       this.init(theme.variables);
     });
   }
+  
   // init for button
   init(colors: any) {
     this.settings = [];

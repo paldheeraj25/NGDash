@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xxxl-3 col-md-6" *ngFor="let walletInfo of userAddreses">
-    <ngx-status-card title="{{walletInfo.name}}" type="info" address="{{walletInfo.address}}">
+    <ngx-status-card title="{{walletInfo.name}}" type="{{walletInfo.name.toLowerCase()}}" address="{{walletInfo.address}}">
       <!-- <i class="fa fa-btc"></i> -->
       <img class='btc-payment-icon' src="{{walletInfo.image}}" alt="">
     </ngx-status-card>

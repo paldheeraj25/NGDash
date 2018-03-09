@@ -82,6 +82,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         onAuthorize: function (data, actions) {
           return actions.payment.execute().then(function (payment) {
             // TODO
+            console.log('paypal response');
+            console.log(payment);
           })
         },
       }, '#paypal-button');
