@@ -1,0 +1,36 @@
+<!--<nb-card (click)="on = !on" [ngClass]="{'off': !on}">-->
+<nb-card class="custom-card" (click)="!on" [ngClass]="{'off': !on}">
+  <div class="icon-container">
+    <div class="icon {{ type }}">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <div class="details">
+    <div class="row">
+      <div class="col-md-4 m-t-5">
+        <div class="title">{{title}}</div>
+        <div class="status">{{currencyName[title]}}</div>
+      </div>
+
+      <div class="col-md-4 m-t-5">
+        <div class="status">BOLTTS/{{title}}: {{currencyPrice[title] * 20000 | number: '1.3-3'}}</div>
+      </div>
+
+      <div class="col-md-4 m-t-5">
+        <button class="btn btn-primary btn-tn xl-btn" (click)='openOrder()'>
+          Buy
+        </button>
+      </div>
+    </div>
+
+    <!--<div class="title">{{ title }}</div>-->
+    <!--<div class="status">{{ on ? 'ON' : 'OFF' }}</div>-->
+    <!--<p class="crypto-address">{{address}}</p>-->
+    <!-- <div class="container-btn">
+      <button (click)='openOrder()' class="btn {{ heroInfoButton.class }} btn-demo">{{title}} purchase order</button>
+    </div> -->
+  </div>
+  <!-- <a href="#" class="btn btn-primary btn-tn ">Buy</a>
+  <a href="#" class="btn btn-primary btn-tn ">Buy1</a> -->
+  <!-- <button href="#" class="btn btn-primary btn-tn ">Buy2</button> -->
+</nb-card>

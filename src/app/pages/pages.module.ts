@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AnalyticsModule } from './analytics/analytics.module';
 import { UserService } from './providers/user.service';
 import { UserUtilityService } from './providers/user-utility.service';
+import { WalletModule } from './wallet/wallet.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -29,6 +30,7 @@ const PAGES_COMPONENTS = [
     OrderStateModule,
     InvestedModule,
     TdeModule,
+    WalletModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

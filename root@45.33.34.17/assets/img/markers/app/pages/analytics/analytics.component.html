@@ -1,0 +1,218 @@
+<h2> Analytics</h2>
+<div class="row">
+  <div class="col-sm-6 col-md-6">
+    <nb-card>
+      <nb-card-header>
+        <h4>Tokens stats</h4>
+        <span class="text-info">Token availability info</span>
+      </nb-card-header>
+      <nb-card-body>
+        <chart type="pie" [data]="tokenStatePie" [options]="pieOptions"></chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-sm-6 col-md-6">
+    <nb-card>
+      <nb-card-header>
+        <h4>Orders Stats</h4>
+        <span class="text-info">Orders statistics</span>
+      </nb-card-header>
+      <nb-card-body>
+        <chart type="pie" [data]="orderStatPie" [options]="pieOptions"></chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <nb-card>
+      <nb-card-header>
+        <h4>Total invested</h4>
+        <span class="text-info">Investment in Crypto/Fiat</span>
+      </nb-card-header>
+      <nb-card-body>
+        <chart type="bar" [data]="totalInvestedPie" [options]="barOptions"></chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4 col-md-4">
+    <nb-card size="medium">
+      <nb-tabset fullWidth>
+        <nb-tab tabTitle="Private Sale 1">
+          <div class="slider-container">
+            <ngx-temperature-dragger [(value)]="temperature" (power)="temperatureOff = !$event" [min]="12" [max]="30">
+
+              <div class="slider-value-container" [ngClass]="{ 'off': temperatureOff }">
+                <div class="value temperature">
+                  {{ (temperature | ngxRound) }}
+                </div>
+                <div class="desc">
+                  Soft Cap
+                </div>
+              </div>
+            </ngx-temperature-dragger>
+          </div>
+          <br/>
+          <br/>
+          <div class="centered">
+            <div class="font-row font-main">
+              <div class="header">
+                <div class="variants">
+                  <span class="font-w-light">Start Date: </span>
+                  <span class="font-w-bold bold">
+                    05/04/2018
+                  </span>
+                </div>
+              </div>
+              <div class="header">
+                <div class="variants">
+                  <span class="font-w-light">End Date: </span>
+                  <span class="font-w-bold bold">
+                    05/04/2018
+                  </span>
+                </div>
+              </div>
+              <div class="header">
+                <div class="variants">
+                  <span class="font-w-light">Stage Cap: </span>
+                  <span class="font-w-bold bold">
+                    $16,522,400
+                  </span>
+                </div>
+              </div>
+              <div class="header">
+                <div class="variants">
+                  <span class="font-w-light">Token price: </span>
+                  <span class="font-w-bold bold">
+                    $0.0808728
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </div>
+
+  <div class="col-sm-4 col-md-4">
+    <nb-card size="medium">
+      <nb-tabset fullWidth>
+        <nb-tab tabTitle="Pre ICO">
+          <div class="slider-container">
+            <ngx-temperature-dragger [(value)]="temperature" (power)="temperatureOff = !$event" [min]="12" [max]="30">
+
+              <div class="slider-value-container" [ngClass]="{ 'off': temperatureOff }">
+                <div class="value temperature">
+                  {{ (temperature | ngxRound) }}
+                </div>
+                <div class="desc">
+                  Soft Cap
+                </div>
+              </div>
+            </ngx-temperature-dragger>
+          </div>
+          <br/>
+          <br/>
+          <div class="centered">
+            <div class="font-row font-main">
+              <div class="header">
+                <div class="variants">
+                  <span class="font-w-light">Start Date: </span>
+                  <span class="font-w-bold bold">
+                    05/04/2018
+                  </span>
+                </div>
+              </div>
+              <div class="header">
+                <div class="variants">
+                  <span class="font-w-light">End Date: </span>
+                  <span class="font-w-bold bold">
+                    05/04/2018
+                  </span>
+                </div>
+              </div>
+              <div class="header">
+                <div class="variants">
+                  <span class="font-w-light">Stage Cap: </span>
+                  <span class="font-w-bold bold">
+                    $16,522,400
+                  </span>
+                </div>
+              </div>
+              <div class="header">
+                <div class="variants">
+                  <span class="font-w-light">Token price: </span>
+                  <span class="font-w-bold bold">
+                    $0.0808728
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </div>
+  <div class="col-sm-4 col-md-4">
+    <nb-card size="medium">
+      <nb-tabset fullWidth>
+        <nb-tab tabTitle="ICO">
+          <div class="slider-container">
+            <ngx-temperature-dragger [(value)]="temperature" (power)="temperatureOff = !$event" [min]="12" [max]="30">
+
+              <div class="slider-value-container" [ngClass]="{ 'off': temperatureOff }">
+                <div class="value temperature">
+                  {{ (temperature | ngxRound) }}
+                </div>
+                <div class="desc">
+                  Soft Cap
+                </div>
+              </div>
+            </ngx-temperature-dragger>
+          </div>
+          <br/>
+          <br/>
+          <div class="centered">
+            <div class="font-row font-main">
+              <div class="header">
+                <div class="variants">
+                  <span class="font-w-light">Start Date: </span>
+                  <span class="font-w-bold bold">
+                    05/04/2018
+                  </span>
+                </div>
+              </div>
+              <div class="header">
+                <div class="variants">
+                  <span class="font-w-light">End Date: </span>
+                  <span class="font-w-bold bold">
+                    05/04/2018
+                  </span>
+                </div>
+              </div>
+              <div class="header">
+                <div class="variants">
+                  <span class="font-w-light">Stage Cap: </span>
+                  <span class="font-w-bold bold">
+                    $16,522,400
+                  </span>
+                </div>
+              </div>
+              <div class="header">
+                <div class="variants">
+                  <span class="font-w-light">Token price: </span>
+                  <span class="font-w-bold bold">
+                    $0.0808728
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </div>
+</div>
