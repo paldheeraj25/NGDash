@@ -47,33 +47,49 @@
               </small>
               <div class="form-group">
                 <label for="input-re-password" class="sr-only">Phone Number</label>
-                <input name="rePass" type="text" id="input-re-password1" class="form-control" placeholder="Phone*" required [class.form-control-danger]="(rePass.invalid || password.value != rePass.value) && rePass.touched">
+                <input name="phone" type="text" [(ngModel)]="user.phone"  id="input-phone" class="form-control" placeholder="Phone*" #phone="ngModel" required [class.form-control-danger]="(phone.invalid && phone.touched)">
               </div>
+              <small class="m-b-10 form-text error" *ngIf="phone.invalid && phone.touched">
+                Phone number is invalid
+              </small>
               <div class="form-group">
                 <label for="input-re-password" class="sr-only">Country</label>
-                <input name="rePass" type="text" id="input-re-password2" class="form-control" placeholder="Country*" required [class.form-control-danger]="(rePass.invalid || password.value != rePass.value) && rePass.touched">
+                <input name="country" #country="ngModel" type="text" [(ngModel)]="user.country" id="input-country" class="form-control" placeholder="Country*" required [class.form-control-danger]="(country.invalid && country.touched)">
               </div>
+              <small class="m-b-10 form-text error" *ngIf="country.invalid && country.touched">
+                Country name is invalid
+              </small>
               <div class="form-group">
                 <label for="input-re-password" class="sr-only">please enter your DOB (dd/mm//yy)</label>
-                <input name="rePass" type="text" id="input-re-password3" class="form-control" placeholder="please enter your DOB (dd/mm/yy)*"
-                  required [class.form-control-danger]="(rePass.invalid || password.value != rePass.value) && rePass.touched">
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd"
+                          name="dob" #dob="ngModel" [(ngModel)]="user.dob" ngbDatepicker #d="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                      <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                    </button>
+                  </div>
+                </div>
               </div>
-              <!-- <ng-datepicker [(ngModel)]="date" /> -->
+              <small class="m-b-10 form-text error" *ngIf="dob.invalid && dob.touched">
+               Date of birth is invalid
+              </small>
+              
               <div class="form-group col-sm-12">
-                <nb-checkbox name="terms" [(ngModel)]="user.terms2">
-                  Confirm that I am not a US citizen nor a Chinese citizen.
+                <nb-checkbox name="terms" [(ngModel)]="user.notUSnChinese">
+                  Confirm that you are not a US citizen nor a Chinese citizen.
                   <a href="#" target="_blank">
                     <strong>Terms & Conditions</strong>
                   </a>
                 </nb-checkbox>
               </div>
               <div class="form-group col-sm-12">
-                <nb-checkbox name="terms" [(ngModel)]="user.terms1">
+                <nb-checkbox name="terms" [(ngModel)]="user.readBolltIcoPolicy">
                   Confirm that you have read and understood BolttCoin ICO Whitepaper policy.
                 </nb-checkbox>
               </div>
               <div class="form-group col-sm-12">
-                <nb-checkbox name="terms" [(ngModel)]="user.terms">
+                <nb-checkbox name="terms" [(ngModel)]="user.ownRisk">
                   Confirm that you are contributing to the project at your own risk & boltt will not be liable for any Financial Gain or Loss.
                 </nb-checkbox>
               </div>
@@ -88,7 +104,7 @@
                 </a>
               </div>
 
-              <button [disabled]="submitted || !form.valid || !user.terms" class="btn btn-block btn-hero-success" [class.btn-pulse]="submitted">
+              <button [disabled]="submitted || !form.valid || !user.ownRisk || !user.notUSnChinese || !user.readBolltIcoPolicy" class="btn btn-block btn-hero-success" [class.btn-pulse]="submitted">
                 Register
               </button>
             </form>

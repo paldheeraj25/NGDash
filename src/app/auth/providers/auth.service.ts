@@ -40,12 +40,8 @@ export class AuthService {
   }
 
   register(user: any): Observable<any> {
-    const newUser = {
-      email: user.email,
-      password: user.password
-    };
     const url = environment.apiUrl + 'investorRegistration';
-    return this.http.post(url, newUser);
+    return this.http.post(url, user);
   }
 
   setStorage(user: any, rememberMe: boolean) {
