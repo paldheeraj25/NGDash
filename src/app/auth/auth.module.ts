@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgDatepickerModule } from 'ng2-datepicker';
 
+import { SocialLoginModule, AuthServiceConfig } from 'angular4-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from 'angular4-social-login';
+
 import { NbLayoutModule, NbCardModule, NbCheckboxModule } from '@nebular/theme';
 
 import { NbAuthService } from './services/auth.service';
@@ -35,6 +38,13 @@ import { deepExtend } from './helpers';
 import { AuthService } from './providers/auth.service';
 import { AuthGuard } from './providers/auth.gaurd';
 
+let config = new AuthServiceConfig([
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("211928229561369")
+  },
+]);
+
 export function nbAuthServiceFactory(config: any, tokenService: NbTokenService, injector: Injector) {
   const providers = config.providers || {};
 
@@ -63,6 +73,7 @@ export function nbOptionsFactory(options) {
     FormsModule,
     HttpClientModule,
     NgDatepickerModule,
+    SocialLoginModule.initialize(config),
   ],
   declarations: [
     NbAuthComponent,

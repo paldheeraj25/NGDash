@@ -61,7 +61,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     this.payment.getConversionRate().subscribe(response => {
       this.currencyPrice = response.data;
-      console.log(this.currencyPrice);
       this.utilityService.getUserAddresses().subscribe(val => {
         this.userAddreses = map(JSON.parse(val.data), ((value, key) => {
           return { name: key, address: value, image: 'assets/images/' + key + '.png' };

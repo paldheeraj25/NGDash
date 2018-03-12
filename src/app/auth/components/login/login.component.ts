@@ -3,8 +3,11 @@
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, AfterViewInit, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService as Auth } from 'angular4-social-login';
+import { FacebookLoginProvider } from 'angular4-social-login';
+import { SocialUser } from 'angular4-social-login';
 import { NbAuthSocialLink } from '../../auth.options';
 import { getDeepFromObject } from '../../helpers';
 
@@ -12,19 +15,34 @@ import { getDeepFromObject } from '../../helpers';
 import { AuthService } from '../../providers/auth.service';
 import { NbAuthResult } from '../../services/auth-result';
 
+declare let paypal: any;
+
+
 @Component({
   selector: 'nb-login',
   templateUrl: './login.component.html',
+  styles: ['./login.component.scss'],
 })
-export class NbLoginComponent {
+export class NbLoginComponent implements OnInit {
   provider: string = '';
   user: any = {};
   submitted = false;
   authFailure = false;
   userData: any = {};
 
-  constructor(protected router: Router, private authService: AuthService) {
+  private userSocial: SocialUser;
+  private loggedIn: boolean;
+
+  constructor(protected router: Router, private authService: AuthService, private auth: Auth) {
     this.cleanUp();
+  }
+
+  ngOnInit() {
+    // this.auth.authState.subscribe((user) => {
+    //   console.log(user);
+    //   this.userSocial = user;
+    //   this.loggedIn = (user != null);
+    // });
   }
 
   signIn(): void {
@@ -47,5 +65,16 @@ export class NbLoginComponent {
     this.authService.isLoggedIn = false;
     delete window.localStorage.bolttAccessToken;
     window.sessionStorage.clear();
-  }
+  };
+
+  // signInWithFB(): void {
+  //   console.log(FacebookLoginProvider.PROVIDER_ID);
+  //   this.auth.signIn(FacebookLoginProvider.PROVIDER_ID).then(function (data) {
+  //     console.log(data);
+  //   });
+  // }
+
+  // signOut(): void {
+  //   this.auth.signOut();
+  // }
 }

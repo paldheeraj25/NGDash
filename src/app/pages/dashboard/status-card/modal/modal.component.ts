@@ -26,7 +26,6 @@ export class ModalComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log(this.paymentType);
   }
 
   computeBoltt(event) {
@@ -39,7 +38,6 @@ export class ModalComponent implements OnInit, AfterViewInit {
   }
 
   placeOrder() {
-    console.log(this.address + ' ' + this.method);
     this.orderDetail.method = this.method;
     this.orderDetail.address = this.address;
     // requesting the api for saving and raising the invoice for payment on the order stat.
@@ -64,13 +62,14 @@ export class ModalComponent implements OnInit, AfterViewInit {
             payment: {
               transactions: [
                 {
-                  amount: { total: '1.00', currency: 'USD' },
+                  amount: { total: '2.00', currency: 'USD' },
                 },
               ],
             },
           })
         },
         onAuthorize: function (data, actions) {
+          console.log(data);
           return actions.payment.execute().then(function (payment) {
             // TODO
             console.log('paypal response');

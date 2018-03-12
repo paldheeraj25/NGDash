@@ -16,7 +16,7 @@
     <div class="form-group">
       <label for="input-password" class="sr-only">Password</label>
       <input name="password" [(ngModel)]="user.password" type="password" id="input-password" class="form-control" placeholder="Password"
-        #password="ngModel" [class.form-control-danger]="password.invalid && password.touched" >
+        #password="ngModel" [class.form-control-danger]="password.invalid && password.touched">
     </div>
 
     <small class="form-text error" *ngIf="authFailure">
@@ -31,6 +31,13 @@
     <button type="submit" [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success" [class.btn-pulse]="submitted">
       Sign In
     </button>
+    <span class="created-by"></span>
+    <div class="socials">
+      <a href="#" target="_blank" class="ion ion-social-github"></a>
+      <a href="#" target="_blank" class="ion ion-social-facebook" (click)="signInWithFB()"></a>
+      <!-- <a href="#" target="_blank" class="ion ion-social-twitter"></a>
+      <a href="#" target="_blank" class="ion ion-social-linkedin"></a> -->
+    </div>
   </form>
 
   <div class="links">

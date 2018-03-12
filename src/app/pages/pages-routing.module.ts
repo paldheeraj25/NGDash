@@ -71,6 +71,10 @@ const routes: Routes = [{
     path: 'wallet',
     loadChildren: './wallet/wallet.module#WalletModule',
   },
+  {
+    path: 'user-profile',
+    loadChildren: './user-profile/user-profile.module#UserProfileModule',
+  },
   ],
 }];
 
