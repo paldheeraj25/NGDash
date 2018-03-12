@@ -1,6 +1,7 @@
 import { AuthService } from './../../providers/auth.service';
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'nb-register',

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgDatepickerModule } from 'ng2-datepicker';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { NbLayoutModule, NbCardModule, NbCheckboxModule } from '@nebular/theme';
 
@@ -63,6 +64,7 @@ export function nbOptionsFactory(options) {
     FormsModule,
     HttpClientModule,
     NgDatepickerModule,
+    NgbModule
   ],
   declarations: [
     NbAuthComponent,
