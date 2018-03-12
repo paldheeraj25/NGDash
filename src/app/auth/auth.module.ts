@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 import { NbLayoutModule, NbCardModule, NbCheckboxModule } from '@nebular/theme';
 
@@ -60,7 +61,8 @@ export function nbOptionsFactory(options) {
     NbCheckboxModule,
     RouterModule.forChild(routes),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgDatepickerModule,
   ],
   declarations: [
     NbAuthComponent,

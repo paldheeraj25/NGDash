@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <span>{{ modalHeader }}</span>
+  <span>{{name}}</span>
+  <button class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="payment-qrcode">
+    <qr-code [value]="address" [size]="150"></qr-code>
+  </div>
+  <br>
+  <div class="centered">
+    <div class="font-row font-main">
+      <div class="header">
+        <div class="variants">
+          <span class="font-w-light">address: </span>
+          <span class="font-w-bold bold">
+            {{address}}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="font-row font-main">
+      <div class="header">
+        <div class="variants">
+          <span class="font-w-light">method: </span>
+          <span class="font-w-bold bold">
+            {{method}}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="font-row font-main">
+      <div class="header">
+        <div class="variants">
+          <span class="font-w-light">amount: </span>
+          <span class="font-w-bold bold">
+            <input type="number" placeholder="select an amount" [(ngModel)]="methodAmount" name="methodAmount" (ngModelChange)="computeBoltt($event)"> {{method}} = {{bolttAmount}} BOLTT
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-md btn-primary" (click)="placeOrder()">Raise Order</button>
+  <button class="btn btn-md btn-primary" (click)="closeModal()">Save changes</button>
+</div>

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal.component';
+import { PaymentService } from '../../providers/payment.service';
 
 
 
@@ -10,25 +11,49 @@ import { ModalComponent } from './modal/modal.component';
   styleUrls: ['./status-card.component.scss'],
   templateUrl: './status-card.component.html',
 })
-export class StatusCardComponent {
+export class StatusCardComponent implements OnInit {
 
   @Input() title: string;
   @Input() address: string;
   @Input() type: string;
+  @Input() rate: any;
   @Input() on = true;
 
   themeName = 'default';
   settings: Array<any>;
   themeSubscription: any;
   heroInfoButton: any;
+  // currency names.
+  public currencyName = {
+    BTC: 'Bitcoin',
+    ETH: 'Ethereum',
+    BCH: 'BTC Cash',
+    LTC: 'Litcoin',
+    DASH: 'Dash',
+    ETC: 'ETH Classic',
+    XMR: 'Monero',
+    ZEC: 'ZCash',
+    NEO: 'Neo',
+    DOGE: 'DOGE',
+    XRP: 'RIPPLE',
+    STRAT: 'STRAT',
+    WAVES: 'Waves',
+  };
 
-  constructor(private themeService: NbThemeService, private modalService: NgbModal) {
+  public currencyPrice: any;
+
+  constructor(private themeService: NbThemeService,
+    private modalService: NgbModal,
+    private payment: PaymentService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.init(theme.variables);
     });
   }
-  
+
+  ngOnInit() {
+    console.log(this.rate);
+  }
   // init for button
   init(colors: any) {
     this.settings = [];
@@ -56,7 +81,9 @@ export class StatusCardComponent {
     const activeModal = this.modalService.open(ModalComponent, { size: 'lg', container: 'nb-layout' });
 
     activeModal.componentInstance.modalHeader = 'Payment order';
+    activeModal.componentInstance.paymentType = 1;
     activeModal.componentInstance.address = this.address;
     activeModal.componentInstance.method = this.title;
+    activeModal.componentInstance.rate = this.rate;
   }
 }

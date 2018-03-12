@@ -2,18 +2,14 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Purchased tokens',
+    title: 'Buy tokens',
     icon: 'nb-home',
     link: '/pages/dashboard',
     home: true,
   },
   {
-    title: 'FEATURES',
-    group: true,
-  },
-  {
     title: 'Analytics',
-    icon: 'nb-compose',
+    icon: 'nb-bar-chart',
     link: '/pages/analytics',
     home: true
   },
@@ -30,10 +26,31 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Total Invested',
-    icon: 'nb-gear',
-    link: '/pages/invested',
-    home: true,
+    title: 'Profile',
+    icon: 'nb-person',
+    link: '/pages/profile',
+    children: [
+      {
+        title: 'Edit Profile',
+        link: '/pages/profile/edit',
+      },
+      {
+        title: 'Change Password',
+        link: '/pages/profile/password-change',
+      },
+      {
+        title: 'KYC & AML',
+        link: '/pages/profile/password-change',
+      },
+      {
+        title: 'Login History',
+        link: '/pages/profile/password-change',
+      },
+      {
+        title: '2FA',
+        link: '/pages/profile/password-change',
+      },
+    ],
   },
   // {
   //   title: 'TDE stages',
@@ -42,9 +59,59 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   home: true,
   // },
   {
+    title: 'Documents',
+    icon: 'nb-email',
+    link: '/pages/document',
+    children: [
+      {
+        title: 'Whitepaper',
+        url: 'www.google.com',
+      },
+      {
+        title: 'One Paper',
+        link: '/pages/document/whitepaper',
+      },
+      {
+        title: 'Legal Disclaimer',
+        link: '/pages/document/whitepaper',
+      },
+      {
+        title: 'Terms and conditions',
+        link: '/pages/document/whitepaper',
+      },
+    ],
+  },
+  {
     title: 'Boltt Wallet',
     icon: 'nb-locked',
     link: '/pages/wallet',
+    children: [
+      {
+        title: 'wallet info',
+        link: '/pages/wallet/wallet-info',
+      },
+      // {
+      //   title: 'Go to Wallet',
+      //   link: '/pages/wallet/wallet-info',
+      // },
+    ],
+  },
+  {
+    title: 'FAQ',
+    icon: 'nb-edit',
+    link: '/pages/order-stats1',
+    home: true,
+  },
+  {
+    title: 'Bounty and Refferal',
+    icon: 'nb-paper-plane',
+    link: '/pages/order-stats3',
+    home: true,
+  },
+  {
+    title: 'Live Transaction',
+    icon: 'nb-paper-plane',
+    link: '/pages/order-stats2',
     home: true,
   },
   {

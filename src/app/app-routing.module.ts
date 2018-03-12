@@ -7,10 +7,10 @@ import { AuthGuard } from './auth/providers/auth.gaurd';
 import { NbRequestPasswordComponent } from './auth/components/request-password/request-password.component';
 
 const routes: Routes = [
-  { 
-    path: 'pages', 
+  {
+    path: 'pages',
     loadChildren: 'app/pages/pages.module#PagesModule',
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   { path: 'auth', component: NbAuthComponent },
   { path: 'register', component: NbRegisterComponent },

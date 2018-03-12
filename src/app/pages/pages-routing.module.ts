@@ -27,7 +27,7 @@ const routes: Routes = [{
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
   },
   {
     path: 'order-stats',
@@ -66,7 +66,11 @@ const routes: Routes = [{
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  }
+  },
+  {
+    path: 'wallet',
+    loadChildren: './wallet/wallet.module#WalletModule',
+  },
   ],
 }];
 
