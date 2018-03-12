@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgDatepickerModule } from 'ng2-datepicker';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SocialLoginModule, AuthServiceConfig } from 'angular4-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angular4-social-login';
@@ -74,6 +75,7 @@ export function nbOptionsFactory(options) {
     HttpClientModule,
     NgDatepickerModule,
     SocialLoginModule.initialize(config),
+    NgbModule
   ],
   declarations: [
     NbAuthComponent,
