@@ -5,6 +5,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { QRCodeModule } from 'angular2-qrcode';
 
 import { ThemeModule } from '../../@theme/theme.module';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+
 import { DashboardComponent } from './dashboard.component';
 import { StatusCardComponent } from './status-card/status-card.component';
 import { ModalComponent } from './status-card/modal/modal.component';
@@ -33,6 +35,7 @@ import { UiFeaturesModule } from '../ui-features/ui-features.module';
     NgxEchartsModule,
     UiFeaturesModule,
     QRCodeModule,
+    Ng4LoadingSpinnerModule.forRoot(),
   ],
   declarations: [
     DashboardComponent,

@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { UserService } from '../../@core/data/users.service';
 import { NbThemeService } from '@nebular/theme';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { forEach, map } from 'lodash';
 
@@ -27,7 +28,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private utilityService: UserUtilityService,
     private userService: UserService,
     private payment: PaymentService,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private spinnerService: Ng4LoadingSpinnerService) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.init(theme.variables);
@@ -58,11 +60,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
+    this.spinnerService.show();
     this.payment.getConversionRate().subscribe(response => {
       this.currencyPrice = response.data;
       this.utilityService.getUserAddresses().subscribe(val => {
         this.userAddreses = map(JSON.parse(val.data), ((value, key) => {
+          this.spinnerService.hide();
           return { name: key, address: value, image: 'assets/images/' + key + '.png' };
         }));
       });
@@ -71,43 +74,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   // paypal
   ngAfterViewInit(): void {
-    // this.loadExternalScript("https://www.paypalobjects.com/api/checkout.js").then(() => {
-    //   paypal.Button.render({
-    //     env: 'sandbox',
-    //     client: {
-    //       production: 'AR_eFIArAhKJsKijJeSEreW2RI8NPYsAHQdw6QFJgGZQfNHi27O_hUkFruRqZThMJIteaifh6-4EmHQu',
-    //       sandbox: 'AR_eFIArAhKJsKijJeSEreW2RI8NPYsAHQdw6QFJgGZQfNHi27O_hUkFruRqZThMJIteaifh6-4EmHQu',
-    //     },
-    //     commit: true,
-    //     payment: function (data, actions) {
-    //       return actions.payment.create({
-    //         payment: {
-    //           transactions: [
-    //             {
-    //               amount: { total: '1.00', currency: 'USD' },
-    //             },
-    //           ],
-    //         },
-    //       })
-    //     },
-    //     onAuthorize: function (data, actions) {
-    //       return actions.payment.execute().then(function (payment) {
-    //         // TODO
-    //         console.log('paypal response');
-    //         console.log(payment);
-    //       })
-    //     },
-    //   }, '#paypal-button');
-    // });
   }
 
   private loadExternalScript(scriptUrl: string) {
-    // return new Promise((resolve, reject) => {
-    //   const scriptElement = document.createElement('script')
-    //   scriptElement.src = scriptUrl
-    //   scriptElement.onload = resolve
-    //   document.body.appendChild(scriptElement)
-    // });
+
   }
 
   openOrderPaypal(): void {

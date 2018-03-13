@@ -21,7 +21,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
   paymentType: any;
   bolttAmount: number = 0;
   methodAmount: number = 0;
-  orderDetail: { method: string, address: string } = { method: '', address: '' };
+  orderDetail: { method: string, address: string, amount: number } = { method: '', address: '', amount: 0 };
   constructor(private activeModal: NgbActiveModal, private router: Router, private payment: PaymentService) {
   }
 
@@ -40,6 +40,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
   placeOrder() {
     this.orderDetail.method = this.method;
     this.orderDetail.address = this.address;
+    this.orderDetail.amount = this.methodAmount;
     // requesting the api for saving and raising the invoice for payment on the order stat.
 
     this.payment.raiseOrder(this.orderDetail);
@@ -53,23 +54,33 @@ export class ModalComponent implements OnInit, AfterViewInit {
       paypal.Button.render({
         env: 'sandbox',
         client: {
-          production: 'AR_eFIArAhKJsKijJeSEreW2RI8NPYsAHQdw6QFJgGZQfNHi27O_hUkFruRqZThMJIteaifh6-4EmHQu',
-          sandbox: 'AR_eFIArAhKJsKijJeSEreW2RI8NPYsAHQdw6QFJgGZQfNHi27O_hUkFruRqZThMJIteaifh6-4EmHQu',
+          sandbox: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+          production: '<insert production client id>'
         },
         commit: true,
+        style: {
+          color: 'gold',
+          size: 'small',
+        },
         payment: function (data, actions) {
+          // Make a call to the REST api to create the payment
+          console.log('inside payment');
+          console.log(data);
+          console.log(actions);
           return actions.payment.create({
             payment: {
               transactions: [
                 {
-                  amount: { total: '2.00', currency: 'USD' },
+                  amount: { total: '0.01', currency: 'USD' }
                 },
               ],
             },
-          })
+          });
         },
         onAuthorize: function (data, actions) {
+          console.log('inside payment');
           console.log(data);
+          console.log(actions);
           return actions.payment.execute().then(function (payment) {
             // TODO
             console.log('paypal response');
@@ -88,4 +99,5 @@ export class ModalComponent implements OnInit, AfterViewInit {
       document.body.appendChild(scriptElement)
     });
   }
+
 }

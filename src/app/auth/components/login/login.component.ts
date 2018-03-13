@@ -3,9 +3,9 @@
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
-import { Component, Inject, AfterViewInit, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService as Auth } from 'angular4-social-login';
+// import { AuthService as Auth } from 'angular4-social-login';
 import { FacebookLoginProvider } from 'angular4-social-login';
 import { SocialUser } from 'angular4-social-login';
 import { NbAuthSocialLink } from '../../auth.options';
@@ -33,7 +33,7 @@ export class NbLoginComponent implements OnInit {
   private userSocial: SocialUser;
   private loggedIn: boolean;
 
-  constructor(protected router: Router, private authService: AuthService, private auth: Auth) {
+  constructor(protected router: Router, private authService: AuthService) {
     this.cleanUp();
   }
 
@@ -77,4 +77,5 @@ export class NbLoginComponent implements OnInit {
   // signOut(): void {
   //   this.auth.signOut();
   // }
+
 }

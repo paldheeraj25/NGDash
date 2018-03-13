@@ -32,4 +32,9 @@ export class UserUtilityService {
     }
   }
 
+  getLoginHistory(): Observable<any> {
+    const loginHistory = environment.apiUrl + 'userDasboardLoginHistory';
+    return this.apiGateWay(loginHistory, 'get');
+  }
+
 }

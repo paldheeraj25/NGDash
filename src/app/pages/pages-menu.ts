@@ -40,15 +40,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'KYC & AML',
-        link: '/pages/profile/password-change',
+        link: '/pages/user-profile/password-change',
       },
       {
         title: 'Login History',
-        link: '/pages/profile/password-change',
+        link: '/pages/user-profile/login-history',
       },
       {
         title: '2FA',
-        link: '/pages/profile/password-change',
+        link: '/pages/user-profile/password-change',
       },
     ],
   },

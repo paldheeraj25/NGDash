@@ -39,12 +39,12 @@ import { deepExtend } from './helpers';
 import { AuthService } from './providers/auth.service';
 import { AuthGuard } from './providers/auth.gaurd';
 
-let config = new AuthServiceConfig([
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("211928229561369")
-  },
-]);
+// let config1 = new AuthServiceConfig([
+//   {
+//     id: FacebookLoginProvider.PROVIDER_ID,
+//     provider: new FacebookLoginProvider("211928229561369")
+//   },
+// ]);
 
 export function nbAuthServiceFactory(config: any, tokenService: NbTokenService, injector: Injector) {
   const providers = config.providers || {};
@@ -74,8 +74,8 @@ export function nbOptionsFactory(options) {
     FormsModule,
     HttpClientModule,
     NgDatepickerModule,
-    SocialLoginModule.initialize(config),
-    NgbModule
+    // SocialLoginModule.initialize(config1),
+    NgbModule,
   ],
   declarations: [
     NbAuthComponent,
