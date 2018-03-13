@@ -32,7 +32,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Edit Profile',
-        link: '/pages/profile/edit',
+        link: '/pages/profile',
       },
       {
         title: 'Change Password',
