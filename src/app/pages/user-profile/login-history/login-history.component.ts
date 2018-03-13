@@ -46,4 +46,8 @@ export class LoginHistoryComponent implements OnInit {
       this.source.load(response.data);
     });
   }
+
+  onDeleteConfirm(event) {
+    console.log("Delete confirm", event);
+  }
 }
