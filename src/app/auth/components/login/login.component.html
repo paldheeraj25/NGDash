@@ -31,17 +31,16 @@
     <button type="submit" [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success" [class.btn-pulse]="submitted">
       Sign In
     </button>
-    <span class="created-by"></span>
-    <div class="socials">
-      <a href="#" target="_blank" class="ion ion-social-github"></a>
-      <!-- <a href="#" target="_blank" class="ion ion-social-facebook" (click)="signInWithFB()"></a> -->
-      <!-- <a href="#" target="_blank" class="ion ion-social-twitter"></a>
-      <a href="#" target="_blank" class="ion ion-social-linkedin"></a> -->
-    </div>
   </form>
 
   <div class="links">
-
+    <span class="created-by"></span>
+    <div class="socials">
+      <!-- <a href="#" target="_blank" class="thirdparty-login ion ion-social-github"></a> -->
+      <a href="#" target="_blank" class="ion ion-social-facebook" (click)="signInWithFB()" style="font-size: 3rem;"></a>
+      <!-- <a href="#" target="_blank" class="ion ion-social-twitter"></a>
+        <a href="#" target="_blank" class="ion ion-social-linkedin"></a> -->
+    </div>
     <small class="form-text">
       Don't have an account?
       <a routerLink="../register">

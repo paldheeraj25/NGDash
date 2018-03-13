@@ -5,9 +5,9 @@
  */
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// import { AuthService as Auth } from 'angular4-social-login';
-import { FacebookLoginProvider } from 'angular4-social-login';
+import { AuthService as facebook } from 'angular4-social-login';
 import { SocialUser } from 'angular4-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider } from 'angular4-social-login';
 import { NbAuthSocialLink } from '../../auth.options';
 import { getDeepFromObject } from '../../helpers';
 
@@ -33,7 +33,10 @@ export class NbLoginComponent implements OnInit {
   private userSocial: SocialUser;
   private loggedIn: boolean;
 
-  constructor(protected router: Router, private authService: AuthService) {
+  constructor(protected router: Router,
+    private authService: AuthService,
+    private facebookAuth: facebook,
+  ) {
     this.cleanUp();
   }
 
@@ -67,12 +70,12 @@ export class NbLoginComponent implements OnInit {
     window.sessionStorage.clear();
   };
 
-  // signInWithFB(): void {
-  //   console.log(FacebookLoginProvider.PROVIDER_ID);
-  //   this.auth.signIn(FacebookLoginProvider.PROVIDER_ID).then(function (data) {
-  //     console.log(data);
-  //   });
-  // }
+  signInWithFB(): void {
+    console.log(FacebookLoginProvider.PROVIDER_ID);
+    this.facebookAuth.signIn(FacebookLoginProvider.PROVIDER_ID).then(function (data) {
+      console.log(data);
+    });
+  }
 
   // signOut(): void {
   //   this.auth.signOut();
