@@ -1,0 +1,61 @@
+<nb-auth-block>
+  <h2 class="title">Edit Profile</h2>
+  <form (ngSubmit)="editProfile()" #resetPassForm="ngForm" class="change-password">
+
+    <div class="form-group">
+      <label for="input-password" class="sr-only">First Name</label>
+      <input name="firstName" [(ngModel)]="user.first_name" type="text" id="input-firstName" class="form-control form-control-lg first"
+        placeholder="Enter first name" #firstName="ngModel" [class.form-control-danger]="firstName.invalid && firstName.touched" required >
+      <small class="form-text error" *ngIf="firstName.invalid && firstName.touched">
+        First name is required
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="input-password" class="sr-only">Last Name</label>
+      <input name="lastName" [(ngModel)]="user.last_name" type="text" id="input-lastName" class="form-control form-control-lg first"
+        placeholder="Enter last name" #lastName="ngModel" [class.form-control-danger]="lastName.invalid && lastName.touched" required >
+      <small class="form-text error" *ngIf="lastName.invalid && lastName.touched">
+        Last name is required
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="input-email" class="sr-only">Email id</label>
+      <input name="email" [(ngModel)]="user.email" type="text" id="input-email" class="form-control form-control-lg last"
+        placeholder="Email ID" #email="ngModel" [disabled]="true">
+    </div>
+
+    <div class="form-group">
+        <label for="input-re-password" class="sr-only">Phone Number</label>
+        <input name="phone" type="text" [(ngModel)]="user.phone"  id="input-phone" class="form-control" placeholder="Phone*" #phone="ngModel" required [class.form-control-danger]="(phone.invalid && phone.touched)">
+      </div>
+      <small class="m-b-10 form-text error" *ngIf="phone.invalid && phone.touched">
+        Phone number is invalid
+      </small>
+      <div class="form-group">
+        <label for="input-re-password" class="sr-only">Country</label>
+        <input name="country" #country="ngModel" type="text" [(ngModel)]="user.country" id="input-country" class="form-control" placeholder="Country*" required [class.form-control-danger]="(country.invalid && country.touched)">
+      </div>
+      <small class="m-b-10 form-text error" *ngIf="country.invalid && country.touched">
+        Country name is invalid
+      </small>
+      <div class="form-group">
+        <label for="input-re-password" class="sr-only">please enter your DOB (dd/mm//yy)</label>
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                  name="dob" #dob="ngModel" [(ngModel)]="user.dob" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+              <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    <button [disabled]="submitted || !resetPassForm.form.valid" class="btn btn-hero-success btn-block" [class.btn-pulse]="submitted">
+     Save Changes
+    </button>
+  </form>
+
+</nb-auth-block>
