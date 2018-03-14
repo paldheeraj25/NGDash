@@ -30,9 +30,11 @@ export class NbRequestPasswordComponent {
     this.submitted = true;
     this.requestSuccess = false;
     this.user.password = "123456";
-    this.authService.login(this.user).subscribe( res => {
+
+    this.authService.forgotPassword(this.user.email).subscribe(res => {
       this.requestSuccess = true;
       this.registeredEmail = true;
+      console.log(res);
     }, (error) => {
       this.submitted = false;
       this.registeredEmail = false;
@@ -44,7 +46,7 @@ export class NbRequestPasswordComponent {
   requestPass(): void {
     this.submitted = true;
     this.user.password = "123456";
-    this.authService.login(this.user).subscribe( res => {
+    this.authService.login(this.user).subscribe(res => {
       this.router.navigateByUrl("auth");
     }, (error) => {
       this.submitted = false;

@@ -74,4 +74,10 @@ export class AuthService {
     return window[this.storage].bolttAccessToken;
   }
 
+  forgotPassword(email: string): Observable<any> {
+    const user = { email_address: '', investor_dashboard: 1 };
+    user.email_address = email;
+    const url = environment.apiUrl + 'forgotPassword';
+    return this.http.post(url, user);
+  }
 }
