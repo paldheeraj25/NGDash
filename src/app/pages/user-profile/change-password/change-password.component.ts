@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserUtilityService } from './../../../pages/providers/user-utility.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'change-password',
@@ -8,25 +10,26 @@ import { Router } from '@angular/router';
 })
 export class ChangePasswordComponent {
 
-  redirectDelay: number = 0;
-  showMessages: any = {};
   provider: string = '';
-
   submitted = false;
-  errors: string[] = [];
-  messages: string[] = [];
   user: any = {};
+  message: string;
+  error: string;
 
-  constructor() {
+  resetPassUrl = environment.apiUrl + "updatePassword";
+  constructor( private userUtilityService: UserUtilityService) { }
 
-  }
-
-  resetPass(): void {
-    this.errors = this.messages = [];
+  resetPass() {
     this.submitted = true;
-  }
-
-  getConfigValue(key: string): any {
+    this.userUtilityService.apiGateWay(this.resetPassUrl, 'post', this.user).subscribe(response => {
+      this.submitted = false;
+      this.message = "Password has been reset successfully";
+      this.error = undefined;
+    }, error => {
+      this.submitted = false;
+      this.message = undefined;
+      this.error = "Password is not reset. Please try again";
+    })
   }
 
 }

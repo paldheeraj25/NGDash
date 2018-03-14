@@ -40,13 +40,7 @@ export class NbLoginComponent implements OnInit {
     this.cleanUp();
   }
 
-  ngOnInit() {
-    // this.auth.authState.subscribe((user) => {
-    //   console.log(user);
-    //   this.userSocial = user;
-    //   this.loggedIn = (user != null);
-    // });
-  }
+  ngOnInit() {}
 
   signIn(): void {
     this.submitted = true;

@@ -8,12 +8,21 @@
             <form (ngSubmit)="register()" #form="ngForm">
 
               <div class="form-group">
-                <label for="input-name" class="sr-only">Full name</label>
-                <input name="fullName" [(ngModel)]="user.fullName" id="input-name" #fullName="ngModel" class="form-control" placeholder="Full name*"
-                  required [class.form-control-danger]="fullName.invalid && fullName.touched">
+                <label for="input-first-name" class="sr-only">First Name</label>
+                <input name="firstName" [(ngModel)]="user.firstName" id="input-first-name" #firstName="ngModel" class="form-control" placeholder="First name*"
+                  required [class.form-control-danger]="firstName.invalid && firstName.touched">
               </div>
-              <small class="m-b-10 form-text error" *ngIf="fullName.invalid && fullName.touched">
-                Name is invalid
+              <small class="m-b-10 form-text error" *ngIf="firstName.invalid && firstName.touched">
+                First Name is invalid
+              </small>
+
+              <div class="form-group">
+                <label for="input-last-name" class="sr-only">Last Name</label>
+                <input name="lastName" [(ngModel)]="user.lastName" id="input-last-name" #lastName="ngModel" class="form-control" placeholder="Last name*"
+                  required [class.form-control-danger]="lastName.invalid && lastName.touched">
+              </div>
+              <small class="m-b-10 form-text error" *ngIf="lastName.invalid && lastName.touched">
+                Last Name is invalid
               </small>
 
               <div class="form-group">
@@ -60,10 +69,10 @@
                 Country name is invalid
               </small>
               <div class="form-group">
-                <label for="input-re-password" class="sr-only">please enter your DOB (dd/mm//yy)</label>
+                <label for="input-re-password" class="sr-only">please enter your DOB (yyyy-mm-dd)</label>
                 <div class="input-group">
                   <input class="form-control" placeholder="yyyy-mm-dd"
-                          name="dob" #dob="ngModel" [(ngModel)]="user.dob" ngbDatepicker #d="ngbDatepicker">
+                          name="db" #db="ngModel" [(ngModel)]="user.db" ngbDatepicker #d="ngbDatepicker">
                   <div class="input-group-append">
                     <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
                       <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
@@ -71,7 +80,7 @@
                   </div>
                 </div>
               </div>
-              <small class="m-b-10 form-text error" *ngIf="dob.invalid && dob.touched">
+              <small class="m-b-10 form-text error" *ngIf="db.invalid && db.touched">
                Date of birth is invalid
               </small>
               
