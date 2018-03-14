@@ -16,11 +16,11 @@
     <div class="form-group">
       <label for="input-password" class="sr-only">Password</label>
       <input name="password" [(ngModel)]="user.password" type="password" id="input-password" class="form-control" placeholder="Password"
-        #password="ngModel" [class.form-control-danger]="password.invalid && password.touched" >
+        #password="ngModel" [class.form-control-danger]="password.invalid && password.touched">
     </div>
 
     <small class="form-text error" *ngIf="authFailure">
-      Authentication Failed
+      Authentication failed, Either email is not verified or incorrect password.
     </small>
 
     <div class="form-group accept-group col-sm-12">
@@ -34,7 +34,13 @@
   </form>
 
   <div class="links">
-
+    <span class="created-by"></span>
+    <div class="socials">
+      <!-- <a href="#" target="_blank" class="thirdparty-login ion ion-social-github"></a> -->
+      <a href="#" target="_blank" class="ion ion-social-facebook" (click)="signInWithFB()" style="font-size: 3rem;"></a>
+      <!-- <a href="#" target="_blank" class="ion ion-social-twitter"></a>
+        <a href="#" target="_blank" class="ion ion-social-linkedin"></a> -->
+    </div>
     <small class="form-text">
       Don't have an account?
       <a routerLink="../register">

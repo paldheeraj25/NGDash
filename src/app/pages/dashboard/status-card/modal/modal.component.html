@@ -6,6 +6,9 @@
   </button>
 </div>
 <div class="modal-body" *ngIf="paymentType === 1">
+  <div class="variants" [hidden]="true">
+    <span id="paypal-button"></span>
+  </div>
   <div class="payment-qrcode">
     <qr-code [value]="address" [size]="150"></qr-code>
   </div>
@@ -57,6 +60,9 @@
 </div>
 
 <div class="modal-body" *ngIf="paymentType === 2">
+  <div class="variants" [hidden]="true">
+    <span id="paypal-button"></span>
+  </div>
   <br>
   <div class="centered">
     <div class="font-row font-main">

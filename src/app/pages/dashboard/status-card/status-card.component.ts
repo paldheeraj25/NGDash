@@ -52,7 +52,7 @@ export class StatusCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.rate);
+
   }
   // init for button
   init(colors: any) {

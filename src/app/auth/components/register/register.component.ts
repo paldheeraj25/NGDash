@@ -21,8 +21,8 @@ export class NbRegisterComponent {
 
   register(): void {
     this.submitted = true;
-    this.user.dateOfBirth = this.user.dob.day + "/" + this.user.dob.month + "/" + this.user.dob.year;
-    this.user.dob = undefined;
+    this.user.dob = this.user.db.day + "/" + this.user.db.month + "/" + this.user.db.year;
+    this.user.db = undefined;
     this.authService.register(this.user).subscribe(response => {
       this.router.navigate(['login']);
       this.submitted = false;

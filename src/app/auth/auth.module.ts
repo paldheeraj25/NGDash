@@ -4,7 +4,10 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgDatepickerModule } from 'ng2-datepicker';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
 
 import { NbLayoutModule, NbCardModule, NbCheckboxModule } from '@nebular/theme';
 
@@ -36,6 +39,26 @@ import { deepExtend } from './helpers';
 import { AuthService } from './providers/auth.service';
 import { AuthGuard } from './providers/auth.gaurd';
 
+
+
+// let authConfig = new AuthServiceConfig([
+//   {
+//     id: FacebookLoginProvider.PROVIDER_ID,
+//     provider: new FacebookLoginProvider("211928229561369")
+//   },
+// ]);
+
+let authConfig = new AuthServiceConfig([
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("211928229561369")
+  },
+]);
+
+export function provideConfig() {
+  return authConfig;
+}
+
 export function nbAuthServiceFactory(config: any, tokenService: NbTokenService, injector: Injector) {
   const providers = config.providers || {};
 
@@ -64,7 +87,9 @@ export function nbOptionsFactory(options) {
     FormsModule,
     HttpClientModule,
     NgDatepickerModule,
-    NgbModule
+    SocialLoginModule,
+    NgbModule,
+    SocialLoginModule,
   ],
   declarations: [
     NbAuthComponent,
@@ -84,7 +109,12 @@ export function nbOptionsFactory(options) {
     NbResetPasswordComponent,
     NbLogoutComponent,
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService,
+    AuthGuard,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig,
+    }],
 })
 export class NbAuthModule {
   static forRoot(nbAuthOptions?: NbAuthOptions): ModuleWithProviders {

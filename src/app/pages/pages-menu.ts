@@ -11,7 +11,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Analytics',
     icon: 'nb-bar-chart',
     link: '/pages/analytics',
-    home: true
+    home: true,
   },
   // {
   //   title: 'Token Stats ',
@@ -28,27 +28,27 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Profile',
     icon: 'nb-person',
-    link: '/pages/profile',
+    link: '/pages/user-profile',
     children: [
       {
         title: 'Edit Profile',
-        link: '/pages/profile/edit',
+        link: '/pages/profile',
       },
       {
         title: 'Change Password',
-        link: '/pages/profile/password-change',
+        link: '/pages/user-profile/change-password',
       },
       {
         title: 'KYC & AML',
-        link: '/pages/profile/password-change',
+        link: '/pages/user-profile/password-change',
       },
       {
         title: 'Login History',
-        link: '/pages/profile/password-change',
+        link: '/pages/user-profile/login-history',
       },
       {
         title: '2FA',
-        link: '/pages/profile/password-change',
+        link: '/pages/user-profile/password-change',
       },
     ],
   },

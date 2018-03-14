@@ -9,6 +9,7 @@ import { InvestedComponent } from './invested/invested/invested.component';
 import { TdeComponent } from './tde/tde/tde.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { EditProfileComponent } from './user-profile/edit-profile/edit-profile.component';
 
 const routes: Routes = [{
   path: '',
@@ -27,7 +28,7 @@ const routes: Routes = [{
   },
   {
     path: 'profile',
-    component: ProfileComponent,
+    component: EditProfileComponent,
   },
   {
     path: 'order-stats',
@@ -70,6 +71,10 @@ const routes: Routes = [{
   {
     path: 'wallet',
     loadChildren: './wallet/wallet.module#WalletModule',
+  },
+  {
+    path: 'user-profile',
+    loadChildren: './user-profile/user-profile.module#UserProfileModule',
   },
   ],
 }];

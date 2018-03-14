@@ -1,8 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { find } from 'lodash';
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
+import { PaymentService } from '../../../pages/providers/payment.service';
+import { AuthService } from '../../../auth/providers/auth.service';
+
 
 @Component({
   selector: 'ngx-header',
@@ -15,6 +19,7 @@ export class HeaderComponent implements OnInit {
   @Input() position = 'normal';
 
   user: any;
+  balance: string = '';
 
   userMenu = [{ title: 'Profile', link: '/pages/profile', icon: 'nb-compose' },
   { title: 'Log out', link: '/auth', icon: 'nb-gear' }];
@@ -22,10 +27,13 @@ export class HeaderComponent implements OnInit {
   constructor(private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private userService: UserService,
-    private analyticsService: AnalyticsService) {
+    private analyticsService: AnalyticsService,
+    private payment: PaymentService,
+    private userProfile: AuthService) {
   }
 
   ngOnInit() {
+    this.getWalletInfo();
     this.userService.getUser()
       .subscribe((users: any) => this.user = users);
   }
@@ -54,5 +62,12 @@ export class HeaderComponent implements OnInit {
 
   onMenuClick(event) {
     console.log('logout test', event);
+  }
+
+  getWalletInfo() {
+    const user = this.userProfile.getUser();
+    this.payment.getUserWaveAsset({ user_id: user.user_details.user_id_pk }).subscribe(response => {
+      this.balance = find(response.data, { name: 'KDP' }).balance;
+    });
   }
 }

@@ -68,6 +68,7 @@
         </nb-card>
       </div>
       <!-- <div *ngIf="currencyPrice"> -->
+      <ng4-loading-spinner [threshold]="2000" [zIndex]="9999"></ng4-loading-spinner>
       <div class="col-xxxl-3 col-md-6" *ngFor="let walletInfo of userAddreses">
         <ngx-status-card rate="{{currencyPrice[walletInfo.name]}}" title="{{walletInfo.name}}" type="{{walletInfo.name.toLowerCase()}}"
           address="{{walletInfo.address}}">

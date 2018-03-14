@@ -5,6 +5,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { QRCodeModule } from 'angular2-qrcode';
 
 import { ThemeModule } from '../../@theme/theme.module';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+
 import { DashboardComponent } from './dashboard.component';
 import { StatusCardComponent } from './status-card/status-card.component';
 import { ModalComponent } from './status-card/modal/modal.component';
@@ -24,6 +26,7 @@ import { PlayerComponent } from './rooms/player/player.component';
 import { TrafficComponent } from './traffic/traffic.component';
 import { TrafficChartComponent } from './traffic/traffic-chart.component';
 import { UiFeaturesModule } from '../ui-features/ui-features.module';
+import { LandingPopupComponent } from './landing-popup/landing-popup.component';
 
 
 
@@ -33,6 +36,7 @@ import { UiFeaturesModule } from '../ui-features/ui-features.module';
     NgxEchartsModule,
     UiFeaturesModule,
     QRCodeModule,
+    Ng4LoadingSpinnerModule.forRoot(),
   ],
   declarations: [
     DashboardComponent,
@@ -53,9 +57,11 @@ import { UiFeaturesModule } from '../ui-features/ui-features.module';
     SolarComponent,
     TrafficComponent,
     TrafficChartComponent,
+    LandingPopupComponent,
   ],
   entryComponents: [
     ModalComponent,
+    LandingPopupComponent,
   ],
   exports: [
     TemperatureDraggerComponent,

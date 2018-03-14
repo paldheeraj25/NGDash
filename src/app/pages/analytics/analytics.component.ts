@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NbThemeService, NbColorHelper } from '@nebular/theme';
+import { PaymentService } from '../providers/payment.service';
+import { keys, values } from 'lodash';
+
 
 @Component({
   selector: 'analytics',
@@ -24,49 +27,59 @@ export class AnalyticsComponent implements OnInit {
   humidityOff = false;
   humidityMode = 'heat';
 
-  constructor(private theme: NbThemeService) {
-    this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
-
-      const colors: any = config.variables;
-      const chartjs: any = config.variables.chartjs;
-
-      this.tokenStatePie = {
-        labels: ['Purchased', 'Reserved', 'Total Volume'],
-        datasets: [{
-          data: [300, 100, 500],
-          backgroundColor: [colors.primaryLight, colors.infoLight, colors.successLight],
-        }],
-      };
-
-      this.orderStatPie = {
-        labels: ['New Orders', 'Pending Orders', 'Successful Orders'],
-        datasets: [{
-          data: [80, 20, 800],
-          backgroundColor: [colors.primaryLight, colors.infoLight, colors.successLight],
-        }],
-      };
-
-      this.totalInvestedPie = {
-        labels: ['BTC', 'BCH', 'LTC', 'DASH', 'ETH', 'ETC', 'XMR', 'ZEC', 'NEO', 'XRP', 'DOGE', 'WAVES', 'STRAT'],
-        datasets: [{
-          data: [65, 59, 80, 81, 56, 55, 40, 12, 42, 13, 64, 62, 34],
-          label: 'Total Invested',
-          backgroundColor: NbColorHelper.hexToRgbA(colors.primaryLight, 0.8),
-        }],
-      };
-
-      this.generateBarOptions(chartjs);
-      this.generateBarOptions(chartjs);
-    });
+  constructor(private theme: NbThemeService, private analytics: PaymentService) {
   }
 
   ngOnInit() {
+    this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
+      const colors: any = config.variables;
+      const chartjs: any = config.variables.chartjs;
+      this.analytics.getAnalyticsData().subscribe(response => {
+
+        // token state
+        this.tokenStatePie = {
+          labels: keys(response.data.token_state),
+          datasets: [{
+            data: values(response.data.token_state),
+            backgroundColor: [colors.primaryLight, colors.infoLight, colors.successLight],
+          }],
+        };
+        // order state
+        this.orderStatPie = {
+          labels: keys(response.data.order_state),
+          datasets: [{
+            data: values(response.data.order_state),
+            backgroundColor: [colors.primaryLight, colors.infoLight, colors.successLight],
+          }],
+        };
+
+        // total invested
+        this.totalInvestedPie = {
+          labels: keys(response.data.total_investment),
+          datasets: [{
+            data: values(response.data.total_investment),
+            label: 'Total Invested',
+            backgroundColor: NbColorHelper.hexToRgbA(colors.primaryLight, 0.8),
+          }],
+        };
+        return response.data;
+      });
+
+      this.generateBarOptions(chartjs);
+      this.generateBarOptions(chartjs);
+      this.getInvestCountData();
+    });
   }
 
   onSelect(event) {
     console.log(event);
   }
 
+  getInvestCountData() {
+    return this.analytics.getInvestCountData().subscribe(response => {
+      this.temperature = response.data;
+    });
+  }
 
   generatePieOptions(chartjs) {
     this.pieOptions = {

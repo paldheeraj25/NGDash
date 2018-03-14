@@ -8,8 +8,8 @@ import { environment } from './../../../environments/environment';
 export class UserUtilityService {
 
   private user: any = {};
-  public addressUrl = environment.apiUrl +  'getPaymentAddress';
-  constructor(private http: HttpClient, private authService: AuthService) { 
+  public addressUrl = environment.apiUrl + 'getPaymentAddress';
+  constructor(private http: HttpClient, private authService: AuthService) {
     let currentUser = this.authService.getUser();
     this.user.name = currentUser.user_details.first_name + ' ' + currentUser.user_details.last_name;
     this.user.picture = currentUser.user_details.profile_image;
@@ -21,15 +21,24 @@ export class UserUtilityService {
 
   apiGateWay(url?, method?, params?): Observable<any> {
     let storage = window.localStorage.getItem('bolttAccessToken')
-    ? 'localStorage'
-    : 'sessionStorage';
+      ? 'localStorage'
+      : 'sessionStorage';
     let headers = new HttpHeaders;
     headers = headers.append('Authorization', window[storage].bolttAccessToken);
-    if(method === 'get') {
+    if (method === 'get') {
       return this.http[method](url, { headers: headers });
-    } else if(method === 'post') {
+    } else if (method === 'post') {
       return this.http[method](url, params, { headers: headers });
     }
+  }
+
+  getLoginHistory(): Observable<any> {
+    const loginHistory = environment.apiUrl + 'userDasboardLoginHistory';
+    return this.apiGateWay(loginHistory, 'get');
+  }
+
+  getDate(date) {
+    return date.day + "/" + date.month + "/" + date.year;
   }
 
 }

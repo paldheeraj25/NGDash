@@ -8,6 +8,10 @@ import { environment } from '../../../environments/environment';
 export class PaymentService {
 
   orderHistoryUrl = environment.apiUrl + "getConversionRates";
+  gerUserWaveAsset = environment.apiUrl + "getUserWavesAssetListAll";
+  getAnalyticsApi = environment.apiUrl + "getAnalyticsData";
+  getInvestCountDataApi = environment.apiUrl + "getInvestCountData";
+
   constructor(private http: HttpClient, private userUtilityService: UserUtilityService) { }
 
   raiseOrder(orderDetails: any) {
@@ -18,5 +22,17 @@ export class PaymentService {
 
   getConversionRate(): Observable<any> {
     return this.userUtilityService.apiGateWay(this.orderHistoryUrl, 'get');
+  }
+
+  getUserWaveAsset(data): Observable<any> {
+    return this.userUtilityService.apiGateWay(this.gerUserWaveAsset, 'post', data);
+  }
+
+  getAnalyticsData(): Observable<any> {
+    return this.userUtilityService.apiGateWay(this.getAnalyticsApi, 'get');
+  }
+
+  getInvestCountData(): Observable<any> {
+    return this.userUtilityService.apiGateWay(this.getInvestCountDataApi, 'get');
   }
 }
