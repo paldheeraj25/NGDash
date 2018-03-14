@@ -26,6 +26,7 @@ import { PlayerComponent } from './rooms/player/player.component';
 import { TrafficComponent } from './traffic/traffic.component';
 import { TrafficChartComponent } from './traffic/traffic-chart.component';
 import { UiFeaturesModule } from '../ui-features/ui-features.module';
+import { LandingPopupComponent } from './landing-popup/landing-popup.component';
 
 
 
@@ -56,9 +57,11 @@ import { UiFeaturesModule } from '../ui-features/ui-features.module';
     SolarComponent,
     TrafficComponent,
     TrafficChartComponent,
+    LandingPopupComponent,
   ],
   entryComponents: [
     ModalComponent,
+    LandingPopupComponent,
   ],
   exports: [
     TemperatureDraggerComponent,

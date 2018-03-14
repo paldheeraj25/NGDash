@@ -72,8 +72,22 @@ export class NbLoginComponent implements OnInit {
 
   signInWithFB(): void {
     console.log(FacebookLoginProvider.PROVIDER_ID);
+    let self = this;
     this.facebookAuth.signIn(FacebookLoginProvider.PROVIDER_ID).then(function (data) {
       console.log(data);
+      self.authService.facbookSignIn(data).subscribe(val => {
+        console.log('inside servic call');
+        self.userData = val;
+        self.authService.setStorage(self.userData, self.user.rememberMe);
+        self.router.navigateByUrl("pages/dashboard");
+      },
+        response => {
+          self.submitted = false;
+          self.authFailure = true;
+        },
+        () => {
+          self.submitted = false;
+        })
     });
   }
 

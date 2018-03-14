@@ -39,6 +39,18 @@ export class AuthService {
     );
   }
 
+  // sign in with facebook
+  facbookSignIn(user: any): Observable<any> {
+    const userdata: any = new Object();
+    userdata.facebook_token = user.authToken;
+    userdata.facebook_uid = user.id;
+    userdata.email = user.email;
+    userdata.client_id = 'ac-NaYbDW8KERxa?3A!VyucF4LxJ!^J7';
+    userdata.client_secret = 'hw2D+Y8UWawgSzYuFFccKY+&Z2n&WQSR';
+    const facebookAuthUrl = environment.apiUrl + 'investorDashboardFacebookLogin';
+    return this.http.post(facebookAuthUrl, userdata);
+  }
+
   register(user: any): Observable<any> {
     const url = environment.apiUrl + 'investorRegistration';
     return this.http.post(url, user);

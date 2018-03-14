@@ -8,6 +8,8 @@ import { forEach, map } from 'lodash';
 import { UserUtilityService } from '../providers/user-utility.service';
 import { PaymentService } from '../providers/payment.service';
 import { ModalComponent } from './status-card/modal/modal.component';
+import { LandingPopupComponent } from './landing-popup/landing-popup.component';
+
 
 declare let paypal: any;
 
@@ -23,6 +25,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   heroInfoButton: any;
   public userAddreses: any;
   public currencyPrice: any;
+  initialDisclaimer: boolean;
+  storage: string;
 
   constructor(private themeService: NbThemeService,
     private utilityService: UserUtilityService,
@@ -68,6 +72,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           this.spinnerService.hide();
           return { name: key, address: value, image: 'assets/images/' + key + '.png' };
         }));
+        if (!window.localStorage.getItem('initialDisclaimer')) {
+          this.landingPopup();
+        }
       });
     })
   }
@@ -106,4 +113,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     activeModal.componentInstance.rate = 0.001;
   }
 
+  landingPopup(): void {
+    const activeModal = this.modalService.open(LandingPopupComponent, { size: 'lg', container: 'nb-layout' });
+  }
 }

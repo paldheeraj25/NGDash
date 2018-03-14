@@ -58,6 +58,9 @@ export class ModalComponent implements OnInit, AfterViewInit {
           production: '<insert production client id>'
         },
         commit: true,
+        funding: {
+          allowed: [paypal.FUNDING.CREDIT],
+        },
         style: {
           color: 'gold',
           size: 'small',
