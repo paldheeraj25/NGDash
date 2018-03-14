@@ -28,7 +28,7 @@
 
     <div class="form-group">
         <label for="input-re-password" class="sr-only">Phone Number</label>
-        <input name="phone" type="text" [(ngModel)]="user.phone"  id="input-phone" class="form-control" placeholder="Phone*" #phone="ngModel" required [class.form-control-danger]="(phone.invalid && phone.touched)">
+        <input name="phone" type="text" [(ngModel)]="user.mobile_no"  id="input-phone" class="form-control" placeholder="Phone*" #phone="ngModel" [disabled]="true">
       </div>
       <small class="m-b-10 form-text error" *ngIf="phone.invalid && phone.touched">
         Phone number is invalid
@@ -44,16 +44,23 @@
         <label for="input-re-password" class="sr-only">please enter your DOB (dd/mm//yy)</label>
         <div class="input-group">
           <input class="form-control" placeholder="yyyy-mm-dd"
-                  name="dob" #dob="ngModel" [(ngModel)]="user.dob" ngbDatepicker #d="ngbDatepicker">
+                  name="db" #db="ngModel" [(ngModel)]="user.db" ngbDatepicker #d="ngbDatepicker">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
               <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
             </button>
           </div>
         </div>
+
+        <small class="form-text p-t-20" *ngIf="message">
+          {{message}}
+        </small>
+        <small class="form-text error p-t-20" *ngIf="error">
+          {{error}}
+        </small>
       </div>
 
-    <button [disabled]="submitted || !resetPassForm.form.valid" class="btn btn-hero-success btn-block" [class.btn-pulse]="submitted">
+    <button [disabled]="submitted || !resetPassForm.form.valid || !user.db" class="btn btn-hero-success btn-block" [class.btn-pulse]="submitted">
      Save Changes
     </button>
   </form>
