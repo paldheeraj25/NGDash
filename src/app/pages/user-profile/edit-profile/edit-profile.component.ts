@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AuthService } from './../../../auth/providers/auth.service';
 import {NgbDatepickerConfig, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
+import { UserUtilityService } from './../../../pages/providers/user-utility.service';
+import { environment } from '../../../../environments/environment';
+
 @Component({
   selector: 'edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -10,16 +13,13 @@ import {NgbDatepickerConfig, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditProfileComponent {
 
-  redirectDelay: number = 0;
-  showMessages: any = {};
-  provider: string = '';
-
   submitted = false;
-  errors: string[] = [];
-  messages: string[] = [];
+  message: string;
+  error: string;
   user: any = {};
+  changeProfileUrl: string;
 
-  constructor(private authService: AuthService, config: NgbDatepickerConfig) {
+  constructor(private authService: AuthService, config: NgbDatepickerConfig, private userUtilityService: UserUtilityService) {
     const user = this.authService.getUser();
     this.user = user.user_details;
     config.minDate = {year: 1900, month: 1, day: 1};
@@ -27,9 +27,18 @@ export class EditProfileComponent {
   }
 
   editProfile() {
-    this.user.dateOfBirth = this.user.dob.day + "/" + this.user.dob.month + "/" + this.user.dob.year;
-    this.user.dob = undefined;
-    console.log("edit profile ", this.user);
+    this.user.dob = this.user.db.day + "/" + this.user.db.month + "/" + this.user.db.year;
+    this.changeProfileUrl = environment.apiUrl + "editInvestorProfile";
+    this.submitted = true;
+    this.userUtilityService.apiGateWay(this.changeProfileUrl, 'post', this.user).subscribe(response => {
+      this.submitted = false;
+      this.message = "Profile has been updated successfully";
+      this.error = undefined;
+    }, error => {
+      this.submitted = false;
+      this.message = undefined;
+      this.error = "Profile could not be updated now. Please try again";
+    })
   }
 
 }

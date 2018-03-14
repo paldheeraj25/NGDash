@@ -37,4 +37,8 @@ export class UserUtilityService {
     return this.apiGateWay(loginHistory, 'get');
   }
 
+  getDate(date) {
+    return date.day + "/" + date.month + "/" + date.year;
+  }
+
 }
