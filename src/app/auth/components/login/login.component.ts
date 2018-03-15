@@ -40,7 +40,7 @@ export class NbLoginComponent implements OnInit {
     this.cleanUp();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   signIn(): void {
     this.submitted = true;
@@ -65,7 +65,6 @@ export class NbLoginComponent implements OnInit {
   };
 
   signInWithFB(): void {
-    console.log(FacebookLoginProvider.PROVIDER_ID);
     let self = this;
     this.facebookAuth.signIn(FacebookLoginProvider.PROVIDER_ID).then(function (data) {
       console.log(data);

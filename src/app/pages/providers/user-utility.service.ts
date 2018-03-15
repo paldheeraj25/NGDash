@@ -41,4 +41,8 @@ export class UserUtilityService {
     return date.day + "/" + date.month + "/" + date.year;
   }
 
+  getLiveTransactions(): Observable<any> {
+    const liveTransaction = environment.apiUrl + 'getLiveTransactions';
+    return this.apiGateWay(liveTransaction, 'get');
+  }
 }
