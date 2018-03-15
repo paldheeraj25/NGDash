@@ -1,3 +1,4 @@
+import { ThemeModule } from './../../@theme/theme.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientJsonpModule } from '@angular/common/http';
@@ -14,7 +15,8 @@ import { ShareButtonsModule } from '@ngx-share/buttons';
     HttpClientModule,      // (Required) for share counts
     HttpClientJsonpModule, // (Optional) For linkedIn & Tumblr counts
     ShareButtonModule.forRoot(),
-    ShareButtonsModule.forRoot()
+    ShareButtonsModule.forRoot(),
+    ThemeModule
   ],
   declarations: [BountyComponent],
 })

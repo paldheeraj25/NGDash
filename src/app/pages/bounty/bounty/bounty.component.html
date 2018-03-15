@@ -1,10 +1,10 @@
-<!-- <p>
-  bounty works!
-</p>
-<share-button button="facebook"></share-button>
-<button shareButton="twitter" [style.backgroundColor]="share.prop.twitter.color" sbUrl="{{twitter}}">
-  <i [class]="share.prop.twitter.icon"></i>
-</button>
-<!--Use custom text-->
-<!--<share-button button="pinterest" text="Pin" showText="true"></share-button> -->
-<share-buttons show="11" [url]="'https://www.creativebloq.com/advice/what-is-blockchain'" (popUpClosed)="aftershare($event)"></share-buttons>
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>Bountry and Referral</nb-card-header>
+      <nb-card-body>
+        <share-buttons show="11" (popUpClosed)="aftershare($event)"></share-buttons>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
