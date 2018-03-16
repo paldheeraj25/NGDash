@@ -41,17 +41,7 @@
         Country name is invalid
       </small>
       <div class="form-group">
-        <label for="input-re-password" class="sr-only">please enter your DOB (dd/mm//yy)</label>
-        <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd"
-                  name="db" #db="ngModel" [(ngModel)]="user.db" ngbDatepicker #d="ngbDatepicker">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
-              <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-            </button>
-          </div>
-        </div>
-
+        <input class="form-control" type="date" name="dob" #dob="ngModel" [(ngModel)]="user.dob" placeholder="dd/mm/yyyy" required>
         <small class="form-text p-t-20" *ngIf="message">
           {{message}}
         </small>

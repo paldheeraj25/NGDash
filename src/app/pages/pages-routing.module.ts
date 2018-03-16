@@ -76,6 +76,10 @@ const routes: Routes = [{
     path: 'user-profile',
     loadChildren: './user-profile/user-profile.module#UserProfileModule',
   },
+  {
+    path: 'referal',
+    loadChildren: './bounty/bounty.module#BountyModule',
+  },
   ],
 }];
 

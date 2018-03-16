@@ -16,6 +16,7 @@ import { UserService } from './providers/user.service';
 import { UserUtilityService } from './providers/user-utility.service';
 import { WalletModule } from './wallet/wallet.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
+import { BountyModule } from './bounty/bounty.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -33,6 +34,7 @@ const PAGES_COMPONENTS = [
     TdeModule,
     WalletModule,
     UserProfileModule,
+    BountyModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

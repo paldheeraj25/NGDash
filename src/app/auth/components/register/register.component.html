@@ -71,16 +71,10 @@
               <div class="form-group">
                 <label for="input-re-password" class="sr-only">please enter your DOB (yyyy-mm-dd)</label>
                 <div class="input-group">
-                  <input class="form-control" placeholder="yyyy-mm-dd"
-                          name="db" #db="ngModel" [(ngModel)]="user.db" ngbDatepicker #d="ngbDatepicker">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
-                      <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-                    </button>
-                  </div>
+                  <input class="form-control" type="date" name="dob" #dob="ngModel" [(ngModel)]="user.dob" placeholder="dd/mm/yyyy" required>
                 </div>
               </div>
-              <small class="m-b-10 form-text error" *ngIf="db.invalid && db.touched">
+              <small class="m-b-10 form-text error" *ngIf="dob.invalid && dob.touched">
                Date of birth is invalid
               </small>
               

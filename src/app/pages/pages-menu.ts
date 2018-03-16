@@ -105,13 +105,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Bounty and Refferal',
     icon: 'nb-paper-plane',
-    link: '/pages/order-stats3',
+    link: '/pages/referal',
     home: true,
   },
   {
     title: 'Live Transaction',
     icon: 'nb-paper-plane',
-    link: '/pages/order-stats2',
+    link: '/pages/wallet/live-transaction',
     home: true,
   },
   {
