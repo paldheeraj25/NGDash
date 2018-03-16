@@ -27,7 +27,6 @@ export class EditProfileComponent {
   }
 
   editProfile() {
-    this.user.dob = this.user.db.day + "/" + this.user.db.month + "/" + this.user.db.year;
     this.changeProfileUrl = environment.apiUrl + "editInvestorProfile";
     this.submitted = true;
     this.userUtilityService.apiGateWay(this.changeProfileUrl, 'post', this.user).subscribe(response => {
