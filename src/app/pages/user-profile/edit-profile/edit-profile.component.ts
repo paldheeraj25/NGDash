@@ -19,11 +19,16 @@ export class EditProfileComponent implements OnInit {
   user: any = {};
   changeProfileUrl: string;
   dt;
+  countries = [];
 
   constructor(private authService: AuthService, private userUtilityService: UserUtilityService) {
     const user = this.authService.getUser();
     this.user = user.user_details;
     this.user.dob = new Date(this.user.dob);
+    this.userUtilityService.apiGateWay('assets/mock/countries-mock.json', 'get').subscribe(data => {
+      this.countries = data;
+      this.user.country = this.user.country? this.user.country : this.countries[0].name;
+    });
   }
 
   ngOnInit() { }

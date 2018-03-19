@@ -28,11 +28,13 @@
 
     <div class="form-group">
       <label for="input-re-password" class="sr-only">Phone Number</label>
-      <input name="phone" type="text" [(ngModel)]="user.mobile_no"  id="input-phone" class="form-control" placeholder="Phone*" #phone="ngModel" [disabled]="true">
+      <input name="phone" type="text" [(ngModel)]="user.mobile_no"  id="input-phone" class="form-control" placeholder="Phone" #phone="ngModel" [disabled]="true">
     </div>
     <div class="form-group">
       <label for="input-re-password" class="sr-only">Country</label>
-      <input name="country" #country="ngModel" type="text" [(ngModel)]="user.country" id="input-country" class="form-control" placeholder="Country*" required [class.form-control-danger]="(country.invalid && country.touched)">
+      <select name="country" #country="ngModel" [(ngModel)]="user.country" class="form-control" placeholder="Country*"> 
+        <option *ngFor="let item of countries" [value]="item.name">{{item.name}}</option>
+      </select>
     </div>
     <small class="m-b-10 form-text error" *ngIf="country.invalid && country.touched">
       Country name is invalid
