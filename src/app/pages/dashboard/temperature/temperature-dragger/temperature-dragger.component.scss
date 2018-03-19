@@ -59,24 +59,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     font-size: 3rem;
     color: nb-theme(color-fg-heading);
     border: 2px solid nb-theme(separator);
 
-    &:hover {
-      background-color: lighten(nb-theme(card-bg), 5%);
-    }
+    // &:hover {
+    //   background-color: lighten(nb-theme(card-bg), 5%);
+    // }
 
-    &:active {
-      background-color: darken(nb-theme(card-bg), 5%);
-      box-shadow: none;
-    }
+    // &:active {
+    //   background-color: darken(nb-theme(card-bg), 5%);
+    //   box-shadow: none;
+    // }
 
-    &.off {
-      color: nb-theme(color-fg);
-      text-shadow: none;
-    }
+    // &.off {
+    //   color: nb-theme(color-fg);
+    //   text-shadow: none;
+    // }
   }
 
   @include nb-for-theme(cosmic) {

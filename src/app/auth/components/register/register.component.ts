@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from './../../providers/auth.service';
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {NgbDatepickerConfig, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { UserUtilityService } from './../../../pages/providers/user-utility.service';
 
 @Component({
   selector: 'nb-register',
@@ -13,15 +15,17 @@ export class NbRegisterComponent {
   submitted = false;
   registerFailure = false;
   user: any = {};
+  countries = [];
 
-  constructor(protected router: Router, private authService: AuthService, config: NgbDatepickerConfig) {
-    config.minDate = {year: 1900, month: 1, day: 1};
-    config.maxDate = {year: 2099, month: 12, day: 31};
+  constructor(protected router: Router, private authService: AuthService, private http: HttpClient) {
+    this.http.get<any>('assets/mock/countries-mock.json').subscribe(data => {
+      this.countries = data;
+      this.user.country = this.countries[0].name;
+    });
   }
 
   register(): void {
     this.submitted = true;
-    console.log(this.user);
     this.authService.register(this.user).subscribe(response => {
       this.router.navigate(['login']);
       this.submitted = false;

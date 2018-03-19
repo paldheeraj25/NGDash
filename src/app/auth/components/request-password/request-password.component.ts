@@ -26,7 +26,6 @@ export class NbRequestPasswordComponent {
   constructor(protected router: Router, private authService: AuthService) { }
 
   requestOTP(): void {
-    console.log("OTP");
     this.submitted = true;
     this.requestSuccess = false;
     this.user.password = "123456";
@@ -34,7 +33,6 @@ export class NbRequestPasswordComponent {
     this.authService.forgotPassword(this.user.email).subscribe(res => {
       this.requestSuccess = true;
       this.registeredEmail = true;
-      console.log(res);
     }, (error) => {
       this.submitted = false;
       this.registeredEmail = false;
