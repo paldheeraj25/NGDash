@@ -11,20 +11,22 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss']
 })
-export class EditProfileComponent {
+export class EditProfileComponent implements OnInit {
 
   submitted = false;
   message: string;
   error: string;
   user: any = {};
   changeProfileUrl: string;
+  dt;
 
-  constructor(private authService: AuthService, config: NgbDatepickerConfig, private userUtilityService: UserUtilityService) {
+  constructor(private authService: AuthService, private userUtilityService: UserUtilityService) {
     const user = this.authService.getUser();
     this.user = user.user_details;
-    config.minDate = {year: 1900, month: 1, day: 1};
-    config.maxDate = {year: 2099, month: 12, day: 31};
+    this.user.dob = new Date(this.user.dob);
   }
+
+  ngOnInit() { }
 
   editProfile() {
     this.changeProfileUrl = environment.apiUrl + "editInvestorProfile";

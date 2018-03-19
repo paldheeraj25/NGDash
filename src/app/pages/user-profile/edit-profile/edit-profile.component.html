@@ -27,30 +27,28 @@
     </div>
 
     <div class="form-group">
-        <label for="input-re-password" class="sr-only">Phone Number</label>
-        <input name="phone" type="text" [(ngModel)]="user.mobile_no"  id="input-phone" class="form-control" placeholder="Phone*" #phone="ngModel" [disabled]="true">
-      </div>
-      <small class="m-b-10 form-text error" *ngIf="phone.invalid && phone.touched">
-        Phone number is invalid
+      <label for="input-re-password" class="sr-only">Phone Number</label>
+      <input name="phone" type="text" [(ngModel)]="user.mobile_no"  id="input-phone" class="form-control" placeholder="Phone*" #phone="ngModel" [disabled]="true">
+    </div>
+    <div class="form-group">
+      <label for="input-re-password" class="sr-only">Country</label>
+      <input name="country" #country="ngModel" type="text" [(ngModel)]="user.country" id="input-country" class="form-control" placeholder="Country*" required [class.form-control-danger]="(country.invalid && country.touched)">
+    </div>
+    <small class="m-b-10 form-text error" *ngIf="country.invalid && country.touched">
+      Country name is invalid
+    </small>
+    <div class="form-group">
+      <!-- <input class="form-control" type="date" name="dob" #dob="ngModel" [(ngModel)]="user.dob" placeholder="dd/mm/yyyy" required> -->
+      <input class="form-control" type="date" name="user.dob" [ngModel] ="user.dob | date:'yyyy-MM-dd'" (ngModelChange)="user.dob = $event">
+      <small class="form-text p-t-20"  *ngIf="message">
+        {{message}}
       </small>
-      <div class="form-group">
-        <label for="input-re-password" class="sr-only">Country</label>
-        <input name="country" #country="ngModel" type="text" [(ngModel)]="user.country" id="input-country" class="form-control" placeholder="Country*" required [class.form-control-danger]="(country.invalid && country.touched)">
-      </div>
-      <small class="m-b-10 form-text error" *ngIf="country.invalid && country.touched">
-        Country name is invalid
+      <small class="form-text error p-t-20" *ngIf="error">
+        {{error}}
       </small>
-      <div class="form-group">
-        <input class="form-control" type="date" name="dob" #dob="ngModel" [(ngModel)]="user.dob" placeholder="dd/mm/yyyy" required>
-        <small class="form-text p-t-20" *ngIf="message">
-          {{message}}
-        </small>
-        <small class="form-text error p-t-20" *ngIf="error">
-          {{error}}
-        </small>
-      </div>
+    </div>
 
-    <button [disabled]="submitted || !resetPassForm.form.valid || !user.db" class="btn btn-hero-success btn-block" [class.btn-pulse]="submitted">
+    <button [disabled]="submitted || !resetPassForm.form.valid || !user.dob" class="btn btn-hero-success btn-block" [class.btn-pulse]="submitted">
      Save Changes
     </button>
   </form>
