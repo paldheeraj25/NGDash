@@ -100,6 +100,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     activeModal.componentInstance.rate = 0.001;
   }
 
+  openBolltDex(): void {
+    const activeModal = this.modalService.open(ModalComponent, { size: 'lg', container: 'nb-layout' });
+
+    activeModal.componentInstance.paymentType = 4;
+    activeModal.componentInstance.modalHeader = 'Go to Boltt Dex';
+    activeModal.componentInstance.rate = 0.001;
+  }
+
   openOrderBank(): void {
     const activeModal = this.modalService.open(ModalComponent, { size: 'lg', container: 'nb-layout' });
 

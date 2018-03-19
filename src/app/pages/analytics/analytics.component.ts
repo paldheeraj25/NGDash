@@ -20,19 +20,26 @@ export class AnalyticsComponent implements OnInit {
   themeSubscription: any;
 
   temperature = 24;
+  ico1: number = 24;
+  ico2: number = 24;
+  ico3: number = 24;
   temperatureOff = false;
   temperatureMode = 'cool';
 
   humidity = 87;
   humidityOff = false;
   humidityMode = 'heat';
+  colors1: any
 
   constructor(private theme: NbThemeService, private analytics: PaymentService) {
+    this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
+      this.colors1 = config.variables;
+    });
   }
 
   ngOnInit() {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
-      const colors: any = config.variables;
+      const colors = config.variables;
       const chartjs: any = config.variables.chartjs;
       this.analytics.getAnalyticsData().subscribe(response => {
 
@@ -66,7 +73,7 @@ export class AnalyticsComponent implements OnInit {
       });
 
       this.generateBarOptions(chartjs);
-      this.generateBarOptions(chartjs);
+      this.generatePieOptions(chartjs);
       this.getInvestCountData();
     });
   }
@@ -77,7 +84,9 @@ export class AnalyticsComponent implements OnInit {
 
   getInvestCountData() {
     return this.analytics.getInvestCountData().subscribe(response => {
-      this.temperature = response.data;
+      this.ico1 = response.data;
+      this.ico2 = 80;
+      this.ico3 = 30;
     });
   }
 

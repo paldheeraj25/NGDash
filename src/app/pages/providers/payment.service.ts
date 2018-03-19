@@ -11,6 +11,7 @@ export class PaymentService {
   gerUserWaveAsset = environment.apiUrl + "getUserWavesAssetListAll";
   getAnalyticsApi = environment.apiUrl + "getAnalyticsData";
   getInvestCountDataApi = environment.apiUrl + "getInvestCountData";
+  getPayPalApiUrl = environment.apiUrl + "processPayPalTransaction";
 
   constructor(private http: HttpClient, private userUtilityService: UserUtilityService) { }
 
@@ -34,5 +35,9 @@ export class PaymentService {
 
   getInvestCountData(): Observable<any> {
     return this.userUtilityService.apiGateWay(this.getInvestCountDataApi, 'get');
+  }
+
+  getPayPalApi(data: any): Observable<any> {
+    return this.userUtilityService.apiGateWay(this.getPayPalApiUrl, 'post', data);
   }
 }

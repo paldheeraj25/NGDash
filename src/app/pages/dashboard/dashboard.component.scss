@@ -21,11 +21,40 @@
   }
 
   nb-card {
+    .xl-btn {
+      width: 100px;
+    }
     .title {
       font-family: nb-theme(font-secondary);
       font-size: 1.25rem;
       font-weight: nb-theme(font-weight-bold);
       color: nb-theme(card-fg-heading);
+    }
+  }
+  @include nb-for-theme(cosmic) {
+    nb-card {
+      &.off .icon-container {
+        border-right: 1px solid nb-theme(separator);
+      }
+
+      .icon-container {
+        padding: 0;
+      }
+
+      .icon {
+        width: 7rem;
+        height: 100%;
+        font-size: 4.5rem;
+        border-radius: nb-theme(card-border-radius) 0 0 nb-theme(card-border-radius);
+      }
+
+      .title {
+        font-weight: nb-theme(font-weight-bolder);
+      }
+
+      .status {
+        font-weight: nb-theme(font-weight-light);
+      }
     }
   }
 }
@@ -41,8 +70,8 @@ nb-card{
 .inline-block {
   display: inline-block;
   float: left;
-  width: 112px;
-  height: 80px;
+  width: 7rem;
+  height: 4.5rem;
   background-color: #ad59ff;
   text-align: center;
   border-radius:  13% 0 0 13%;
@@ -59,10 +88,6 @@ nb-card{
 #paypal-button {
   float: left;
   margin: 21px 0 0 30px;
-}
-
-.details {
-  text-align: center;
 }
 
 .bolt-dex{
