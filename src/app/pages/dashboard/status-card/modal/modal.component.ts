@@ -21,6 +21,8 @@ export class ModalComponent implements OnInit, AfterViewInit {
   paymentType: any;
   bolttAmount: number = 0;
   methodAmount: number = 0;
+  action: any;
+  paymentAuth: any;
   orderDetail: { method: string, address: string, amount: number } = { method: '', address: '', amount: 0 };
   constructor(private activeModal: NgbActiveModal, private router: Router, private payment: PaymentService) {
   }
@@ -70,11 +72,12 @@ export class ModalComponent implements OnInit, AfterViewInit {
           console.log('inside payment');
           console.log(data);
           console.log(actions);
+          this.data = data;
           return actions.payment.create({
             payment: {
               transactions: [
                 {
-                  amount: { total: '0.01', currency: 'USD' }
+                  amount: { total: this.methodAmount, currency: 'USD' },
                 },
               ],
             },
@@ -84,10 +87,16 @@ export class ModalComponent implements OnInit, AfterViewInit {
           console.log('inside payment');
           console.log(data);
           console.log(actions);
+          const paymentService = this.paymentService;
+          const actionData = this.data;
           return actions.payment.execute().then(function (payment) {
             // TODO
             console.log('paypal response');
             console.log(payment);
+            const finalData = { actionData, payment };
+            paymentService.getPayPalApi(finalData).subscribe(response => {
+              console.log(response);
+            });
           })
         },
       }, '#paypal-button');

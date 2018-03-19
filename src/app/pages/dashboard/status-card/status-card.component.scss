@@ -18,7 +18,7 @@
     }
 
     .xl-btn {
-      width: 100px;
+      width: 95px;
     }
 
     .icon {
@@ -119,6 +119,8 @@
       font-weight: nb-theme(font-weight-light);
       text-transform: uppercase;
       color: nb-theme(card-fg);
+      margin-top: 5px;
+      //margin-left: -20px;
     }
   }
 

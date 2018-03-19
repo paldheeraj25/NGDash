@@ -8,35 +8,27 @@
       <div class="col-xxxl-3 col-md-6">
         <!--<nb-card (click)="on = !on" [ngClass]="{'off': !on}">-->
         <nb-card class="custom-card">
-          <!-- <div class="details">
-            <div class="container-btn">
-              <div class="inline-block paypal-background">
-                <img class='paypal-icon' src="assets/images/PAYPAL.png" alt="" style="width: 50px; height: 50px;">
-              </div>
-              <span id="paypal-button"></span>
-            </div>
-          </div> -->
           <div class="details">
-            <div class="container-btn">
-              <div class="inline-block paypal-background">
-                <img class='paypal-icon' src="assets/images/PAYPAL.png" alt="" style="width: 50px; height: 50px;">
+            <!-- <div class="container-btn"> -->
+            <div class="inline-block paypal-background">
+              <img class='paypal-icon' src="assets/images/PAYPAL.png" alt="" style="width: 50px; height: 50px;">
+            </div>
+            <div class="row">
+              <div class="col-md-3 m-t-20">
+                <div class="title">PayPal</div>
               </div>
-              <div class="row">
-                <div class="col-md-4 m-t-20">
-                  <div class="title">PayPal</div>
-                </div>
 
-                <div class="col-md-4 m-t-20">
-                  <div class="status">BOLTTS/USD: $0.5</div>
-                </div>
+              <div class="col-md-5 m-t-20">
+                <div class="status">2 BLT/USD</div>
+              </div>
 
-                <div class="col-md-4 m-t-20">
-                  <a class="btn btn-primary btn-tn xl-btn bolt-dex-button" (click)='openOrderPaypal()'>
-                    Buy
-                  </a>
-                </div>
+              <div class="col-md-4 m-t-20">
+                <a class="btn btn-primary btn-tn xl-btn" (click)='openOrderPaypal()' style="color:#FFF;">
+                  Buy
+                </a>
               </div>
             </div>
+            <!-- </div> -->
           </div>
         </nb-card>
       </div>
@@ -46,19 +38,19 @@
           <div class="details">
             <div class="container-btn">
               <div class="inline-block">
-                <img class='paypal-icon' src="assets/images/RUPEE.png" alt="" style="width: 50px; height: 50px;">
+                <img class='paypal-icon' src="assets/images/BANK1.png" alt="" style="width: 50px; height: 50px;">
               </div>
               <div class="row">
-                <div class="col-md-4 m-t-20">
+                <div class="col-md-3 m-t-20">
                   <div class="title">Bank Transfer</div>
                 </div>
 
-                <div class="col-md-4 m-t-20">
-                  <div class="status">BOLTTS/USD: $0.5</div>
+                <div class="col-md-5 m-t-20">
+                  <div class="status" style="margin-top: 5px;">2 BLT/USD</div>
                 </div>
 
-                <div class="col-md-4 m-t-20">
-                  <a class="btn btn-primary btn-tn xl-btn bolt-dex-button" (click)='openOrderBank()'>
+                <div class=" col-md-4 m-t-20 ">
+                  <a class="btn btn-primary btn-tn xl-btn bolt-dex-button " (click)='openOrderBank()' style="color:#FFF; ">
                     Buy
                   </a>
                 </div>
@@ -67,41 +59,41 @@
           </div>
         </nb-card>
       </div>
-      <!-- <div *ngIf="currencyPrice"> -->
-      <ng4-loading-spinner [threshold]="2000" [zIndex]="9999"></ng4-loading-spinner>
-      <div class="col-xxxl-3 col-md-6" *ngFor="let walletInfo of userAddreses">
+      <!-- <div *ngIf="currencyPrice "> -->
+      <ng4-loading-spinner [threshold]="2000 " [zIndex]="9999 "></ng4-loading-spinner>
+      <div class="col-xxxl-3 col-md-6 " *ngFor="let walletInfo of userAddreses ">
         <ngx-status-card rate="{{currencyPrice[walletInfo.name]}}" title="{{walletInfo.name}}" type="{{walletInfo.name.toLowerCase()}}"
-          address="{{walletInfo.address}}">
-          <!-- <i class="fa fa-btc"></i> -->
-          <img class='btc-payment-icon' src="{{walletInfo.image}}" alt="">
+          address="{{walletInfo.address}} ">
+          <!-- <i class="fa fa-btc "></i> -->
+          <img class='btc-payment-icon' src="{{walletInfo.image}} " alt=" ">
         </ngx-status-card>
       </div>
       <!-- </div> -->
 
-      <div class="col-xxxl-3 col-md-6">
-        <!--<nb-card (click)="on = !on" [ngClass]="{'off': !on}">-->
+      <div class="col-xxxl-3 col-md-6 ">
+        <!--<nb-card (click)="on=! on " [ngClass]="{ 'off': !on} ">-->
         <nb-card class="custom-card">
           <div class="details">
-            <div class="container-btn">
-              <div class="inline-block paypal-background">
-                <img class='paypal-icon' src="assets/images/WAVES.png" alt="" style="width: 50px; height: 50px;">
+            <!-- <div class="container-btn"> -->
+            <div class="inline-block paypal-background">
+              <img class='paypal-icon' src="assets/images/WAVES.png" alt="" style="width: 50px; height: 50px;">
+            </div>
+            <div class="row">
+              <div class="col-md-3 m-t-20">
+                <div class="title">Boltt Dex</div>
               </div>
-              <div class="row">
-                <div class="col-md-4 m-t-20">
-                  <div class="title">Boltt Dex</div>
-                </div>
 
-                <div class="col-md-4 m-t-20">
-                  <div class="status">price: 0.000012</div>
-                </div>
+              <div class="col-md-5 m-t-20">
+                <div class="status">2 BLT/USD</div>
+              </div>
 
-                <div class="col-md-4 m-t-20">
-                  <a class="btn btn-primary btn-tn xl-btn bolt-dex-button">
-                    Buy
-                  </a>
-                </div>
+              <div class="col-md-4 m-t-20">
+                <a class="btn btn-primary btn-tn xl-btn" (click)='openBolltDex()' style="color:#FFF;">
+                  Buy
+                </a>
               </div>
             </div>
+            <!-- </div> -->
           </div>
         </nb-card>
       </div>

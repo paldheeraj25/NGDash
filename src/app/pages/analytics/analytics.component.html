@@ -42,11 +42,11 @@
       <nb-tabset fullWidth>
         <nb-tab tabTitle="Private Sale 1">
           <div class="slider-container">
-            <ngx-temperature-dragger [(value)]="temperature" (power)="temperatureOff = !$event" [min]="12" [max]="30">
+            <ngx-temperature-dragger [(value)]="ico1" (power)="temperatureOff = !$event" [min]="12" [max]="30" [fillColors]="colors1.temperature">
 
               <div class="slider-value-container" [ngClass]="{ 'off': temperatureOff }">
                 <div class="value temperature">
-                  {{ (temperature | ngxRound) }}
+                  {{ (ico1 | ngxRound) }}
                 </div>
                 <div class="desc">
                   Soft Cap
@@ -102,11 +102,11 @@
       <nb-tabset fullWidth>
         <nb-tab tabTitle="Pre ICO">
           <div class="slider-container">
-            <ngx-temperature-dragger [(value)]="temperature" (power)="temperatureOff = !$event" [min]="12" [max]="30">
+            <ngx-temperature-dragger [(value)]="ico2" (power)="temperatureOff = !$event" [min]="12" [max]="100" [fillColors]="colors1.temperature">
 
               <div class="slider-value-container" [ngClass]="{ 'off': temperatureOff }">
                 <div class="value temperature">
-                  {{ (temperature | ngxRound) }}
+                  {{ (ico2 | ngxRound) }}
                 </div>
                 <div class="desc">
                   Soft Cap
@@ -161,11 +161,11 @@
       <nb-tabset fullWidth>
         <nb-tab tabTitle="ICO">
           <div class="slider-container">
-            <ngx-temperature-dragger [(value)]="temperature" (power)="temperatureOff = !$event" [min]="12" [max]="30">
+            <ngx-temperature-dragger [(value)]="ico3" (power)="temperatureOff = !$event" [min]="12" [max]="100" [fillColors]="colors1.temperature">
 
               <div class="slider-value-container" [ngClass]="{ 'off': temperatureOff }">
                 <div class="value temperature">
-                  {{ (temperature | ngxRound) }}
+                  {{ (ico3 | ngxRound) }}
                 </div>
                 <div class="desc">
                   Soft Cap
