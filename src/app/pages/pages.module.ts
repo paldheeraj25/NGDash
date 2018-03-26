@@ -17,6 +17,8 @@ import { UserUtilityService } from './providers/user-utility.service';
 import { WalletModule } from './wallet/wallet.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { BountyModule } from './bounty/bounty.module';
+import { ContractService } from './providers/contract.service';
+import { Erc20Module } from './erc20/erc20.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -35,6 +37,7 @@ const PAGES_COMPONENTS = [
     WalletModule,
     UserProfileModule,
     BountyModule,
+    Erc20Module,
   ],
   declarations: [
     ...PAGES_COMPONENTS,
@@ -44,6 +47,7 @@ const PAGES_COMPONENTS = [
     UserUtilityService,
     PaymentService,
     UserService,
+    ContractService,
   ],
 })
 export class PagesModule {
