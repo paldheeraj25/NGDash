@@ -19,6 +19,7 @@ import { UserProfileModule } from './user-profile/user-profile.module';
 import { BountyModule } from './bounty/bounty.module';
 import { ContractService } from './providers/contract.service';
 import { Erc20Module } from './erc20/erc20.module';
+import { BlockSwapModule } from './block-swap/block-swap.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -38,6 +39,7 @@ const PAGES_COMPONENTS = [
     UserProfileModule,
     BountyModule,
     Erc20Module,
+    BlockSwapModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

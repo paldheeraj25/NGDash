@@ -2,15 +2,21 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Buy tokens on Waves',
+    title: 'Buy wBoltt (Waves)',
     icon: 'nb-home',
     link: '/pages/dashboard',
     home: true,
   },
   {
-    title: 'Buy tokens on Ethereum',
+    title: 'Buy eBoltt (Ethereum)',
     icon: 'nb-home',
     link: '/pages/ERC-20',
+    home: true,
+  },
+  {
+    title: 'Block Swap',
+    icon: 'nb-home',
+    link: '/pages/blockswap',
     home: true,
   },
   {

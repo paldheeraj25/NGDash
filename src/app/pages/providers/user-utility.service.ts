@@ -50,4 +50,9 @@ export class UserUtilityService {
     const mailApi = 'https://jsonplaceholder.typicode.com/posts';
     return this.http.post(mailApi, mailObject);
   }
+
+  etherToWaves(conversionbject): Observable<any> {
+    const etherToWavesApi = environment.apiUrl + 'convertEtherToBoltt';
+    return this.apiGateWay(etherToWavesApi, 'post', conversionbject);
+  }
 }

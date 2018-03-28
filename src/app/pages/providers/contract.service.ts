@@ -8,7 +8,7 @@ declare let require: any;
 declare let window: any;
 
 const contractAbi = require('./contract.api.json');
-const contractAddress = '0xc333b971ceb08a446d73fabe7ebff0a61777ae68';
+const contractAddress = '0x20070ee652d25c70f45edf00276ce1db51e53039';
 
 
 @Injectable()
@@ -28,6 +28,18 @@ export class ContractService implements OnInit {
 
   ngOnInit() {
     console.log('inside contract service');
+  }
+
+  checkProvider() {
+    if (typeof window.web3 !== 'undefined') {
+      // Use Mist/MetaMask's provider
+      console.log('provider: Metamask')
+      return true;
+    } else {
+      console.warn('No Provider found trying to connect local provider');
+      return false;
+      // this._web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+    }
   }
 
   initializeWeb3() {
@@ -87,7 +99,7 @@ export class ContractService implements OnInit {
     const account = await this.getAccount();
     console.log(account);
     return new Promise((resolve, reject) => {
-      return this._contract.balanceOf(account, function (err, result) {
+      return this._contract.balanceOf.call(account, function (err, result) {
         if (err != null) {
           return reject(err);
         }
@@ -109,23 +121,57 @@ export class ContractService implements OnInit {
     });
   }
 
-  public async moveToWaves(): Promise<any> {
+  public async moveToWaves(tokenAmount): Promise<any> {
     // this.WavesTransfer();
     console.log('moving to waves');
-
+    const account = await this.getAccount();
+    console.log(account);
     return new Promise((resolve, reject) => {
-      return this._contract.moveToWaves.call('3N2dJmGYqrTgcbiZWfiCkqXCfK6vZKMQLzD',
-        2000000,
-        { from: '0x3d4079B588630918f8966460CdB0908d71A551a3', gas: 300000 },
+      return this._contract.moveToWaves('3N2dJmGYqrTgcbiZWfiCkqXCfK6vZKMQLzD',
+        this._web3.toWei(tokenAmount, 'ether'),
+        { from: account },//40315
         (err, result) => {
           if (err != null) {
             console.log('err' + err);
             return reject(err);
           }
-          //this.WavesTransfer();
           console.log('result for transfer' + result);
-          return resolve(result);
+          return resolve([result, account]);
         });
     }) as Promise<any>;
+  }
+
+  public async buy(ether): Promise<any> {
+    // this.WavesTransfer();
+    console.log('moving to waves');
+    const account = await this.getAccount();
+    console.log(account);
+    return new Promise((resolve, reject) => {
+      return this._contract.buy(
+        { from: account, value: this._web3.toWei(ether, 'ether') },
+        (err, result) => {
+          if (err != null) {
+            console.log('err' + err);
+            return reject(err);
+          }
+          console.log('result for transfer' + result);
+          return resolve([result, account]);
+        });
+    }) as Promise<any>;
+  }
+
+  public async transfer(address, amount): Promise<boolean> {
+    const account = await this.getAccount();
+    return new Promise((resolve, reject) => {
+      return this._contract.transfer(address, this._web3.toWei(amount, 'ether'),
+        { from: account },
+        (err, result) => {
+          if (err != null) {
+            return resolve(err);
+          }
+          return resolve(result);
+        },
+      )
+    }) as Promise<boolean>;
   }
 }

@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { Erc20Component } from './erc20/erc20.component';
-import { Erc20RoutingModule } from './erc20-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NbLayoutModule, NbCardModule, NbCheckboxModule } from '@nebular/theme';
 
-
+import { BlockSwapRoutingModule } from './block-swap-routing.module';
+import { BlockSwapComponent } from './block-swap/block-swap.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    Erc20RoutingModule,
+    BlockSwapRoutingModule,
     FormsModule,
     NbLayoutModule,
     NbCardModule,
-    NbCheckboxModule,
   ],
-  declarations: [Erc20Component],
+  declarations: [BlockSwapComponent],
 })
-export class Erc20Module { }
+export class BlockSwapModule { }

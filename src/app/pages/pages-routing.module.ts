@@ -84,6 +84,10 @@ const routes: Routes = [{
     path: 'ERC-20',
     loadChildren: './erc20/erc20.module#Erc20Module',
   },
+  {
+    path: 'blockswap',
+    loadChildren: './block-swap/block-swap.module#BlockSwapModule',
+  },
   ],
 }];
 
