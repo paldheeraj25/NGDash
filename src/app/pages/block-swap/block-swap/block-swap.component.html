@@ -1,6 +1,15 @@
 <div *ngIf="isMetaMaskAvailable">
   <div class="row">
     <div class="col-md-6">
+      <h5 class="text-info font-w-regular">wBoltt in circulation: 0 </h5>
+    </div>
+    <div class="col-md-6">
+      <h5 class="text-info font-w-regular">eBoltt in circulation: 0 </h5>
+    </div>
+  </div>
+  <div class="row">
+    <toaster-container [toasterconfig]="config"></toaster-container>
+    <div class="col-md-6">
       <nb-card>
         <nb-card-header>
           Ethereum to Waves
