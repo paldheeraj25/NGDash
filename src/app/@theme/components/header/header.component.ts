@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
       if(this.authService.getToken()){
         this.authService.logout();
       }
-    }, 20*60*6000);
+    }, 10*60*6000);
   }
 
   toggleSidebar(): boolean {
