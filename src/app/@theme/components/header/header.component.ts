@@ -29,13 +29,22 @@ export class HeaderComponent implements OnInit {
     private userService: UserService,
     private analyticsService: AnalyticsService,
     private payment: PaymentService,
-    private userProfile: AuthService) {
+    private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.autoLogout();
     this.getWalletInfo();
     this.userService.getUser()
       .subscribe((users: any) => this.user = users);
+  }
+
+  autoLogout() {
+    setInterval(() => {
+      if(this.authService.getToken()){
+        this.authService.logout();
+      }
+    }, 20*60*6000);
   }
 
   toggleSidebar(): boolean {
@@ -65,7 +74,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getWalletInfo() {
-    const user = this.userProfile.getUser();
+    const user = this.authService.getUser();
     this.payment.getUserWaveAsset({ user_id: user.user_details.user_id_pk }).subscribe(response => {
       this.balance = find(response.data, { name: 'KDP' }).balance;
     });

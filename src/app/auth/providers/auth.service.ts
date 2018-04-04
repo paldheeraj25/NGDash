@@ -7,6 +7,7 @@
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
@@ -16,7 +17,7 @@ export class AuthService {
   storage: string;
   isLoggedIn = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient) {
     this.storage = window.localStorage.getItem('bolttAccessToken')
       ? 'localStorage'
       : 'sessionStorage';
@@ -79,5 +80,15 @@ export class AuthService {
     user.email_address = email;
     const url = environment.apiUrl + 'forgotPassword';
     return this.http.post(url, user);
+  }
+
+  logout(): void {
+    this.cleanUp();
+    this.router.navigate(['auth']);
+  }
+
+  cleanUp() {
+    delete window.localStorage.bolttAccessToken;
+    window.sessionStorage.clear();
   }
 }
