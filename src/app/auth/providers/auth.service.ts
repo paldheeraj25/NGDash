@@ -18,10 +18,8 @@ export class AuthService {
   isLoggedIn = false;
 
   constructor(private router: Router, private http: HttpClient) {
-    this.storage = window.localStorage.getItem('bolttAccessToken')
-      ? 'localStorage'
-      : 'sessionStorage';
-    if (window.localStorage.bolttAccessToken || window.sessionStorage.bolttAccessToken) {
+    this.storage = 'sessionStorage';
+    if (window.sessionStorage.bolttAccessToken) {
       this.isLoggedIn = true;
     }
   }
@@ -60,9 +58,7 @@ export class AuthService {
   setStorage(user: any, rememberMe: boolean) {
     this.isLoggedIn = true;
     this.currentUser = user;
-    if (rememberMe && rememberMe !== undefined) {
-      this.storage = 'localStorage';
-    }
+    this.storage = 'sessionStorage';
     window[this.storage].setItem('bolttAccessToken', user.access_token);
     window[this.storage].bolttUser = JSON.stringify(this.currentUser);
   }

@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { FormsModule } from '@angular/forms';
 
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+
 
 import { NbAuthModule } from './auth/auth.module';
 
@@ -33,6 +35,7 @@ import { NgDatepickerModule } from 'ng2-datepicker';
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
+    ToastModule.forRoot()
   ],
   bootstrap: [AppComponent],
   providers: [
