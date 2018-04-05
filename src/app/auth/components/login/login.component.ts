@@ -26,7 +26,7 @@ declare let paypal: any;
 export class NbLoginComponent implements OnInit {
   provider: string = '';
   user: any = {};
-  submitted = false;
+  submitted = true;
   authFailure = false;
   userData: any = {};
 
@@ -88,4 +88,8 @@ export class NbLoginComponent implements OnInit {
   //   this.auth.signOut();
   // }
 
+  resolved(captchaResponse: string) {
+    // console.log(`Resolved captcha with response ${captchaResponse}:`);
+    this.submitted = false;
+  }
 }

@@ -56,14 +56,15 @@
               </small>
               <div class="form-group">
                 <label for="input-re-password" class="sr-only">Phone Number</label>
-                <input name="phone" type="text" [(ngModel)]="user.phone"  id="input-phone" class="form-control" placeholder="Phone*" #phone="ngModel" required [class.form-control-danger]="(phone.invalid && phone.touched)">
+                <input name="phone" type="text" [(ngModel)]="user.phone" id="input-phone" class="form-control" placeholder="Phone*" #phone="ngModel"
+                  required [class.form-control-danger]="(phone.invalid && phone.touched)">
               </div>
               <small class="m-b-10 form-text error" *ngIf="phone.invalid && phone.touched">
                 Phone number is invalid
               </small>
               <div class="form-group">
                 <label for="input-re-password" class="sr-only">Country</label>
-                <select name="country" #country="ngModel" [(ngModel)]="user.country" class="form-control" placeholder="Country*"> 
+                <select name="country" #country="ngModel" [(ngModel)]="user.country" class="form-control" placeholder="Country*">
                   <option *ngFor="let item of countries" [value]="item.name">{{item.name}}</option>
                 </select>
               </div>
@@ -77,9 +78,9 @@
                 </div>
               </div>
               <small class="m-b-10 form-text error" *ngIf="dob.invalid && dob.touched">
-               Date of birth is invalid
+                Date of birth is invalid
               </small>
-              
+
               <div class="form-group col-sm-12">
                 <nb-checkbox name="terms" [(ngModel)]="user.notUSnChinese">
                   Confirm that you are not a US citizen nor a Chinese citizen.
@@ -108,8 +109,12 @@
                   <strong> Login </strong>
                 </a>
               </div>
-
-              <button [disabled]="submitted || !form.valid || !user.ownRisk || !user.notUSnChinese || !user.readBolltIcoPolicy" class="btn btn-block btn-hero-success" [class.btn-pulse]="submitted">
+              <div class="form-group">
+                <label for="input-password" class="sr-only">Password</label>
+                <re-captcha (resolved)="resolved($event)" siteKey="6LclgVAUAAAAABZckwzXNU5UMi28Sg2pylx-s0XJ"></re-captcha>
+              </div>
+              <button [disabled]="submitted || !form.valid || !user.ownRisk || !user.notUSnChinese || !user.readBolltIcoPolicy" class="btn btn-block btn-hero-success"
+                [class.btn-pulse]="submitted">
                 Register
               </button>
             </form>

@@ -38,6 +38,8 @@ import { routes } from './auth.routes';
 import { deepExtend } from './helpers';
 import { AuthService } from './providers/auth.service';
 import { AuthGuard } from './providers/auth.gaurd';
+import { RecaptchaModule } from 'ng-recaptcha';
+
 
 
 
@@ -90,6 +92,7 @@ export function nbOptionsFactory(options) {
     SocialLoginModule,
     NgbModule,
     SocialLoginModule,
+    RecaptchaModule.forRoot(),
   ],
   declarations: [
     NbAuthComponent,

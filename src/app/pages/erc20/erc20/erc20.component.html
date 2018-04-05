@@ -1,0 +1,53 @@
+<div class="row" *ngIf="isMetaMaskAvailable">
+  <div class="col-md-12 centered">
+    <h4>Contract Address 0x20070ee652d25c70f45edf00276ce1db51e53039</h4>
+  </div>
+</div>
+<div class="row" *ngIf="isMetaMaskAvailable">
+  <toaster-container [toasterconfig]="config"></toaster-container>
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        Contract interaction
+      </nb-card-header>
+      <nb-card-body>
+        <div class="centered">
+          <div class="form-group">
+            <label for="input-password" class="sr-only">Ethers</label>
+            <input name="ether" [(ngModel)]="ether" type="number" id="input-password" class="form-control form-control-lg first" placeholder="amount of Ether to buy Boltt">
+          </div>
+          <div class="form-group">
+            <label for="input-password" class="sr-only">Waves Amount</label>
+            <button class="btn btn-primary" (click)="buyBolttOnEthereum()">buy</button>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="input-password" class="sr-only">Ethers</label>
+            <input name="transferAdd" [(ngModel)]="transferAdd" type="text" id="input-password" class="form-control form-control-lg first"
+              placeholder="transfer boltt to other account">
+          </div>
+          <div class="form-group">
+            <label for="input-password" class="sr-only">Ethers</label>
+            <input name="transferAmount" [(ngModel)]="transferAmount" type="number" id="input-password" class="form-control form-control-lg first"
+              placeholder="transfer boltt to other account">
+          </div>
+          <div class="form-group">
+            <label for="input-password" class="sr-only">Waves Amount</label>
+            <button class="btn btn-primary" (click)="tranferTOOtherAdd()">Transfer</button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<div class="row text-center" *ngIf="!isMetaMaskAvailable">
+  <div class="col-md-12 text-center">
+    <h4>Please Install Metamask chrome extension and connect to ethereum network to interact with Boltt token on blockchain.</h4>
+  </div>
+  <div class="col-md-12 text-center">
+    <div class="form-group text-center">
+      <label for="input-password" class="sr-only">Waves Amount</label>
+      <a class="btn btn-primary" target="_blank" href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en">Install Metamask</a>
+    </div>
+  </div>
+</div>

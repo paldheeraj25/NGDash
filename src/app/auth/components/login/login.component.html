@@ -23,6 +23,11 @@
       Authentication failed, Either email is not verified or incorrect password.
     </small>
 
+    <div class="form-group">
+      <label for="input-password" class="sr-only">Password</label>
+      <re-captcha (resolved)="resolved($event)" siteKey="6LclgVAUAAAAABZckwzXNU5UMi28Sg2pylx-s0XJ"></re-captcha>
+    </div>
+
     <!-- <div class="form-group accept-group col-sm-12">
       <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe">Remember me</nb-checkbox>
       <a class="forgot-password" routerLink="../request-password">Forgot Password?</a>

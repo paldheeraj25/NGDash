@@ -80,6 +80,14 @@ const routes: Routes = [{
     path: 'referal',
     loadChildren: './bounty/bounty.module#BountyModule',
   },
+  {
+    path: 'ERC-20',
+    loadChildren: './erc20/erc20.module#Erc20Module',
+  },
+  {
+    path: 'blockswap',
+    loadChildren: './block-swap/block-swap.module#BlockSwapModule',
+  },
   ],
 }];
 

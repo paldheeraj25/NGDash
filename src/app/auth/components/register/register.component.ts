@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './../../providers/auth.service';
 import { Component, Inject, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
-import {NgbDatepickerConfig, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerConfig, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { UserUtilityService } from './../../../pages/providers/user-utility.service';
 
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -14,7 +14,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 })
 export class NbRegisterComponent {
 
-  submitted = false;
+  submitted = true;
   registerFailure = false;
   user: any = {};
   countries = [];
@@ -45,6 +45,10 @@ export class NbRegisterComponent {
     () => {
       this.submitted = false;
     });
+  }
 
+  resolved(captchaResponse: string) {
+    // console.log(`Resolved captcha with response ${captchaResponse}:`);
+    this.submitted = false;
   }
 }
