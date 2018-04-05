@@ -8,7 +8,7 @@ declare let require: any;
 declare let window: any;
 
 const contractAbi = require('./contract.api.json');
-const contractAddress = '0x20070ee652d25c70f45edf00276ce1db51e53039';
+const contractAddress = '0x46f596715f6e7046c705a610da2740adf45070e8';
 
 
 @Injectable()
@@ -98,12 +98,13 @@ export class ContractService implements OnInit {
   public async balanceOf(): Promise<number> {
     const account = await this.getAccount();
     console.log(account);
+    const _this1 = this;
     return new Promise((resolve, reject) => {
       return this._contract.balanceOf.call(account, function (err, result) {
         if (err != null) {
           return reject(err);
         }
-        result = result.toString();
+        result = _this1._web3.fromWei(result, 'ether').toString();
         return resolve(result);
       });
     }) as Promise<number>;
@@ -167,11 +168,29 @@ export class ContractService implements OnInit {
         { from: account },
         (err, result) => {
           if (err != null) {
-            return resolve(err);
+            return reject(err);
           }
           return resolve(result);
         },
       )
     }) as Promise<boolean>;
+  }
+
+  public async circulation(): Promise<number> {
+    const _this2 = this;
+    return new Promise((resolve, reject) => {
+      return this._contract.bolttReserve.call((err, result) => {
+        if (err != null) {
+          return reject(err);
+        }
+        return this._contract.balanceOf.call(result, function (er, rst) {
+          if (er != null) {
+            return reject(err);
+          }
+          rst = 1000000000 - _this2._web3.fromWei(rst, 'ether');
+          return resolve(rst.toString());
+        });
+      });
+    }) as Promise<any>;
   }
 }

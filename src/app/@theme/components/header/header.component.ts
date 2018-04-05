@@ -6,7 +6,7 @@ import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import { PaymentService } from '../../../pages/providers/payment.service';
 import { AuthService } from '../../../auth/providers/auth.service';
-
+import { ContractService } from '../../../pages/providers/contract.service';
 
 @Component({
   selector: 'ngx-header',
@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
 
   user: any;
   balance: string = '';
+  public eBoltt: number;
 
   userMenu = [{ title: 'Profile', link: '/pages/profile', icon: 'nb-compose' },
   { title: 'Log out', link: '/auth', icon: 'nb-gear' }];
@@ -28,12 +29,14 @@ export class HeaderComponent implements OnInit {
     private menuService: NbMenuService,
     private userService: UserService,
     private analyticsService: AnalyticsService,
+    private contractService: ContractService,
     private payment: PaymentService,
     private userProfile: AuthService) {
   }
 
   ngOnInit() {
     this.getWalletInfo();
+    this.getBalance();
     this.userService.getUser()
       .subscribe((users: any) => this.user = users);
   }
@@ -69,5 +72,12 @@ export class HeaderComponent implements OnInit {
     this.payment.getUserWaveAsset({ user_id: user.user_details.user_id_pk }).subscribe(response => {
       this.balance = find(response.data, { name: 'KDP' }).balance;
     });
+  }
+
+  getBalance() {
+    return this.contractService.balanceOf().then(result => {
+      console.log(result);
+      this.eBoltt = result;
+    })
   }
 }

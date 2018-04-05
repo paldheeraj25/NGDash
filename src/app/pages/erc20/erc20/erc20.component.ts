@@ -100,11 +100,19 @@ export class Erc20Component implements OnInit {
   }
 
   tranferTOOtherAdd() {
-    return this.contractService.transfer(this.transferAdd, this.transferAmount).then(result => {
+
+    return this.contractService.balanceOf().then(result => {
       console.log(result);
-      this.makeToast();
-    }).catch(err => {
-      console.log(err);
+      if (result > this.transferAmount) {
+        return this.contractService.transfer(this.transferAdd, this.transferAmount).then(result => {
+          console.log(result);
+          this.makeToast();
+        }).catch(err => {
+          console.log(err);
+        });
+      } else {
+        this.showToast('error', 'Insufficient funds', 'Make sure you have suffecient funds to carry out transaction.');
+      }
     });
   }
 

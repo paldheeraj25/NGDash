@@ -25,6 +25,8 @@ export class AuthService {
     }
   }
   login(user: any): Observable<any> {
+    const header = new HttpHeaders();
+    const custom_header = header.append('Content-Type', 'application/json');
     let userData: any = new Object();
     userData.username = user.email;
     userData.password = user.password;
@@ -35,7 +37,8 @@ export class AuthService {
 
     const url = environment.apiUrl + 'oauth/login';
     return this.http.post(url,
-      userData
+      userData,
+      { headers: custom_header },
     );
   }
 

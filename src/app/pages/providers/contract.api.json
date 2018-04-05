@@ -57,6 +57,76 @@
     "constant": false,
     "inputs": [
       {
+        "name": "_newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "changeOwner",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "mainSalefirstStageCapped",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "mainSaleFourthStageCapped",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "mainSaleSecondStageCapped",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "mainSaleThirdStageCapped",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
         "name": "waveAddress",
         "type": "string"
       },
@@ -106,11 +176,53 @@
     "constant": false,
     "inputs": [
       {
+        "name": "_newRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "preSaleStageCapped",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "privateSaleStageCapped",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
         "name": "_rate",
         "type": "uint256"
       }
     ],
     "name": "rateAllocation",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_newLockPeriod",
+        "type": "uint256"
+      }
+    ],
+    "name": "setLockPeriod",
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
@@ -176,15 +288,6 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [],
-    "name": "unPaused",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "anonymous": false,
     "inputs": [
       {
@@ -205,6 +308,15 @@
     ],
     "name": "WavesTransfer",
     "type": "event"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "unPaused",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
     "anonymous": false,
@@ -233,6 +345,11 @@
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "constructor"
+  },
+  {
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "fallback"
   },
   {
     "constant": true,
@@ -321,11 +438,95 @@
   {
     "constant": true,
     "inputs": [],
+    "name": "bolttReserve",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "decimal",
     "outputs": [
       {
         "name": "",
         "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "lockPeriod",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "mainSalefirstStage",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "mainSaleFourthStage",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "mainSaleSecondStage",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "mainSaleThirdStage",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
       }
     ],
     "payable": false,
@@ -349,11 +550,39 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "owner",
+    "name": "preSaleStage",
     "outputs": [
       {
         "name": "",
-        "type": "address"
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "privateSaleStage",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "rate",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
       }
     ],
     "payable": false,

@@ -21,6 +21,7 @@ export class BlockSwapComponent implements OnInit {
   public ethAdd: string;
   public ethAmount: number = 0;
   public isMetaMaskAvailable: boolean;
+  public eBolttCirculation: number;
 
   // toaster config
   config: ToasterConfig;
@@ -65,6 +66,7 @@ export class BlockSwapComponent implements OnInit {
   ngOnInit() {
     this.isMetaMaskAvailable = this.contractService.checkProvider();
     this.getWalletInfo();
+    this.getEthereumCirculation();
   }
 
   getWalletInfo() {
@@ -77,9 +79,9 @@ export class BlockSwapComponent implements OnInit {
   moveToWaves() {
     console.log(this.wavesAdd + ' ' + this.wavesAmount);
     return this.contractService.balanceOf().then(tokenAmount => {
-      console.log(this.wavesAmount);
+      // console.log(this.wavesAmount);
       return this.contractService.moveToWaves(this.wavesAmount).then(result => {
-        console.log(result);
+        // console.log(result);
         const conversionObj = {
           'boltt_token': this.wavesAmount,
           'ether_address': result[1],
@@ -130,5 +132,14 @@ export class BlockSwapComponent implements OnInit {
 
   clearToasts() {
     this.toasterService.clear();
+  }
+
+  getEthereumCirculation() {
+    return this.contractService.circulation().then(result => {
+      // console.log(result);
+      this.eBolttCirculation = result;
+    }).catch(err => {
+      console.log(err);
+    });
   }
 }

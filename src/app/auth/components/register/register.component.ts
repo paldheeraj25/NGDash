@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './../../providers/auth.service';
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import {NgbDatepickerConfig, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerConfig, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { UserUtilityService } from './../../../pages/providers/user-utility.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { UserUtilityService } from './../../../pages/providers/user-utility.serv
 })
 export class NbRegisterComponent {
 
-  submitted = false;
+  submitted = true;
   registerFailure = false;
   user: any = {};
   countries = [];
@@ -30,13 +30,18 @@ export class NbRegisterComponent {
       this.router.navigate(['login']);
       this.submitted = false;
     },
-    error => {
-      this.submitted = false;
-      this.registerFailure = true;
-    },
-    () => {
-      this.submitted = false;
-    });
+      error => {
+        this.submitted = false;
+        this.registerFailure = true;
+      },
+      () => {
+        this.submitted = false;
+      });
 
+  }
+
+  resolved(captchaResponse: string) {
+    // console.log(`Resolved captcha with response ${captchaResponse}:`);
+    this.submitted = false;
   }
 }
