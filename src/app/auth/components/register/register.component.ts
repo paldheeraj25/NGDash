@@ -30,21 +30,21 @@ export class NbRegisterComponent {
 
   register(): void {
     this.submitted = true;
-    this.toastr.success('Registration Successful', 'Success!');
-    return ;
-    // this.authService.register(this.user).subscribe(response => {
-    //   this.toastr.success('Registration Successful', 'Success!');
-    //   this.submitted = false;
-    //   this.router.navigate(['login']);
-    // },
-    // error => {
-    //   this.toastr.error('Registration failed', 'Oops!');
-    //   this.submitted = false;
-    //   this.registerFailure = true;
-    // },
-    // () => {
-    //   this.submitted = false;
-    // });
+    this.authService.register(this.user).subscribe(response => {
+      this.toastr.success('Registration Successful', 'Success!');
+      this.submitted = false;
+      setTimeout( () => {
+        this.router.navigate(['login']);
+      }, 2000);
+    },
+    error => {
+      this.toastr.error('Registration failed', 'Oops!');
+      this.submitted = false;
+      this.registerFailure = true;
+    },
+    () => {
+      this.submitted = false;
+    });
 
   }
 }
