@@ -23,10 +23,10 @@
       Authentication failed, Either email is not verified or incorrect password.
     </small>
 
-    <div class="form-group accept-group col-sm-12">
+    <!-- <div class="form-group accept-group col-sm-12">
       <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe">Remember me</nb-checkbox>
       <a class="forgot-password" routerLink="../request-password">Forgot Password?</a>
-    </div>
+    </div> -->
 
     <button type="submit" [disabled]="submitted || !form.valid" class="btn btn-block btn-hero-success" [class.btn-pulse]="submitted">
       Sign In
