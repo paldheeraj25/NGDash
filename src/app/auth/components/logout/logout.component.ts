@@ -15,19 +15,11 @@ import { AuthService } from './../../providers/auth.service';
 })
 export class NbLogoutComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthService) {
-  }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void { }
 
   logout(): void {
-    console.log("testing");
-    this.cleanUp();
-    this.router.navigate(['auth']);
-  }
-
-  cleanUp() {
-    delete window.localStorage.bolttAccessToken;
-    window.sessionStorage.clear();
+    this.authService.logout();
   }
 }

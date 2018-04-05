@@ -7,6 +7,7 @@
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
@@ -16,17 +17,17 @@ export class AuthService {
   storage: string;
   isLoggedIn = false;
 
-  constructor(private http: HttpClient) {
-    this.storage = window.localStorage.getItem('bolttAccessToken')
-      ? 'localStorage'
-      : 'sessionStorage';
-    if (window.localStorage.bolttAccessToken || window.sessionStorage.bolttAccessToken) {
+  constructor(private router: Router, private http: HttpClient) {
+    this.storage = 'sessionStorage';
+    if (window.sessionStorage.bolttAccessToken) {
       this.isLoggedIn = true;
     }
   }
   login(user: any): Observable<any> {
+    console.log("testing");
     const header = new HttpHeaders();
-    const custom_header = header.append('Content-Type', 'application/json');
+    let custom_header = header.append('Content-Type', 'application/json');
+    custom_header = custom_header.append('Accept', 'application/json;q=0.9,*/*;q=0.8');
     let userData: any = new Object();
     userData.username = user.email;
     userData.password = user.password;
@@ -62,9 +63,7 @@ export class AuthService {
   setStorage(user: any, rememberMe: boolean) {
     this.isLoggedIn = true;
     this.currentUser = user;
-    if (rememberMe && rememberMe !== undefined) {
-      this.storage = 'localStorage';
-    }
+    this.storage = 'sessionStorage';
     window[this.storage].setItem('bolttAccessToken', user.access_token);
     window[this.storage].bolttUser = JSON.stringify(this.currentUser);
   }
@@ -82,5 +81,15 @@ export class AuthService {
     user.email_address = email;
     const url = environment.apiUrl + 'forgotPassword';
     return this.http.post(url, user);
+  }
+
+  logout(): void {
+    this.cleanUp();
+    this.router.navigate(['auth']);
+  }
+
+  cleanUp() {
+    delete window.localStorage.bolttAccessToken;
+    window.sessionStorage.clear();
   }
 }
