@@ -46,6 +46,11 @@ export class UserUtilityService {
     return this.apiGateWay(liveTransaction, 'get');
   }
 
+  getEtherTransaction(): Observable<any> {
+    const etherTransaction = environment.apiUrl + 'getEtherTransactions';
+    return this.apiGateWay(etherTransaction, 'get');
+  };
+
   sendEmail(mailObject: any): Observable<any> {
     const mailApi = 'https://jsonplaceholder.typicode.com/posts';
     return this.http.post(mailApi, mailObject);
@@ -54,5 +59,10 @@ export class UserUtilityService {
   etherToWaves(conversionbject): Observable<any> {
     const etherToWavesApi = environment.apiUrl + 'convertEtherToBoltt';
     return this.apiGateWay(etherToWavesApi, 'post', conversionbject);
+  }
+
+  wavesToEther(conversionbject): Observable<any> {
+    const wavesToEtherApi = environment.apiUrl + 'convertBolttCoinToEther';
+    return this.apiGateWay(wavesToEtherApi, 'post', conversionbject);
   }
 }

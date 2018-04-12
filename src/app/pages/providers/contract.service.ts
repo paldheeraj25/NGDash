@@ -8,7 +8,7 @@ declare let require: any;
 declare let window: any;
 
 const contractAbi = require('./contract.api.json');
-const contractAddress = '0x46f596715f6e7046c705a610da2740adf45070e8';
+const contractAddress = '0x9c7fa37d6185b656ca1656cbf95629dc2d49784f';
 
 
 @Injectable()
@@ -47,12 +47,13 @@ export class ContractService implements OnInit {
       // Use Mist/MetaMask's provider
       console.log('provider: Metamask')
       this._web3 = new Web3(window.web3.currentProvider);
+      this._contract = this._web3.eth.contract(contractAbi).at(contractAddress);
+      this.WavesTransfer();
     } else {
       console.warn('No Provider found trying to connect local provider');
       // this._web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
     }
-    this._contract = this._web3.eth.contract(contractAbi).at(contractAddress);
-    this.WavesTransfer();
+
   }
 
   serviceCall() {
@@ -104,7 +105,8 @@ export class ContractService implements OnInit {
         if (err != null) {
           return reject(err);
         }
-        result = _this1._web3.fromWei(result, 'ether').toString();
+        result = result / 100000000
+        result = result.toString();
         return resolve(result);
       });
     }) as Promise<number>;
@@ -129,7 +131,8 @@ export class ContractService implements OnInit {
     console.log(account);
     return new Promise((resolve, reject) => {
       return this._contract.moveToWaves('3N2dJmGYqrTgcbiZWfiCkqXCfK6vZKMQLzD',
-        this._web3.toWei(tokenAmount, 'ether'),
+        // this._web3.toWei(tokenAmount, 'ether'),
+        tokenAmount * 100000000,
         { from: account },//40315
         (err, result) => {
           if (err != null) {
@@ -164,7 +167,7 @@ export class ContractService implements OnInit {
   public async transfer(address, amount): Promise<boolean> {
     const account = await this.getAccount();
     return new Promise((resolve, reject) => {
-      return this._contract.transfer(address, this._web3.toWei(amount, 'ether'),
+      return this._contract.transfer(address, amount * 100000000,
         { from: account },
         (err, result) => {
           if (err != null) {

@@ -6,6 +6,7 @@ import { PaymentService } from '../../providers/payment.service';
 import { find } from 'lodash';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 
+
 import 'style-loader!angular2-toaster/toaster.css';
 
 
@@ -22,6 +23,7 @@ export class BlockSwapComponent implements OnInit {
   public ethAmount: number = 0;
   public isMetaMaskAvailable: boolean;
   public eBolttCirculation: number;
+  public wBolttCirculation: number;
 
   // toaster config
   config: ToasterConfig;
@@ -67,6 +69,10 @@ export class BlockSwapComponent implements OnInit {
     this.isMetaMaskAvailable = this.contractService.checkProvider();
     this.getWalletInfo();
     this.getEthereumCirculation();
+    this.payment.getAnalyticsData().subscribe(result => {
+      console.log(result.data.token_state.purchased);
+      this.wBolttCirculation = result.data.token_state.purchased;
+    });
   }
 
   getWalletInfo() {
@@ -102,7 +108,17 @@ export class BlockSwapComponent implements OnInit {
 
   moveToEthereum() {
     console.log(this.ethAdd + ' ' + this.ethAmount);
-    this.makeToast();
+    const conversionObject = {
+      'ether_address': this.ethAdd,
+      'boltt_coins': this.ethAmount,
+      'ether_to_transfer': this.ethAmount,
+    }
+
+    return this.utiliService.wavesToEther(conversionObject).subscribe(result => {
+      console.log(result);
+      this.makeToast();
+    })
+    // this.makeToast();
   }
 
   makeToast() {

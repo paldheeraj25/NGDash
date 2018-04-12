@@ -88,6 +88,10 @@ const routes: Routes = [{
     path: 'blockswap',
     loadChildren: './block-swap/block-swap.module#BlockSwapModule',
   },
+  {
+    path: 'ether-transaction',
+    loadChildren: './ether-transactions/ether-transactions.module#EtherTransactionsModule',
+  }
   ],
 }];
 

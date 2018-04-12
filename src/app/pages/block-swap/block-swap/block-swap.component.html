@@ -1,7 +1,7 @@
 <div *ngIf="isMetaMaskAvailable">
   <div class="row">
     <div class="col-md-6">
-      <h5 class="text-info font-w-regular">wBoltt in circulation: 0 </h5>
+      <h5 class="text-info font-w-regular">wBoltt in circulation: {{wBolttCirculation}} </h5>
     </div>
     <div class="col-md-6">
       <h5 class="text-info font-w-regular">eBoltt in circulation: {{eBolttCirculation}} </h5>
@@ -63,7 +63,7 @@
   </div>
   <div class="row text-center" *ngIf="isMetaMaskAvailable">
     <p>BOLTT Sports Technology: Total Ethereum supply - 1 Billion eBOLTT | Circulating supply - {{eBolttCirculation}} eBoltt
-      , Total Waves supply - 1 Billion wBOLTT | circulating supply - 0 wBOLTT</p>
+      , Total Waves supply - 1 Billion wBOLTT | circulating supply - {{wBolttCirculation}} wBOLTT</p>
   </div>
 </div>
 <div class="row text-center" *ngIf="!isMetaMaskAvailable">

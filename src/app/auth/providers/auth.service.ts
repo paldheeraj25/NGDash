@@ -24,11 +24,16 @@ export class AuthService {
     }
   }
   login(user: any): Observable<any> {
-    console.log("testing");
     const header = new HttpHeaders();
-    let custom_header = header.append('Content-Type', 'application/json');
-    custom_header = custom_header.append('Accept', 'application/json;q=0.9,*/*;q=0.8');
-    let userData: any = new Object();
+    // let custom_header = header.append('Content-Type', 'application/json');
+    // const custom_header = header.append('Accept', '*/*');
+    // custom_header = header.append('X-Requested-By', 'Angular 2');
+    let headers = new HttpHeaders();
+    headers = headers.set('content-type', 'application/json')
+    // .set('Accept', '*')
+    // .set('Access-Control-Allow-Headers', 'content-type');
+    // .set('Access-Control-Expose-Headers', 'accept, content-json');
+    const userData: any = new Object();
     userData.username = user.email;
     userData.password = user.password;
     userData.client_id = 'ac-NaYbDW8KERxa?3A!VyucF4LxJ!^J7';
@@ -36,10 +41,11 @@ export class AuthService {
     userData.grant_type = 'password';
     userData.accessType = 'investorDashboard';
 
-    const url = environment.apiUrl + 'oauth/login';
+    // const url = environment.apiUrl + 'oauth/login';
+    const url = '/api/userLogin';
     return this.http.post(url,
       userData,
-      { headers: custom_header },
+      { headers: headers },
     );
   }
 

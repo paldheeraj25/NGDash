@@ -103,3 +103,9 @@ nb-card{
 .bolt-dex-button{
   width: 114%;
 }
+:host ::ng-deep .custom-spinner-template {
+  height: 50% !important;
+  width: 50% !important;
+  top: 26% !important;
+  left: 24% !important;
+}

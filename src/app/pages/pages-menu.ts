@@ -121,9 +121,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Live Transaction',
+    title: 'Waves Transaction',
     icon: 'nb-paper-plane',
     link: '/pages/wallet/live-transaction',
+    home: true,
+  },
+  {
+    title: 'Ether Transaction',
+    icon: 'nb-paper-plane',
+    link: '/pages/ether-transaction',
     home: true,
   },
   // {

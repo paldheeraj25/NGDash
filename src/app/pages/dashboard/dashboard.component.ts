@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   public currencyPrice: any;
   initialDisclaimer: boolean;
   storage: string;
-
+  template = '<img class="custom-spinner-template" src="http://pa1.narvii.com/5722/2c617cd9674417d272084884b61e4bb7dd5f0b15_hq.gif"/>';
   constructor(private themeService: NbThemeService,
     private utilityService: UserUtilityService,
     private userService: UserService,
