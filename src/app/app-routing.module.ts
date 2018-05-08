@@ -14,6 +14,7 @@ const routes: Routes = [
   },
   { path: 'auth', component: NbAuthComponent },
   { path: 'register', component: NbRegisterComponent },
+  { path: 'register/:refCode', component: NbRegisterComponent },
   { path: 'request-password', component: NbRequestPasswordComponent },
   { path: '', redirectTo: 'pages/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'auth' },

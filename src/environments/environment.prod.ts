@@ -8,6 +8,6 @@
 // Todo: Replace the prod base URL with following API url
 export const environment = {
   production: true,
-  // apiUrl: 'http://bolttdev.ap-south-1.elasticbeanstalk.com/'
-  apiUrl: '/api/'
+  apiUrl: 'http://bolttdev.ap-south-1.elasticbeanstalk.com/'
+  // apiUrl: '/api/'
 };

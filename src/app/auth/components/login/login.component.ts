@@ -10,10 +10,13 @@ import { SocialUser } from 'angular4-social-login';
 import { FacebookLoginProvider, GoogleLoginProvider } from 'angular4-social-login';
 import { NbAuthSocialLink } from '../../auth.options';
 import { getDeepFromObject } from '../../helpers';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 // import { NbAuthService } from '../../services/auth.service';
 import { AuthService } from '../../providers/auth.service';
 import { NbAuthResult } from '../../services/auth-result';
+import { LoginOtpComponent } from '../login-otp/login-otp.component';
 
 declare let paypal: any;
 
@@ -36,6 +39,7 @@ export class NbLoginComponent implements OnInit {
   constructor(protected router: Router,
     private authService: AuthService,
     private facebookAuth: facebook,
+    private modalService: NgbModal,
   ) {
     this.cleanUp();
   }
@@ -45,9 +49,24 @@ export class NbLoginComponent implements OnInit {
   signIn(): void {
     this.submitted = true;
     this.authService.login(this.user).subscribe(val => {
+      console.log(val);
       this.userData = val;
       this.authService.setStorage(this.userData, this.user.rememberMe);
-      this.router.navigateByUrl("pages/dashboard");
+      const modalRef = this.modalService.open(LoginOtpComponent, { size: 'lg', container: 'nb-layout' });
+      modalRef.componentInstance.userId = val.user_details.user_id_pk;
+      modalRef.result.then((data) => {
+        if (data.msg === 'Verified Successfully') {
+          this.router.navigateByUrl("pages/dashboard");
+        } else {
+          this.router.navigateByUrl("auth/login");
+        }
+        // on close
+      }, (reason) => {
+        // on dismiss
+      });
+      // this.userData = val;
+      // this.authService.setStorage(this.userData, this.user.rememberMe);
+      // this.router.navigateByUrl("pages/dashboard");
     },
       response => {
         this.submitted = false;

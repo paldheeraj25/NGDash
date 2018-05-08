@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Bitcoin 0x83dDEeC6B82514bAa5dc4670E8f81Bd9F846B5dd
+      </nb-card-header>
+      <nb-card-body>
+        <div class="centered">
+          <div class="form-group">
+            <label for="input-password" class="sr-only">Waves Address</label>
+            <input name="bitcoinAmount" [(ngModel)]="bitcoinAmount" type="text" id="input-password" class="form-control form-control-lg first"
+              placeholder="amount of boltt to buy">
+          </div>
+          <div class="form-group">
+            <label for="input-password" class="sr-only">Waves Amount</label>
+            <button class="btn btn-primary" (click)="buyViaBitCoin()">Buy</button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Ethereum 0x83dDEeC6B82514bAa5dc4670E8f81Bd9F846B5dd
+      </nb-card-header>
+      <nb-card-body>
+        <div class="centered">
+          <div class="centered">
+            <div class="form-group">
+              <label for="input-password" class="sr-only">Ethereum Address</label>
+              <input name="ethAmount" [(ngModel)]="ethAmount" type="text" id="input-password" class="form-control form-control-lg first"
+                placeholder="amount of boltt to buy">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-password" class="sr-only">Waves Amount</label>
+            <button class="btn btn-primary" (click)="buyViaEthereum()">Buy</button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Litcoin 0x83dDEeC6B82514bAa5dc4670E8f81Bd9F846B5dd
+      </nb-card-header>
+      <nb-card-body>
+        <div class="centered">
+          <div class="form-group">
+            <label for="input-password" class="sr-only">Waves Address</label>
+            <input name="litecointAmount" [(ngModel)]="litecointAmount" type="text" id="input-password" class="form-control form-control-lg first"
+              placeholder="amounnt of boltt to buy">
+          </div>
+          <div class="form-group">
+            <label for="input-password" class="sr-only">Waves Amount</label>
+            <button class="btn btn-primary" (click)="buyViaLitecoin()">Buy</button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Ripple 0x83dDEeC6B82514bAa5dc4670E8f81Bd9F846B5dd
+      </nb-card-header>
+      <nb-card-body>
+        <div class="centered">
+          <div class="centered">
+            <div class="form-group">
+              <label for="input-password" class="sr-only">Ethereum Address</label>
+              <input name="rippleAmount" [(ngModel)]="xrpAmount" type="text" id="input-password" class="form-control form-control-lg first"
+                placeholder="amount of boltt to buy">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-password" class="sr-only">Waves Amount</label>
+            <button class="btn btn-primary" (click)="buyViaRipple()">buy</button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

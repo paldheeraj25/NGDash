@@ -99,8 +99,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/wallet',
     children: [
       {
-        title: 'wallet info',
+        title: 'Wallet info',
         link: '/pages/wallet/wallet-info',
+      },
+      {
+        title: 'Dex',
+        link: '/pages/wallet/dex',
       },
       // {
       //   title: 'Go to Wallet',

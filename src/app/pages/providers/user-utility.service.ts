@@ -65,4 +65,5 @@ export class UserUtilityService {
     const wavesToEtherApi = environment.apiUrl + 'convertBolttCoinToEther';
     return this.apiGateWay(wavesToEtherApi, 'post', conversionbject);
   }
+
 }

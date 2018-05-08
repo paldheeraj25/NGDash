@@ -12,6 +12,7 @@ export class PaymentService {
   getAnalyticsApi = environment.apiUrl + "getAnalyticsData";
   getInvestCountDataApi = environment.apiUrl + "getInvestCountData";
   getPayPalApiUrl = environment.apiUrl + "processPayPalTransaction";
+  getDexApiUrl = environment.apiUrl + "purchaseBoltt";
 
   constructor(private http: HttpClient, private userUtilityService: UserUtilityService) { }
 
@@ -39,5 +40,14 @@ export class PaymentService {
 
   getPayPalApi(data: any): Observable<any> {
     return this.userUtilityService.apiGateWay(this.getPayPalApiUrl, 'post', data);
+  }
+
+  getDexApi(data: any): Observable<any> {
+    return this.userUtilityService.apiGateWay(this.getDexApiUrl, 'post', data);
+  }
+
+  verifyOtp(data): Observable<any> {
+    const otpVerifyApi = environment.apiUrl + 'dashboardverifyotp';
+    return this.userUtilityService.apiGateWay(otpVerifyApi, 'post', data);
   }
 }

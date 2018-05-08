@@ -39,8 +39,10 @@ import { deepExtend } from './helpers';
 import { AuthService } from './providers/auth.service';
 import { AuthGuard } from './providers/auth.gaurd';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { LoginOtpComponent } from './components/login-otp/login-otp.component';
 
-
+import { UserUtilityService } from '../pages/providers/user-utility.service';
+import { PaymentService } from '../pages/providers/payment.service';
 
 
 // let authConfig = new AuthServiceConfig([
@@ -102,6 +104,7 @@ export function nbOptionsFactory(options) {
     NbRequestPasswordComponent,
     NbResetPasswordComponent,
     NbLogoutComponent,
+    LoginOtpComponent,
   ],
   exports: [
     NbAuthComponent,
@@ -112,7 +115,12 @@ export function nbOptionsFactory(options) {
     NbResetPasswordComponent,
     NbLogoutComponent,
   ],
+  entryComponents: [
+    LoginOtpComponent,
+  ],
   providers: [AuthService,
+    UserUtilityService,
+    PaymentService,
     AuthGuard,
     {
       provide: AuthServiceConfig,

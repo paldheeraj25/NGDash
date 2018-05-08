@@ -6,7 +6,8 @@ import { WalletInfoComponent } from './wallet-info/wallet-info.component';
 import { NbLayoutModule, NbCardModule, NbCheckboxModule, NbTabsetModule } from '@nebular/theme';
 import { ButtonsModule } from '../ui-features/buttons/buttons.module';
 import { LiveTransactionComponent } from './live-transaction/live-transaction.component';
-
+import { DexComponent } from './dex/dex.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { LiveTransactionComponent } from './live-transaction/live-transaction.co
     NbTabsetModule,
     ButtonsModule,
     Ng2SmartTableModule,
+    FormsModule,
   ],
-  declarations: [WalletInfoComponent, LiveTransactionComponent]
+  declarations: [WalletInfoComponent, LiveTransactionComponent, DexComponent]
 })
 export class WalletModule { }
