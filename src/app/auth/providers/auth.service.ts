@@ -41,8 +41,8 @@ export class AuthService {
     userData.grant_type = 'password';
     userData.accessType = 'investorDashboard';
 
-    // const url = environment.apiUrl + 'oauth/login';
-    const url = '/api/userLogin';
+    const url = environment.apiUrl + 'oauth/login';
+    // const url = '/api/userLogin';
     return this.http.post(url,
       userData,
       { headers: headers },
