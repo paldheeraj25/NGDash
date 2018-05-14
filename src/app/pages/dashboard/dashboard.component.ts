@@ -9,6 +9,8 @@ import { UserUtilityService } from '../providers/user-utility.service';
 import { PaymentService } from '../providers/payment.service';
 import { ModalComponent } from './status-card/modal/modal.component';
 import { LandingPopupComponent } from './landing-popup/landing-popup.component';
+import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
+import 'style-loader!angular2-toaster/toaster.css';
 
 
 declare let paypal: any;
@@ -28,12 +30,31 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   initialDisclaimer: boolean;
   storage: string;
   template = '<img class="custom-spinner-template" src="http://pa1.narvii.com/5722/2c617cd9674417d272084884b61e4bb7dd5f0b15_hq.gif"/>';
+
+  // toaster config
+  config: ToasterConfig;
+
+  position = 'toast-top-right';
+  animationType = 'fade';
+  title = 'KYC Clearance';
+  content = `Please submit and clear your kyc before carry out any kind of transaction.`;
+  timeout = 5000;
+  toastsLimit = 5;
+  type = 'error';
+
+  isNewestOnTop = true;
+  isHideOnClick = true;
+  isDuplicatesPrevented = false;
+  isCloseButton = true;
+
+  //
   constructor(private themeService: NbThemeService,
     private utilityService: UserUtilityService,
     private userService: UserService,
     private payment: PaymentService,
     private modalService: NgbModal,
-    private spinnerService: Ng4LoadingSpinnerService) {
+    private spinnerService: Ng4LoadingSpinnerService,
+    private toasterService: ToasterService, ) {
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.themeName = theme.name;
       this.init(theme.variables);
@@ -88,40 +109,95 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   openOrderPaypal(): void {
-    const activeModal = this.modalService.open(ModalComponent, { size: 'lg', container: 'nb-layout' });
 
-    activeModal.componentInstance.paymentType = 3;
-    activeModal.componentInstance.modalHeader = 'Payment order';
-    activeModal.componentInstance.bankName = 'JSC TBC BANK';
-    activeModal.componentInstance.address = '7 Kote Marjanishvili St, Delaware';
-    activeModal.componentInstance.baneficiary = 'Boltt Sports Technologies LLC.';
-    activeModal.componentInstance.swift = 'TBCBGE22';
-    activeModal.componentInstance.iBan = 'GE42TB7180436120100005';
-    activeModal.componentInstance.rate = 0.001;
+    this.payment.getKycStatus().subscribe(data => {
+      console.log(data);
+      if (data.data == 'GREEN') {
+        const activeModal = this.modalService.open(ModalComponent, { size: 'lg', container: 'nb-layout' });
+
+        activeModal.componentInstance.paymentType = 3;
+        activeModal.componentInstance.modalHeader = 'Payment order';
+        activeModal.componentInstance.bankName = 'JSC TBC BANK';
+        activeModal.componentInstance.address = '7 Kote Marjanishvili St, Delaware';
+        activeModal.componentInstance.baneficiary = 'Boltt Sports Technologies LLC.';
+        activeModal.componentInstance.swift = 'TBCBGE22';
+        activeModal.componentInstance.iBan = 'GE42TB7180436120100005';
+        activeModal.componentInstance.rate = 0.001;
+      } else {
+        this.makeToast();
+      }
+    });
   }
 
   openBolltDex(): void {
-    const activeModal = this.modalService.open(ModalComponent, { size: 'lg', container: 'nb-layout' });
+    this.payment.getKycStatus().subscribe(data => {
+      console.log(data);
+      if (data.data == 'GREEN') {
+        const activeModal = this.modalService.open(ModalComponent, { size: 'lg', container: 'nb-layout' });
 
-    activeModal.componentInstance.paymentType = 4;
-    activeModal.componentInstance.modalHeader = 'Go to Boltt Dex';
-    activeModal.componentInstance.rate = 0.001;
+        activeModal.componentInstance.paymentType = 4;
+        activeModal.componentInstance.modalHeader = 'Go to Boltt Dex';
+        activeModal.componentInstance.rate = 0.001;
+      } else {
+        this.makeToast();
+      }
+    });
+
   }
 
   openOrderBank(): void {
-    const activeModal = this.modalService.open(ModalComponent, { size: 'lg', container: 'nb-layout' });
 
-    activeModal.componentInstance.paymentType = 2;
-    activeModal.componentInstance.modalHeader = 'Payment order';
-    activeModal.componentInstance.bankName = 'JSC TBC BANK';
-    activeModal.componentInstance.address = '7 Kote Marjanishvili St, Delaware';
-    activeModal.componentInstance.baneficiary = 'Boltt Sports Technologies LLC.';
-    activeModal.componentInstance.swift = 'TBCBGE22';
-    activeModal.componentInstance.iBan = 'GE42TB7180436120100005';
-    activeModal.componentInstance.rate = 0.001;
+    this.payment.getKycStatus().subscribe(data => {
+      console.log(data);
+      if (data.data == 'GREEN') {
+        const activeModal = this.modalService.open(ModalComponent, { size: 'lg', container: 'nb-layout' });
+
+        activeModal.componentInstance.paymentType = 2;
+        activeModal.componentInstance.modalHeader = 'Payment order';
+        activeModal.componentInstance.bankName = 'JSC TBC BANK';
+        activeModal.componentInstance.address = '7 Kote Marjanishvili St, Delaware';
+        activeModal.componentInstance.baneficiary = 'Boltt Sports Technologies LLC.';
+        activeModal.componentInstance.swift = 'TBCBGE22';
+        activeModal.componentInstance.iBan = 'GE42TB7180436120100005';
+        activeModal.componentInstance.rate = 0.001;
+      } else {
+        this.makeToast();
+      }
+    });
+
   }
 
   landingPopup(): void {
     const activeModal = this.modalService.open(LandingPopupComponent, { size: 'lg', container: 'nb-layout' });
   }
+
+  makeToast() {
+    this.showToast(this.type, this.title, this.content);
+  }
+
+  private showToast(type: string, title: string, body: string) {
+    this.config = new ToasterConfig({
+      positionClass: this.position,
+      timeout: this.timeout,
+      newestOnTop: this.isNewestOnTop,
+      tapToDismiss: this.isHideOnClick,
+      preventDuplicates: this.isDuplicatesPrevented,
+      animation: this.animationType,
+      limit: this.toastsLimit,
+    });
+    const toast: Toast = {
+      type: type,
+      title: title,
+      body: body,
+      timeout: this.timeout,
+      showCloseButton: this.isCloseButton,
+      bodyOutputType: BodyOutputType.TrustedHtml,
+    };
+    this.toasterService.popAsync(toast);
+  }
+
+  clearToasts() {
+    this.toasterService.clear();
+  }
+
 }

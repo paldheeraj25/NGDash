@@ -17,6 +17,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../providers/auth.service';
 import { NbAuthResult } from '../../services/auth-result';
 import { LoginOtpComponent } from '../login-otp/login-otp.component';
+import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
+import 'style-loader!angular2-toaster/toaster.css';
 
 declare let paypal: any;
 
@@ -36,10 +38,29 @@ export class NbLoginComponent implements OnInit {
   private userSocial: SocialUser;
   private loggedIn: boolean;
 
+  // toaster config
+  config: ToasterConfig;
+
+  position = 'toast-top-right';
+  animationType = 'fade';
+  title = 'Incorrect OTP';
+  content = `Please check your otp and try to sign in again.`;
+  timeout = 5000;
+  toastsLimit = 5;
+  type = 'error';
+
+  isNewestOnTop = true;
+  isHideOnClick = true;
+  isDuplicatesPrevented = false;
+  isCloseButton = true;
+
+  //
+
   constructor(protected router: Router,
     private authService: AuthService,
     private facebookAuth: facebook,
     private modalService: NgbModal,
+    private toasterService: ToasterService,
   ) {
     this.cleanUp();
   }
@@ -56,8 +77,9 @@ export class NbLoginComponent implements OnInit {
       modalRef.componentInstance.userId = val.user_details.user_id_pk;
       modalRef.result.then((data) => {
         if (data.msg === 'Verified Successfully') {
-          this.router.navigateByUrl("pages/dashboard");
+          this.router.navigateByUrl("pages/kyc");
         } else {
+          this.makeToast();
           this.router.navigateByUrl("auth/login");
         }
         // on close
@@ -91,7 +113,7 @@ export class NbLoginComponent implements OnInit {
         console.log('inside servic call');
         self.userData = val;
         self.authService.setStorage(self.userData, self.user.rememberMe);
-        self.router.navigateByUrl("pages/dashboard");
+        self.router.navigateByUrl("pages/kyc");
       },
         response => {
           self.submitted = false;
@@ -110,5 +132,34 @@ export class NbLoginComponent implements OnInit {
   resolved(captchaResponse: string) {
     // console.log(`Resolved captcha with response ${captchaResponse}:`);
     this.submitted = false;
+  }
+
+  makeToast() {
+    this.showToast(this.type, this.title, this.content);
+  }
+
+  private showToast(type: string, title: string, body: string) {
+    this.config = new ToasterConfig({
+      positionClass: this.position,
+      timeout: this.timeout,
+      newestOnTop: this.isNewestOnTop,
+      tapToDismiss: this.isHideOnClick,
+      preventDuplicates: this.isDuplicatesPrevented,
+      animation: this.animationType,
+      limit: this.toastsLimit,
+    });
+    const toast: Toast = {
+      type: type,
+      title: title,
+      body: body,
+      timeout: this.timeout,
+      showCloseButton: this.isCloseButton,
+      bodyOutputType: BodyOutputType.TrustedHtml,
+    };
+    this.toasterService.popAsync(toast);
+  }
+
+  clearToasts() {
+    this.toasterService.clear();
   }
 }

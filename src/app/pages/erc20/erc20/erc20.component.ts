@@ -3,6 +3,7 @@ import { ContractService } from '../../providers/contract.service';
 import { UserUtilityService } from '../../providers/user-utility.service';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import 'style-loader!angular2-toaster/toaster.css';
+import { PaymentService } from '../../providers/payment.service';
 
 
 @Component({
@@ -29,6 +30,11 @@ export class Erc20Component implements OnInit {
   toastsLimit = 5;
   type = 'success';
 
+  titleWar = 'KYC Clearance';
+  contentWar = `Please submit and clear your kyc before carry out any kind of transaction.`;
+  typeWar = 'error';
+
+
   isNewestOnTop = true;
   isHideOnClick = true;
   isDuplicatesPrevented = false;
@@ -51,6 +57,7 @@ export class Erc20Component implements OnInit {
   constructor(private contractService: ContractService,
     private utiliService: UserUtilityService,
     private toasterService: ToasterService,
+    private payment: PaymentService
   ) { }
 
   ngOnInit() {
@@ -70,12 +77,20 @@ export class Erc20Component implements OnInit {
   }
 
   buyBolttOnEthereum() {
-    return this.contractService.buy(this.ether).then(result => {
-      console.log(result);
-      this.makeToast();
-    }).catch(err => {
-      console.log(err);
-    })
+    this.payment.getKycStatus().subscribe(data => {
+      console.log(data);
+      if (data.data == 'GREEN') {
+        return this.contractService.buy(this.ether).then(result => {
+          console.log(result);
+          this.makeToast();
+        }).catch(err => {
+          console.log(err);
+        })
+      } else {
+        this.makeToastForWarning();
+      }
+    });
+
   }
 
   moveToWaves() {
@@ -100,24 +115,35 @@ export class Erc20Component implements OnInit {
   }
 
   tranferTOOtherAdd() {
-
-    return this.contractService.balanceOf().then(result => {
-      console.log(result);
-      if (result > this.transferAmount) {
-        return this.contractService.transfer(this.transferAdd, this.transferAmount).then(result => {
+    this.payment.getKycStatus().subscribe(data => {
+      console.log(data);
+      if (data.data == 'GREEN') {
+        return this.contractService.balanceOf().then(result => {
           console.log(result);
-          this.makeToast();
-        }).catch(err => {
-          console.log(err);
+          if (result > this.transferAmount) {
+            return this.contractService.transfer(this.transferAdd, this.transferAmount).then(result => {
+              console.log(result);
+              this.makeToast();
+            }).catch(err => {
+              console.log(err);
+            });
+          } else {
+            this.showToast('error', 'Insufficient funds', 'Make sure you have suffecient funds to carry out transaction.');
+          }
         });
       } else {
-        this.showToast('error', 'Insufficient funds', 'Make sure you have suffecient funds to carry out transaction.');
+        this.makeToastForWarning();
       }
     });
+
   }
 
   makeToast() {
     this.showToast(this.type, this.title, this.content);
+  }
+
+  makeToastForWarning() {
+    this.showToastWarning(this.type, this.title, this.content);
   }
 
   private showToast(type: string, title: string, body: string) {
@@ -134,6 +160,27 @@ export class Erc20Component implements OnInit {
       type: type,
       title: title,
       body: body,
+      timeout: this.timeout,
+      showCloseButton: this.isCloseButton,
+      bodyOutputType: BodyOutputType.TrustedHtml,
+    };
+    this.toasterService.popAsync(toast);
+  }
+
+  private showToastWarning(type: string, title: string, body: string) {
+    this.config = new ToasterConfig({
+      positionClass: this.position,
+      timeout: this.timeout,
+      newestOnTop: this.isNewestOnTop,
+      tapToDismiss: this.isHideOnClick,
+      preventDuplicates: this.isDuplicatesPrevented,
+      animation: this.animationType,
+      limit: this.toastsLimit,
+    });
+    const toast: Toast = {
+      type: this.typeWar,
+      title: this.titleWar,
+      body: this.contentWar,
       timeout: this.timeout,
       showCloseButton: this.isCloseButton,
       bodyOutputType: BodyOutputType.TrustedHtml,

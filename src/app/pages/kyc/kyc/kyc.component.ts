@@ -1,4 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { PaymentService } from '../../providers/payment.service';
+import { AuthService } from '../../../auth/providers/auth.service';
+
 declare let idensic: any
 
 @Component({
@@ -8,46 +11,54 @@ declare let idensic: any
 })
 export class KycComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor(private payment: PaymentService,
+    private auth: AuthService,
+  ) { }
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
     this.loadExternalScript('https://test-api.sumsub.com/idensic/static/idensic.js').then(() => {
-      idensic.init(
-        // selector of an iframe container (see above)
-        '#idensic',
-        // configuration object (see preparation steps)
-        {
-          accessToken: "75f77e93-ee37-4bfa-8ea7-034279b2fcca",
-          applicantDataPage: {
-            "enabled": true,
-            "fields": [
-              {
-                "name": "firstName",
-                "required": true
-              },
-              {
-                "name": "lastName",
-                "required": true
-              },
-              {
-                "name": "email",
-                "required": false
-              }
-            ]
+      const user = this.auth.getUser();
+      console.log(user.user_details.user_id_pk);
+      const userDetail = { user_id: user.user_details.user_id_pk }
+      this.payment.getKycToken(userDetail).subscribe(data => {
+        console.log(data);
+        idensic.init(
+          // selector of an iframe container (see above)
+          '#idensic',
+          // configuration object (see preparation steps)
+          {
+            accessToken: data.data,
+            applicantDataPage: {
+              "enabled": true,
+              "fields": [
+                {
+                  "name": "firstName",
+                  "required": true
+                },
+                {
+                  "name": "lastName",
+                  "required": true
+                },
+                {
+                  "name": "email",
+                  "required": false
+                }
+              ]
+            },
+            // steps to require:
+            // identity proof (passport, id card or driving license) and a selfie
+            requiredDocuments: "IDENTITY:PASSPORT,ID_CARD,DRIVERS;SELFIE:SELFIE",
           },
-          // steps to require:
-          // identity proof (passport, id card or driving license) and a selfie
-          requiredDocuments: "IDENTITY:PASSPORT,ID_CARD,DRIVERS;SELFIE:SELFIE",
-        },
-        // function for the ifram callbacks
-        function (messageType, payload) {
-          // just logging the incoming messages
-          console.log('[IDENSIC DEMO] Idensic message:', messageType, payload);
-        }
-      );
+          // function for the ifram callbacks
+          function (messageType, payload) {
+            // just logging the incoming messages
+            console.log('[IDENSIC DEMO] Idensic message:', messageType, payload);
+          }
+        );
+      })
     });
   }
 

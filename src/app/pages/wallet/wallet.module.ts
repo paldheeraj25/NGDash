@@ -8,6 +8,8 @@ import { ButtonsModule } from '../ui-features/buttons/buttons.module';
 import { LiveTransactionComponent } from './live-transaction/live-transaction.component';
 import { DexComponent } from './dex/dex.component';
 import { FormsModule } from '@angular/forms';
+import { ToasterModule } from 'angular2-toaster';
+
 
 @NgModule({
   imports: [
@@ -20,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     ButtonsModule,
     Ng2SmartTableModule,
     FormsModule,
+    ToasterModule
   ],
   declarations: [WalletInfoComponent, LiveTransactionComponent, DexComponent]
 })

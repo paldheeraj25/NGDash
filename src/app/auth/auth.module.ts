@@ -43,6 +43,7 @@ import { LoginOtpComponent } from './components/login-otp/login-otp.component';
 
 import { UserUtilityService } from '../pages/providers/user-utility.service';
 import { PaymentService } from '../pages/providers/payment.service';
+import { ToasterModule } from 'angular2-toaster';
 
 
 // let authConfig = new AuthServiceConfig([
@@ -95,6 +96,7 @@ export function nbOptionsFactory(options) {
     NgbModule,
     SocialLoginModule,
     RecaptchaModule.forRoot(),
+    ToasterModule,
   ],
   declarations: [
     NbAuthComponent,

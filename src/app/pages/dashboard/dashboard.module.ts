@@ -27,6 +27,7 @@ import { TrafficComponent } from './traffic/traffic.component';
 import { TrafficChartComponent } from './traffic/traffic-chart.component';
 import { UiFeaturesModule } from '../ui-features/ui-features.module';
 import { LandingPopupComponent } from './landing-popup/landing-popup.component';
+import { ToasterModule } from 'angular2-toaster';
 
 
 
@@ -37,6 +38,7 @@ import { LandingPopupComponent } from './landing-popup/landing-popup.component';
     UiFeaturesModule,
     QRCodeModule,
     Ng4LoadingSpinnerModule.forRoot(),
+    ToasterModule,
   ],
   declarations: [
     DashboardComponent,

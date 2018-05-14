@@ -13,6 +13,7 @@ export class PaymentService {
   getInvestCountDataApi = environment.apiUrl + "getInvestCountData";
   getPayPalApiUrl = environment.apiUrl + "processPayPalTransaction";
   getDexApiUrl = environment.apiUrl + "purchaseBoltt";
+  getKycStatusUrl = environment.apiUrl + "getKycStatus";
 
   constructor(private http: HttpClient, private userUtilityService: UserUtilityService) { }
 
@@ -49,5 +50,14 @@ export class PaymentService {
   verifyOtp(data): Observable<any> {
     const otpVerifyApi = environment.apiUrl + 'dashboardverifyotp';
     return this.userUtilityService.apiGateWay(otpVerifyApi, 'post', data);
+  }
+
+  getKycStatus(): Observable<any> {
+    return this.userUtilityService.apiGateWay(this.getKycStatusUrl, 'get');
+  }
+
+  getKycToken(data): Observable<any> {
+    const tokenUrl = environment.apiUrl + 'getToken';;
+    return this.userUtilityService.apiGateWay(tokenUrl, 'post', data);
   }
 }

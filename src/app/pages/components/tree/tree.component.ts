@@ -13,6 +13,9 @@ export class TreeComponent {
       value: 'Object-oriented programming',
       children: [{
         value: 'Java',
+        children: [{
+          value: 'Angular'
+        }],
       }, {
         value: 'C++',
       }, {

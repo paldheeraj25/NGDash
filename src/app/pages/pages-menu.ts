@@ -5,7 +5,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Buy wBoltt (Waves)',
     icon: 'nb-home',
     link: '/pages/dashboard',
-    home: true,
+    children: [
+      {
+        title: 'Buy wBoltt',
+        link: '/pages/dashboard',
+      },
+      {
+        title: 'Dex',
+        link: '/pages/wallet/dex',
+      },
+
+    ],
   },
   {
     title: 'Buy eBoltt (Ethereum)',
@@ -19,12 +29,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/blockswap',
     home: true,
   },
-  {
-    title: 'Analytics',
-    icon: 'nb-bar-chart',
-    link: '/pages/analytics',
-    home: true,
-  },
+  // {
+  //   title: 'Analytics',
+  //   icon: 'nb-bar-chart',
+  //   link: '/pages/analytics',
+  //   home: true,
+  // },
   // {
   //   title: 'Token Stats ',
   //   icon: 'nb-keypad',
@@ -52,16 +62,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'KYC & AML',
-        link: '/pages/user-profile/password-change',
+        link: '/pages/kyc',
       },
       {
         title: 'Login History',
         link: '/pages/user-profile/login-history',
       },
-      {
-        title: '2FA',
-        link: '/pages/user-profile/password-change',
-      },
+      // {
+      //   title: '2FA',
+      //   link: '/pages/user-profile/password-change',
+      // },
     ],
   },
   // {
@@ -102,22 +112,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Wallet info',
         link: '/pages/wallet/wallet-info',
       },
-      {
-        title: 'Dex',
-        link: '/pages/wallet/dex',
-      },
+      // {
+      //   title: 'Dex',
+      //   link: '/pages/wallet/dex',
+      // },
       // {
       //   title: 'Go to Wallet',
       //   link: '/pages/wallet/wallet-info',
       // },
     ],
   },
-  {
-    title: 'FAQ',
-    icon: 'nb-edit',
-    link: '/pages/order-stats1',
-    home: true,
-  },
+  // {
+  //   title: 'FAQ',
+  //   icon: 'nb-edit',
+  //   link: '/pages/order-stats1',
+  //   home: true,
+  // },
   {
     title: 'Bounty and Refferal',
     icon: 'nb-paper-plane',
