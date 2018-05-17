@@ -6,11 +6,9 @@
   <nb-card-body>
     <div class="row">
       <toaster-container [toasterconfig]="config"></toaster-container>
-      <div class="col-xxxl-3 col-md-6">
-        <!--<nb-card (click)="on = !on" [ngClass]="{'off': !on}">-->
+      <!-- <div class="col-xxxl-3 col-md-6">
         <nb-card class="custom-card">
           <div class="details">
-            <!-- <div class="container-btn"> -->
             <div class="inline-block paypal-background">
               <img class='paypal-icon' src="assets/images/PAYPAL.png" alt="" style="width: 50px; height: 50px;">
             </div>
@@ -29,12 +27,10 @@
                 </a>
               </div>
             </div>
-            <!-- </div> -->
           </div>
         </nb-card>
       </div>
       <div class="col-xxxl-3 col-md-6">
-        <!--<nb-card (click)="on = !on" [ngClass]="{'off': !on}">-->
         <nb-card class="custom-card">
           <div class="details">
             <div class="container-btn">
@@ -59,7 +55,7 @@
             </div>
           </div>
         </nb-card>
-      </div>
+      </div> -->
       <!-- <div *ngIf="currencyPrice "> -->
       <ng4-loading-spinner [threshold]="2000 " [zIndex]="9999 " [template]="template"></ng4-loading-spinner>
       <div class="col-xxxl-3 col-md-6 " *ngFor="let walletInfo of userAddreses ">
@@ -71,11 +67,9 @@
       </div>
       <!-- </div> -->
 
-      <div class="col-xxxl-3 col-md-6 ">
-        <!--<nb-card (click)="on=! on " [ngClass]="{ 'off': !on} ">-->
+      <!-- <div class="col-xxxl-3 col-md-6 ">
         <nb-card class="custom-card">
           <div class="details">
-            <!-- <div class="container-btn"> -->
             <div class="inline-block paypal-background">
               <img class='paypal-icon' src="assets/images/WAVES.png" alt="" style="width: 50px; height: 50px;">
             </div>
@@ -94,10 +88,9 @@
                 </a>
               </div>
             </div>
-            <!-- </div> -->
           </div>
         </nb-card>
-      </div>
+      </div> -->
     </div>
   </nb-card-body>
 </nb-card>

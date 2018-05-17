@@ -52,55 +52,55 @@ export class ModalComponent implements OnInit, AfterViewInit {
 
   // paypal
   ngAfterViewInit(): void {
-    this.loadExternalScript("https://www.paypalobjects.com/api/checkout.js").then(() => {
-      paypal.Button.render({
-        env: 'sandbox',
-        client: {
-          sandbox: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
-          production: '<insert production client id>'
-        },
-        commit: true,
-        funding: {
-          allowed: [paypal.FUNDING.CREDIT],
-        },
-        style: {
-          color: 'gold',
-          size: 'small',
-        },
-        payment: function (data, actions) {
-          // Make a call to the REST api to create the payment
-          console.log('inside payment');
-          console.log(data);
-          console.log(actions);
-          this.data = data;
-          return actions.payment.create({
-            payment: {
-              transactions: [
-                {
-                  amount: { total: this.methodAmount, currency: 'USD' },
-                },
-              ],
-            },
-          });
-        },
-        onAuthorize: function (data, actions) {
-          console.log('inside payment');
-          console.log(data);
-          console.log(actions);
-          const paymentService = this.paymentService;
-          const actionData = this.data;
-          return actions.payment.execute().then(function (payment) {
-            // TODO
-            console.log('paypal response');
-            console.log(payment);
-            const finalData = { actionData, payment };
-            paymentService.getPayPalApi(finalData).subscribe(response => {
-              console.log(response);
-            });
-          })
-        },
-      }, '#paypal-button');
-    });
+    // this.loadExternalScript("https://www.paypalobjects.com/api/checkout.js").then(() => {
+    //   paypal.Button.render({
+    //     env: 'sandbox',
+    //     client: {
+    //       sandbox: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+    //       production: '<insert production client id>'
+    //     },
+    //     commit: true,
+    //     funding: {
+    //       allowed: [paypal.FUNDING.CREDIT],
+    //     },
+    //     style: {
+    //       color: 'gold',
+    //       size: 'small',
+    //     },
+    //     payment: function (data, actions) {
+    //       // Make a call to the REST api to create the payment
+    //       console.log('inside payment');
+    //       console.log(data);
+    //       console.log(actions);
+    //       this.data = data;
+    //       return actions.payment.create({
+    //         payment: {
+    //           transactions: [
+    //             {
+    //               amount: { total: this.methodAmount, currency: 'USD' },
+    //             },
+    //           ],
+    //         },
+    //       });
+    //     },
+    //     onAuthorize: function (data, actions) {
+    //       console.log('inside payment');
+    //       console.log(data);
+    //       console.log(actions);
+    //       const paymentService = this.paymentService;
+    //       const actionData = this.data;
+    //       return actions.payment.execute().then(function (payment) {
+    //         // TODO
+    //         console.log('paypal response');
+    //         console.log(payment);
+    //         const finalData = { actionData, payment };
+    //         paymentService.getPayPalApi(finalData).subscribe(response => {
+    //           console.log(response);
+    //         });
+    //       })
+    //     },
+    //   }, '#paypal-button');
+    // });
   }
 
   private loadExternalScript(scriptUrl: string) {

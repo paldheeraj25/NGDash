@@ -18,6 +18,7 @@ export class Erc20Component implements OnInit {
   public transferAdd: string;
   public transferAmount: number = 0;
   public isMetaMaskAvailable: boolean;
+  public bonus: number = 0;
 
   // toaster config
   config: ToasterConfig;
@@ -62,6 +63,18 @@ export class Erc20Component implements OnInit {
 
   ngOnInit() {
     this.isMetaMaskAvailable = this.contractService.checkProvider();
+  }
+
+  bonusPrice(event) {
+    if (event < 100) {
+      this.bonus = 20;
+    } else if (100 <= event && event < 500) {
+      this.bonus = 30;
+    } else if (500 <= event && event < 1500) {
+      this.bonus = 40;
+    } else if (event >= 1500) {
+      this.bonus = 50;
+    }
   }
 
   serviceCall() {

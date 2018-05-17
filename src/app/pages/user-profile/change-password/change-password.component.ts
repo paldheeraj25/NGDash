@@ -20,9 +20,10 @@ export class ChangePasswordComponent {
   forgotPassword = false;
   otpSuccess = false;
   otpFailure = false;
+  confirmPassword: any = 'password';
 
   resetPassUrl = environment.apiUrl + "updatePassword";
-  constructor( private userUtilityService: UserUtilityService, private authService: AuthService) { }
+  constructor(private userUtilityService: UserUtilityService, private authService: AuthService) { }
 
   resetPass() {
     this.submitted = true;
@@ -38,8 +39,8 @@ export class ChangePasswordComponent {
   }
 
   forgotAPI() {
-    if(!this.forgotPassword){
-      return ;
+    if (!this.forgotPassword) {
+      return;
     }
     this.submitted = true;
     const user = this.authService.getUser();

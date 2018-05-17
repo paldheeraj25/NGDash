@@ -15,10 +15,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 // import { NbAuthService } from '../../services/auth.service';
 import { AuthService } from '../../providers/auth.service';
+
 import { NbAuthResult } from '../../services/auth-result';
 import { LoginOtpComponent } from '../login-otp/login-otp.component';
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import 'style-loader!angular2-toaster/toaster.css';
+import { PaymentService } from '../../../pages/providers/payment.service';
 
 declare let paypal: any;
 
@@ -78,6 +80,7 @@ export class NbLoginComponent implements OnInit {
       modalRef.result.then((data) => {
         if (data.msg === 'Verified Successfully') {
           this.router.navigateByUrl("pages/kyc");
+
         } else {
           this.makeToast();
           this.router.navigateByUrl("auth/login");

@@ -83,7 +83,7 @@
 
               <div class="form-group col-sm-12">
                 <nb-checkbox name="terms" [(ngModel)]="user.notUSnChinese">
-                  Confirm that you are not a US citizen nor a Chinese citizen.
+                  Confirm that you are not a Chinese citizen.
                   <a href="#" target="_blank">
                     <strong>Terms & Conditions</strong>
                   </a>
@@ -92,11 +92,6 @@
               <div class="form-group col-sm-12">
                 <nb-checkbox name="terms" [(ngModel)]="user.readBolltIcoPolicy">
                   Confirm that you have read and understood BolttCoin ICO Whitepaper policy.
-                </nb-checkbox>
-              </div>
-              <div class="form-group col-sm-12">
-                <nb-checkbox name="terms" [(ngModel)]="user.ownRisk">
-                  Confirm that you are contributing to the project at your own risk & boltt will not be liable for any Financial Gain or Loss.
                 </nb-checkbox>
               </div>
               <small class="m-b-10 form-text error" *ngIf="registerFailure">
@@ -111,7 +106,7 @@
               </div>
               <div class="form-group">
                 <label for="input-password" class="sr-only">Password</label>
-                <re-captcha (resolved)="resolved($event)" siteKey="6LclgVAUAAAAABZckwzXNU5UMi28Sg2pylx-s0XJ"></re-captcha>
+                <re-captcha (resolved)="resolved($event)" siteKey="6LdnO1QUAAAAAPitYPav5M19FI2B1WpGABAJrxca"></re-captcha>
               </div>
               <button [disabled]="submitted || !form.valid || !user.ownRisk || !user.notUSnChinese || !user.readBolltIcoPolicy" class="btn btn-block btn-hero-success"
                 [class.btn-pulse]="submitted">

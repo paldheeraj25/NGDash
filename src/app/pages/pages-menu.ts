@@ -2,33 +2,37 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Buy wBoltt (Waves)',
+    title: 'Buy Boltt',
     icon: 'nb-home',
     link: '/pages/dashboard',
     children: [
       {
+        title: 'Buy eBoltt',
+        link: '/pages/ERC-20',
+      },
+      {
         title: 'Buy wBoltt',
         link: '/pages/dashboard',
       },
-      {
-        title: 'Dex',
-        link: '/pages/wallet/dex',
-      },
+      // {
+      //   title: 'Dex',
+      //   link: '/pages/wallet/dex',
+      // },
 
     ],
   },
-  {
-    title: 'Buy eBoltt (Ethereum)',
-    icon: 'nb-home',
-    link: '/pages/ERC-20',
-    home: true,
-  },
-  {
-    title: 'Block Swap',
-    icon: 'nb-home',
-    link: '/pages/blockswap',
-    home: true,
-  },
+  // {
+  //   title: 'Buy eBoltt (Ethereum)',
+  //   icon: 'nb-home',
+  //   link: '/pages/ERC-20',
+  //   home: true,
+  // },
+  // {
+  //   title: 'Block Swap',
+  //   icon: 'nb-home',
+  //   link: '/pages/blockswap',
+  //   home: true,
+  // },
   // {
   //   title: 'Analytics',
   //   icon: 'nb-bar-chart',
@@ -42,10 +46,35 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   home: true,
   // },
   {
-    title: 'Your Orders',
+    title: 'Order History',
     icon: 'nb-compose',
     link: '/pages/order-stats',
     home: true,
+  },
+  {
+    title: 'Refferal',
+    icon: 'nb-paper-plane',
+    link: '/pages/referal',
+    home: true,
+  },
+  {
+    title: 'Boltt Wallet',
+    icon: 'nb-locked',
+    link: '/pages/wallet',
+    children: [
+      {
+        title: 'Wallet info',
+        link: '/pages/wallet/wallet-info',
+      },
+      // {
+      //   title: 'Dex',
+      //   link: '/pages/wallet/dex',
+      // },
+      // {
+      //   title: 'Go to Wallet',
+      //   link: '/pages/wallet/wallet-info',
+      // },
+    ],
   },
   {
     title: 'Profile',
@@ -87,39 +116,31 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Whitepaper',
-        url: 'www.google.com',
+        url: 'https://bolttcoin.io/BolttCoinWhitePaper-V1.0.pdf',
       },
       {
         title: 'One Paper',
-        link: '/pages/document/whitepaper',
+        url: 'https://bolttcoin.io/images/boltt/onepager.pdf',
       },
       {
-        title: 'Legal Disclaimer',
-        link: '/pages/document/whitepaper',
-      },
-      {
-        title: 'Terms and conditions',
-        link: '/pages/document/whitepaper',
-      },
+        title: 'Light Paper',
+        link: 'https://bolttcoin.io/BolttCoinLightPaper.pdf',
+      }
     ],
   },
   {
-    title: 'Boltt Wallet',
-    icon: 'nb-locked',
-    link: '/pages/wallet',
+    title: 'Explorer',
+    icon: 'nb-paper-plane',
+    // link: '/pages/user-profile',
     children: [
       {
-        title: 'Wallet info',
-        link: '/pages/wallet/wallet-info',
+        title: 'Wave Transactions',
+        link: '/pages/wallet/live-transaction',
       },
-      // {
-      //   title: 'Dex',
-      //   link: '/pages/wallet/dex',
-      // },
-      // {
-      //   title: 'Go to Wallet',
-      //   link: '/pages/wallet/wallet-info',
-      // },
+      {
+        title: 'Ether Transactions',
+        link: '/pages/ether-transaction',
+      }
     ],
   },
   // {
@@ -128,24 +149,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   link: '/pages/order-stats1',
   //   home: true,
   // },
-  {
-    title: 'Bounty and Refferal',
-    icon: 'nb-paper-plane',
-    link: '/pages/referal',
-    home: true,
-  },
-  {
-    title: 'Waves Transaction',
-    icon: 'nb-paper-plane',
-    link: '/pages/wallet/live-transaction',
-    home: true,
-  },
-  {
-    title: 'Ether Transaction',
-    icon: 'nb-paper-plane',
-    link: '/pages/ether-transaction',
-    home: true,
-  },
   // {
   //   title: 'UI Features',
   //   icon: 'nb-keypad',

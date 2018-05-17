@@ -6,56 +6,54 @@
   </button>
 </div>
 <div class="modal-body" *ngIf="paymentType === 1">
-  <div class="variants" [hidden]="true">
-    <span id="paypal-button"></span>
+  <div class="row">
+    <div class="col-lg-6 col-md-6">
+      <div class="variants" [hidden]="true">
+        <span id="paypal-button"></span>
+      </div>
+      <div class="payment-qrcode">
+        <qr-code [value]="address" [size]="150"></qr-code>
+      </div>
+      <br>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <div>
+        <h6>Pay to this {{method}} address.</h6>
+      </div>
+      <div class="font-row font-main">
+        <h6 class="item text-success"> {{address}}</h6>
+      </div>
+    </div>
   </div>
-  <div class="payment-qrcode">
-    <qr-code [value]="address" [size]="150"></qr-code>
+  <div class="row color bg-info">
+    <div class="col-lg-9 col-md-9 offset-md-3">
+      <div class="font-row font-main">
+        <div class="header">
+          <div class="variants">
+            <span class="font-w-bold bold">
+              {{method}} &nbsp;
+              <input type="number" placeholder="select an amount" [(ngModel)]="methodAmount" name="methodAmount" (ngModelChange)="computeBoltt($event)">&nbsp; = &nbsp;{{bolttAmount}} BOLTT
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <br>
-  <div class="centered">
-    <div class="font-row font-main">
-      <div class="header">
-        <div class="variants">
-          <span class="font-w-light">address: </span>
-          <span class="font-w-bold bold">
-            {{address}}
-          </span>
-        </div>
-      </div>
+  <div role="alert">
+    <a class="font-italic alert-hint size">The calculator uses the effective BOLTT price, which is based on the price 1 BIT = 0.00003472 ETH and 0% bonus.</a>
+  </div>
+  <br />
+  <br />
+  <div class="row">
+    <div class="col-lg-10 col-md-10 offset-md-2">
+      <span class="font-w-bold">4 step guide</span>
+      <ol class="mb-5">
+        <li>Calculate how much tokens you want to buy.</li>
+        <li>Copy/Scan the displayed address</li>
+        <li>Send your {{method}} to that address. You may send it right from your exchange.</li>
+        <li>Upon transaction confirmation, you will see BOLTT tokens in your wallet balance.</li>
+      </ol>
     </div>
-    <div class="font-row font-main">
-      <div class="header">
-        <div class="variants">
-          <span class="font-w-light">method: </span>
-          <span class="font-w-bold bold">
-            {{method}}
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="font-row font-main">
-      <div class="header">
-        <div class="variants">
-          <span class="font-w-light">amount: </span>
-          <span class="font-w-bold bold">
-            <input type="number" placeholder="select an amount" [(ngModel)]="methodAmount" name="methodAmount" (ngModelChange)="computeBoltt($event)"> {{method}} = {{bolttAmount}} BOLTT
-          </span>
-        </div>
-      </div>
-    </div>
-    <br>
-    <nb-action class="control-item" style="font-size: 10px;">
-      <div class="text-info">Please transfer {{method}} to the following {{method}} address for the amount you wish to purchase for. Tokens will
-        be sent to your Boltt Wallet/Account automatically once the transfer is confirmed. You can also generate an invoice,
-        a copy of which will be sent on your registered email address. </div>
-    </nb-action>
-    <br>
-    <nb-action class="control-item" style="font-size: 10px;">
-      <div class="text-info">Important: Please note that we update your Boltt Coin balance based on a notification confirming that the transaction
-        has not been cancelled or reversed. Such a notification may require up to 6 confirmations. The exact exchange rate
-        for any Altcoin to Boltt Coins will be considered at the time of notification confirmation.</div>
-    </nb-action>
   </div>
 </div>
 

@@ -73,6 +73,7 @@
     "ng2-toastr": "^4.1.2",
     "ng2-tree": "2.0.0-rc.4",
     "ng4-loading-spinner": "^1.1.1",
+    "ngx-clipboard": "^11.1.0",
     "ngx-echarts": "2.0.1",
     "normalize.css": "6.0.0",
     "npm": "^5.6.0",

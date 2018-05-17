@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserUtilityService } from '../../../pages/providers/user-utility.service';
 import { PaymentService } from '../../../pages/providers/payment.service';
+import { AuthService } from '../../providers/auth.service';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class LoginOtpComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     public userService: PaymentService,
+    private auth: AuthService,
   ) { }
 
   ngOnInit() {
@@ -30,6 +32,7 @@ export class LoginOtpComponent implements OnInit {
   }
 
   closeModal() {
+    this.auth.logout();
     this.activeModal.close();
   }
 }

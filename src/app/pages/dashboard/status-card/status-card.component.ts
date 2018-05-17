@@ -116,17 +116,17 @@ export class StatusCardComponent implements OnInit {
 
     this.payment.getKycStatus().subscribe(data => {
       console.log(data);
-      if (data.data == 'GREEN') {
-        const activeModal = this.modalService.open(ModalComponent, { size: 'lg', container: 'nb-layout' });
+      // if (data.data == 'GREEN') {
+      const activeModal = this.modalService.open(ModalComponent, { size: 'lg', container: 'nb-layout' });
 
-        activeModal.componentInstance.modalHeader = 'Payment order';
-        activeModal.componentInstance.paymentType = 1;
-        activeModal.componentInstance.address = this.address;
-        activeModal.componentInstance.method = this.title;
-        activeModal.componentInstance.rate = this.rate;
-      } else {
-        this.makeToast();
-      }
+      activeModal.componentInstance.modalHeader = 'Payment order';
+      activeModal.componentInstance.paymentType = 1;
+      activeModal.componentInstance.address = this.address;
+      activeModal.componentInstance.method = this.title;
+      activeModal.componentInstance.rate = this.rate;
+      //} else {
+      // this.makeToast();
+      //}
     });
 
   }
